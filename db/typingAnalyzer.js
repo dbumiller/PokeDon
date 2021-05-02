@@ -83,5 +83,3 @@ console.log(name + ' is super effective against ' + offensiveSE.join(', '));
 console.log(name + ' is not very effective against ' + offensiveNFE.join(', '));
 console.log(name + ' is resistant to ' + defensiveResist.join(', '));
 console.log(name + ' is weak to ' + defensiveWeak.join(', '));
-
-
