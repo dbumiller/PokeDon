@@ -20,8 +20,8 @@ var typeChart = {
   water: [1, 1, .5, 1, 1, 1, 2, 1, 1, .5, 2, 1, 1, 1, 1, 2, 1, .5]
 };
 
-var name = 'Volcanion';
-var typing = ['fire', 'water'];
+var name = 'Scyther';
+var typing = ['flying', 'bug'];
 var offensiveEffectiveness = {};
 var defensiveEffectiveness = {};
 var offensiveSE = [];
@@ -51,8 +51,10 @@ for (var j = 0; j < typing.length; j++) {
           if (j === typing.length - 1) {
             if (defensiveEffectiveness[key] > 1) {
               defensiveWeak.push(key);
-            } else if (defensiveEffectiveness[key] < 1) {
+            } else if (defensiveEffectiveness[key] === .5) {
               defensiveResist.push(key);
+            } else if (defensiveEffectiveness[key] < .5) {
+              defensiveResist.push(key.toUpperCase());
             }
           }
         }
@@ -72,8 +74,10 @@ for (var j = 0; j < typing.length; j++) {
     if (j === typing.length - 1) {
       if (offensiveEffectiveness[currentTarget] > 1) {
         offensiveSE.push(currentTarget);
-      } else if (offensiveEffectiveness[currentTarget] < 1) {
+      } else if (offensiveEffectiveness[currentTarget] === .5) {
         offensiveNFE.push(currentTarget);
+      } else if (offensiveEffectiveness[currentTarget] === 0) {
+        offensiveNFE.push(currentTarget.toUpperCase());
       }
     }
   }
