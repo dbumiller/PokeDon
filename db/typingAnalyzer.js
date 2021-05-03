@@ -122,7 +122,7 @@ for (var m = 0; m < metagame.length; m++) {
             if (metagame[m].offensiveNVE[o] === metagame[n].offensiveNVE[p]) {
               countNVE++;
             } else if (metagame[m].offensiveNVE[o].toLowerCase() === metagame[n].offensiveNVE[p].toLowerCase()) {
-              countNVE += 2;
+              countNVE += 1.3;
             }
           }
         }
@@ -159,5 +159,5 @@ for (var s = 0; s < metagame.length; s++) {
   }
 }
 
-console.log('mono type count: ' + monoTypeCount + '\ndual type count: ' + dualTypeCount);
-//console.log('Tauros offensive synergy: \n', metagame[0].offensiveSynergy);
+//console.log('mono type count: ' + monoTypeCount + '\ndual type count: ' + dualTypeCount);
+console.log('Krookodile offensive synergy: \n', metagame[7].offensiveSynergy);
