@@ -78,18 +78,11 @@ var calculator = function(pokemon) {
       }
     }
   }
-
-  /*
-  console.log(pokemon.name + ' is super effective against ' + pokemon.offensiveSE.join(', '));
-  console.log(pokemon.name + ' is not very effective against ' + pokemon.offensiveNVE.join(', '));
-  console.log(pokemon.name + ' is resistant to ' + pokemon.defensiveResist.join(', '));
-  console.log(pokemon.name + ' is weak to ' + pokemon.defensiveWeak.join(', '));
-  */
 }
 
 
-var names = ['Tauros', 'Charizard', 'Venusaur', 'Blastoise', 'Sylveon', 'Haxorus', 'Copperajah', 'Krookodile', 'Machamp', 'Scyther'];
-var typings = [['normal'], ['fire', 'flying'], ['grass', 'poison'], ['water'], ['fairy'], ['dragon'], ['steel'], ['dark', 'ground'], ['fighting'], ['bug', 'flying']];
+var names = ['Tauros', 'Charizard', 'Venusaur', 'Blastoise', 'Sylveon', 'Haxorus', 'Copperajah', 'Krookodile', 'Machamp', 'Scyther', 'Gigalith', 'Rotom-W', 'Metagross', 'Ninetales-A', 'Torkoal', 'Nidoqueen', 'Slowking', 'Vanilluxe', 'Umbreon', 'Sandaconda', 'Espeon', 'Tangrowth', 'Raikou', 'Pinsir', 'Tornadus', 'Muk', 'Dusclops', 'Pangoro', 'Heliolisk', 'Swampert', 'Heracross', 'Dragalge', 'Kingdra', 'Hatterene', 'Chandelure', 'Klefki'];
+var typings = [['normal'], ['fire', 'flying'], ['grass', 'poison'], ['water'], ['fairy'], ['dragon'], ['steel'], ['dark', 'ground'], ['fighting'], ['bug', 'flying'], ['rock'], ['electric', 'water'], ['steel', 'psychic'], ['ice', 'fairy'], ['fire'], ['ground', 'poison'], ['water', 'psychic'], ['ice'], ['dark'], ['ground'], ['psychic'], ['grass'], ['electric'], ['bug'], ['flying'], ['poison'], ['ghost'], ['dark', 'fighting'], ['electric', 'normal'], ['water', 'ground'], ['bug', 'fighting'], ['dragon', 'poison'], ['water', 'dragon'], ['fairy', 'psychic'], ['ghost', 'fire'], ['steel', 'fairy']];
 
 
 
@@ -114,22 +107,32 @@ for (var l = 0; l < names.length; l++) {
 for (var m = 0; m < metagame.length; m++) {
   for (var n = 0; n < metagame.length; n++) {
     if (m !== n) {
-      var count = 0;
-      for (var o = 0; o < metagame[m].offensiveNVE.length; o++) {
-        for (var p = 0; p < metagame[n].offensiveNVE.length; p++) {
-          if (metagame[m].offensiveNVE[o] === metagame[n].offensiveNVE[p]) {
-            count++;
-          } else if (metagame[m].offensiveNVE[o].toLowerCase() === metagame[n].offensiveNVE[p].toLowerCase()) {
-            count += 2;
+      var sameType = false;
+      for (var q = 0; q < metagame[m].typing.length; q++) {
+        for (var r = 0; r < metagame[n].typing.length; r++) {
+          if (metagame[m].typing[q] === metagame[n].typing[r]) {
+            sameType = true;
           }
         }
       }
-      var average = (count / metagame[m].offensiveNVE.length) + (count / metagame[n].offensiveNVE.length);
-      average /= 2;
-      average = average.toFixed(2);
-      metagame[m].offensiveSynergy.push([metagame[n].name, average]);
+      if (!sameType) {
+        var countNVE = 0;
+        for (var o = 0; o < metagame[m].offensiveNVE.length; o++) {
+          for (var p = 0; p < metagame[n].offensiveNVE.length; p++) {
+            if (metagame[m].offensiveNVE[o] === metagame[n].offensiveNVE[p]) {
+              countNVE++;
+            } else if (metagame[m].offensiveNVE[o].toLowerCase() === metagame[n].offensiveNVE[p].toLowerCase()) {
+              countNVE += 2;
+            }
+          }
+        }
+        var averageNVE = (countNVE / metagame[m].offensiveNVE.length) + (countNVE / metagame[n].offensiveNVE.length);
+        averageNVE /= 2;
+        averageNVE = averageNVE.toFixed(2);
+        metagame[m].offensiveSynergy.push([averageNVE, metagame[n].name]);
+      }
     }
   }
 }
 
-console.log(metagame[0].offensiveSynergy);
+console.log('Tauros offensive synergy: \n', metagame[7].offensiveSynergy);
