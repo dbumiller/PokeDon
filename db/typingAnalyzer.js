@@ -79,10 +79,12 @@ var calculator = function(pokemon) {
     }
   }
 
+  /*
   console.log(pokemon.name + ' is super effective against ' + pokemon.offensiveSE.join(', '));
   console.log(pokemon.name + ' is not very effective against ' + pokemon.offensiveNVE.join(', '));
   console.log(pokemon.name + ' is resistant to ' + pokemon.defensiveResist.join(', '));
   console.log(pokemon.name + ' is weak to ' + pokemon.defensiveWeak.join(', '));
+  */
 }
 
 
@@ -103,6 +105,31 @@ for (var l = 0; l < names.length; l++) {
   currentObj.offensiveNVE = [];
   currentObj.defensiveResist = [];
   currentObj.defensiveWeak = [];
+  currentObj.offensiveSynergy = [];
   calculator(currentObj);
   metagame.push(currentObj);
 }
+
+
+for (var m = 0; m < metagame.length; m++) {
+  for (var n = 0; n < metagame.length; n++) {
+    if (m !== n) {
+      var count = 0;
+      for (var o = 0; o < metagame[m].offensiveNVE.length; o++) {
+        for (var p = 0; p < metagame[n].offensiveNVE.length; p++) {
+          if (metagame[m].offensiveNVE[o] === metagame[n].offensiveNVE[p]) {
+            count++;
+          } else if (metagame[m].offensiveNVE[o].toLowerCase() === metagame[n].offensiveNVE[p].toLowerCase()) {
+            count += 2;
+          }
+        }
+      }
+      var average = (count / metagame[m].offensiveNVE.length) + (count / metagame[n].offensiveNVE.length);
+      average /= 2;
+      average = average.toFixed(2);
+      metagame[m].offensiveSynergy.push([metagame[n].name, average]);
+    }
+  }
+}
+
+console.log(metagame[0].offensiveSynergy);
