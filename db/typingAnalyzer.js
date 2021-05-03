@@ -20,70 +20,87 @@ var typeChart = {
   water: [1, 1, .5, 1, 1, 1, 2, 1, 1, .5, 2, 1, 1, 1, 1, 2, 1, .5]
 };
 
-var name = 'Scyther';
-var typing = ['flying', 'bug'];
-var offensiveEffectiveness = {};
-var defensiveEffectiveness = {};
-var offensiveSE = [];
-var offensiveNFE = [];
-var defensiveResist = [];
-var defensiveWeak = [];
-var current;
 
-for (var i = 0; i < typeChart['top'].length; i++) {
-  current = typeChart['top'][i];
-  offensiveEffectiveness[current] = 1;
-  defensiveEffectiveness[current] = 1;
+var names = ['Snorlax', 'Charizard', 'Venusaur', 'Blastoise', 'Sylveon', 'Haxorus', 'Copperajah', 'Krookodile', 'Machamp', 'Scyther'];
+var typings = [['normal'], ['fire', 'flying'], ['grass', 'poison'], ['water'], ['fairy'], ['dragon'], ['steel'], ['dark', 'ground'], ['fighting'], ['bug', 'flying']];
+
+
+var name = 'Snorlax';
+var typing = ['normal'];
+
+var metagame = [];
+
+for (var l = 0; l < names.length; l++) {
+  var currentObj = {};
+  currentObj.name = names[l];
+  currentObj.typing = typings[l];
+  currentObj.offensiveEffectiveness = {};
+  currentObj.defensiveEffectiveness = {};
+  currentObj.offensiveSE = [];
+  currentObj.offensiveNVE = [];
+  currentObj.defensiveResist = [];
+  currentObj.defensiveWeak = [];
+  metagame.push(currentObj);
 }
 
-for (var j = 0; j < typing.length; j++) {
-  var currentTyping = typing[j];
-  var currentTarget;
 
-  for (k = 0; k <= typeChart.top.length; k++) {
-    currentTarget = typeChart.top[k];
 
-    if (currentTarget === currentTyping) {
-      for (key in typeChart) {
-        if (key !== 'top') {
-          defensiveEffectiveness[key] *= typeChart[key][k];
 
-          if (j === typing.length - 1) {
-            if (defensiveEffectiveness[key] > 1) {
-              defensiveWeak.push(key);
-            } else if (defensiveEffectiveness[key] === .5) {
-              defensiveResist.push(key);
-            } else if (defensiveEffectiveness[key] < .5) {
-              defensiveResist.push(key.toUpperCase());
+var calculator = function(pokemon) {
+  var current;
+  for (var i = 0; i < typeChart['top'].length; i++) {
+    current = typeChart['top'][i];
+    offensiveEffectiveness[current] = 1;
+    defensiveEffectiveness[current] = 1;
+  }
+
+  for (var j = 0; j < typing.length; j++) {
+    var currentTyping = typing[j];
+    var currentTarget;
+
+    for (k = 0; k <= typeChart.top.length; k++) {
+      currentTarget = typeChart.top[k];
+
+      if (currentTarget === currentTyping) {
+        for (key in typeChart) {
+          if (key !== 'top') {
+            defensiveEffectiveness[key] *= typeChart[key][k];
+
+            if (j === typing.length - 1) {
+              if (defensiveEffectiveness[key] > 1) {
+                defensiveWeak.push(key);
+              } else if (defensiveEffectiveness[key] <= .5) {
+                defensiveResist.push(key);
+              }
+              /* else if (defensiveEffectiveness[key] < .5) {
+                defensiveResist.push(key.toUpperCase());
+              }
+              */
             }
           }
         }
       }
-    }
 
-    if (typeChart[currentTyping][k] === 2) {
-      offensiveEffectiveness[currentTarget] += 1;
-    } else if (typeChart[currentTyping][k] === .5 || typeChart[currentTyping][k] === 0) {
-      if (typing.length === 2) {
+      if (typeChart[currentTyping][k] === 2) {
+        offensiveEffectiveness[currentTarget] += 1;
+      } else if (typeChart[currentTyping][k] <= .5) {
         offensiveEffectiveness[currentTarget] -= .5;
-      } else {
-        offensiveEffectiveness[currentTarget] -= 1;
       }
-    }
 
-    if (j === typing.length - 1) {
-      if (offensiveEffectiveness[currentTarget] > 1) {
-        offensiveSE.push(currentTarget);
-      } else if (offensiveEffectiveness[currentTarget] === .5) {
-        offensiveNFE.push(currentTarget);
-      } else if (offensiveEffectiveness[currentTarget] === 0) {
-        offensiveNFE.push(currentTarget.toUpperCase());
+      if (j === typing.length - 1) {
+        if (offensiveEffectiveness[currentTarget] > 1) {
+          offensiveSE.push(currentTarget);
+        } else if (offensiveEffectiveness[currentTarget] === .5) {
+          offensiveNVE.push(currentTarget);
+        } else if (offensiveEffectiveness[currentTarget] === 0) {
+          offensiveNVE.push(currentTarget.toUpperCase());
+        }
       }
     }
   }
-}
 
-console.log(name + ' is super effective against ' + offensiveSE.join(', '));
-console.log(name + ' is not very effective against ' + offensiveNFE.join(', '));
-console.log(name + ' is resistant to ' + defensiveResist.join(', '));
-console.log(name + ' is weak to ' + defensiveWeak.join(', '));
+  console.log(name + ' is super effective against ' + offensiveSE.join(', '));
+  console.log(name + ' is not very effective against ' + offensiveNVE.join(', '));
+  console.log(name + ' is resistant to ' + defensiveResist.join(', '));
+  console.log(name + ' is weak to ' + defensiveWeak.join(', '));
+}
