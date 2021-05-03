@@ -81,8 +81,11 @@ var calculator = function(pokemon) {
 }
 
 
-var names = ['Tauros', 'Charizard', 'Venusaur', 'Blastoise', 'Sylveon', 'Haxorus', 'Copperajah', 'Krookodile', 'Machamp', 'Scyther', 'Gigalith', 'Rotom-W', 'Metagross', 'Ninetales-A', 'Torkoal', 'Nidoqueen', 'Slowking', 'Vanilluxe', 'Umbreon', 'Sandaconda', 'Espeon', 'Tangrowth', 'Raikou', 'Pinsir', 'Tornadus', 'Muk', 'Dusclops', 'Pangoro', 'Heliolisk', 'Swampert', 'Heracross', 'Dragalge', 'Kingdra', 'Hatterene', 'Chandelure', 'Klefki'];
-var typings = [['normal'], ['fire', 'flying'], ['grass', 'poison'], ['water'], ['fairy'], ['dragon'], ['steel'], ['dark', 'ground'], ['fighting'], ['bug', 'flying'], ['rock'], ['electric', 'water'], ['steel', 'psychic'], ['ice', 'fairy'], ['fire'], ['ground', 'poison'], ['water', 'psychic'], ['ice'], ['dark'], ['ground'], ['psychic'], ['grass'], ['electric'], ['bug'], ['flying'], ['poison'], ['ghost'], ['dark', 'fighting'], ['electric', 'normal'], ['water', 'ground'], ['bug', 'fighting'], ['dragon', 'poison'], ['water', 'dragon'], ['fairy', 'psychic'], ['ghost', 'fire'], ['steel', 'fairy']];
+var names = ['Tauros', 'Charizard', 'Venusaur', 'Blastoise', 'Sylveon', 'Haxorus', 'Copperajah', 'Krookodile', 'Machamp', 'Scyther', 'Gigalith', 'Rotom-W', 'Metagross', 'Ninetales-A', 'Torkoal', 'Nidoqueen', 'Slowking', 'Vanilluxe', 'Umbreon', 'Sandaconda', 'Espeon', 'Tangrowth', 'Raikou', 'Pinsir', 'Tornadus', 'Muk', 'Dusclops', 'Pangoro', 'Heliolisk', 'Swampert', 'Heracross', 'Dragalge', 'Kingdra', 'Slowking-G', 'Chandelure', 'Klefki', 'Doublade', 'Obstagoon'];
+var typings = [['normal'], ['fire', 'flying'], ['grass', 'poison'], ['water'], ['fairy'], ['dragon'], ['steel'], ['dark', 'ground'], ['fighting'], ['bug', 'flying'], ['rock'], ['electric', 'water'], ['steel', 'psychic'], ['ice', 'fairy'], ['fire'], ['ground', 'poison'], ['water', 'psychic'], ['ice'], ['dark'], ['ground'], ['psychic'], ['grass'], ['electric'], ['bug'], ['flying'], ['poison'], ['ghost'], ['dark', 'fighting'], ['electric', 'normal'], ['water', 'ground'], ['bug', 'fighting'], ['dragon', 'poison'], ['water', 'dragon'], ['poison', 'psychic'], ['ghost', 'fire'], ['steel', 'fairy'], ['ghost', 'steel'], ['dark', 'normal']];
+
+//names.push('decidueye');
+//typings.push(['ghost', 'grass']);
 
 
 
@@ -99,6 +102,7 @@ for (var l = 0; l < names.length; l++) {
   currentObj.defensiveResist = [];
   currentObj.defensiveWeak = [];
   currentObj.offensiveSynergy = [];
+  currentObj.defensiveSynergy = [];
   calculator(currentObj);
   metagame.push(currentObj);
 }
@@ -130,7 +134,30 @@ for (var m = 0; m < metagame.length; m++) {
         var averageNVE = (countNVE / metagame[m].offensiveNVE.length) + (countNVE / metagame[n].offensiveNVE.length);
         averageNVE /= 2;
         averageNVE = averageNVE.toFixed(2);
-        metagame[m].offensiveSynergy.push([averageNVE, metagame[n].name, metagame[n].typing]);
+        metagame[m].offensiveSynergy.push([averageNVE, metagame[n].name]);
+
+
+        var countDefenseM = 0;
+        for (var u = 0; u < metagame[m].defensiveWeak.length; u++) {
+          for (var w = 0; w < metagame[n].defensiveResist.length; w++) {
+            if (metagame[m].defensiveWeak[u] === metagame[n].defensiveResist[w]) {
+              countDefenseM++;
+            }
+          }
+        }
+        var countDefenseN = 0;
+        for (var x = 0; x < metagame[n].defensiveWeak.length; x++) {
+          for (var y = 0; y < metagame[m].defensiveResist.length; y++) {
+            if (metagame[n].defensiveWeak[x] === metagame[m].defensiveResist[y]) {
+              countDefenseN++;
+            }
+          }
+        }
+
+        var averageDefense = (countDefenseM / metagame[m].defensiveWeak.length) + (countDefenseN / metagame[n].defensiveWeak.length);
+        averageDefense /= 2;
+        averageDefense = averageDefense.toFixed(2);
+        metagame[m].defensiveSynergy.push([averageDefense, metagame[n].name]);
       }
     }
   }
@@ -144,20 +171,34 @@ for (var m = 0; m < metagame.length; m++) {
       return 0;
     }
   });
-}
 
-var monoTypeCount = 0;
-var dualTypeCount = 0;
-for (var s = 0; s < metagame.length; s++) {
-  var currentTopSynergy = metagame[s].offensiveSynergy.slice(0, 5);
-  for (var t = 0; t < 5; t++) {
-    if (currentTopSynergy[t][2].length === 1) {
-      monoTypeCount++;
+  metagame[m].defensiveSynergy.sort(function(a, b) {
+    if (a > b) {
+      return -1;
+    } else if (a > b) {
+      return 1;
     } else {
-      dualTypeCount++;
+      return 0;
     }
-  }
+  });
 }
 
-//console.log('mono type count: ' + monoTypeCount + '\ndual type count: ' + dualTypeCount);
-console.log('Krookodile offensive synergy: \n', metagame[7].offensiveSynergy);
+// var monoTypeCount = 0;
+// var dualTypeCount = 0;
+// for (var s = 0; s < metagame.length; s++) {
+//   var currentTopSynergy = metagame[s].defensiveSynergy.slice(0, 5);
+//   for (var t = 0; t < 5; t++) {
+//     if (currentTopSynergy[t][2].length === 1) {
+//       monoTypeCount++;
+//     } else {
+//       dualTypeCount++;
+//     }
+//   }
+// }
+// console.log('mono type count: ' + monoTypeCount + '\ndual type count: ' + dualTypeCount);
+
+// console.log('Krookodile offensive synergy: \n', metagame[7].offensiveSynergy.slice(0, 15));
+// console.log('Krookodile defensive synergy: \n', metagame[7].defensiveSynergy.slice(0, 15));
+
+console.log('Doublade offensive synergy: \n', metagame[metagame.length - 2].offensiveSynergy.slice(0, 15));
+console.log('Doublade defensive synergy: \n', metagame[metagame.length - 2].defensiveSynergy.slice(0, 15));
