@@ -126,13 +126,15 @@ for (var m = 0; m < metagame.length; m++) {
             }
           }
         }
+
         var averageNVE = (countNVE / metagame[m].offensiveNVE.length) + (countNVE / metagame[n].offensiveNVE.length);
         averageNVE /= 2;
         averageNVE = averageNVE.toFixed(2);
-        metagame[m].offensiveSynergy.push([averageNVE, metagame[n].name]);
+        metagame[m].offensiveSynergy.push([averageNVE, metagame[n].name, metagame[n].typing]);
       }
     }
   }
+
   metagame[m].offensiveSynergy.sort(function(a, b) {
     if (a > b) {
       return -1;
@@ -144,4 +146,18 @@ for (var m = 0; m < metagame.length; m++) {
   });
 }
 
-console.log('Tauros offensive synergy: \n', metagame[0].offensiveSynergy);
+var monoTypeCount = 0;
+var dualTypeCount = 0;
+for (var s = 0; s < metagame.length; s++) {
+  var currentTopSynergy = metagame[s].offensiveSynergy.slice(0, 5);
+  for (var t = 0; t < 5; t++) {
+    if (currentTopSynergy[t][2].length === 1) {
+      monoTypeCount++;
+    } else {
+      dualTypeCount++;
+    }
+  }
+}
+
+console.log('mono type count: ' + monoTypeCount + '\ndual type count: ' + dualTypeCount);
+//console.log('Tauros offensive synergy: \n', metagame[0].offensiveSynergy);
