@@ -133,6 +133,15 @@ for (var m = 0; m < metagame.length; m++) {
       }
     }
   }
+  metagame[m].offensiveSynergy.sort(function(a, b) {
+    if (a > b) {
+      return -1;
+    } else if (a > b) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
 }
 
-console.log('Tauros offensive synergy: \n', metagame[7].offensiveSynergy);
+console.log('Tauros offensive synergy: \n', metagame[0].offensiveSynergy);
