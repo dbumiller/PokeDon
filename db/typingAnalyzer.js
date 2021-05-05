@@ -81,11 +81,10 @@ var calculator = function(pokemon) {
 }
 
 
-var names = ['Tauros', 'Charizard', 'Venusaur', 'Blastoise', 'Sylveon', 'Haxorus', 'Copperajah', 'Krookodile', 'Machamp', 'Scyther', 'Gigalith', 'Rotom-W', 'Metagross', 'Ninetales-A', 'Torkoal', 'Nidoqueen', 'Slowking', 'Vanilluxe', 'Umbreon', 'Sandaconda', 'Espeon', 'Tangrowth', 'Raikou', 'Pinsir', 'Tornadus', 'Muk', 'Dusclops', 'Pangoro', 'Heliolisk', 'Swampert', 'Heracross', 'Dragalge', 'Kingdra', 'Slowking-G', 'Chandelure', 'Klefki', 'Doublade', 'Obstagoon'];
-var typings = [['normal'], ['fire', 'flying'], ['grass', 'poison'], ['water'], ['fairy'], ['dragon'], ['steel'], ['dark', 'ground'], ['fighting'], ['bug', 'flying'], ['rock'], ['electric', 'water'], ['steel', 'psychic'], ['ice', 'fairy'], ['fire'], ['ground', 'poison'], ['water', 'psychic'], ['ice'], ['dark'], ['ground'], ['psychic'], ['grass'], ['electric'], ['bug'], ['flying'], ['poison'], ['ghost'], ['dark', 'fighting'], ['electric', 'normal'], ['water', 'ground'], ['bug', 'fighting'], ['dragon', 'poison'], ['water', 'dragon'], ['poison', 'psychic'], ['ghost', 'fire'], ['steel', 'fairy'], ['ghost', 'steel'], ['dark', 'normal']];
+var names = ['Tauros', 'Charizard', 'Venusaur', 'Blastoise', 'Sylveon', 'Haxorus', 'Copperajah', 'Krookodile', 'Machamp', 'Scyther', 'Gigalith', 'Rotom-W', 'Metagross', 'Ninetales-A', 'Torkoal', 'Nidoqueen', 'Slowking', 'Vanilluxe', 'Umbreon', 'Sandaconda', 'Espeon', 'Tangrowth', 'Raikou', 'Pinsir', 'Tornadus', 'Muk', 'Dusclops', 'Pangoro', 'Heliolisk', 'Swampert', 'Heracross', 'Dragalge', 'Kingdra', 'Slowking-G', 'Chandelure', 'Klefki', 'Doublade', 'Obstagoon', 'Rhyhorn'];
+var typings = [['normal'], ['fire', 'flying'], ['grass', 'poison'], ['water'], ['fairy'], ['dragon'], ['steel'], ['dark', 'ground'], ['fighting'], ['bug', 'flying'], ['rock'], ['electric', 'water'], ['steel', 'psychic'], ['ice', 'fairy'], ['fire'], ['ground', 'poison'], ['water', 'psychic'], ['ice'], ['dark'], ['ground'], ['psychic'], ['grass'], ['electric'], ['bug'], ['flying'], ['poison'], ['ghost'], ['dark', 'fighting'], ['electric', 'normal'], ['water', 'ground'], ['bug', 'fighting'], ['dragon', 'poison'], ['water', 'dragon'], ['poison', 'psychic'], ['ghost', 'fire'], ['steel', 'fairy'], ['ghost', 'steel'], ['dark', 'normal'], ['rock', 'ground']];
 
-//names.push('decidueye');
-//typings.push(['ghost', 'grass']);
+
 
 
 
@@ -102,86 +101,127 @@ for (var l = 0; l < names.length; l++) {
   currentObj.defensiveResist = [];
   currentObj.defensiveWeak = [];
   currentObj.offensiveSynergy = [];
+  currentObj.offensiveCompliment = [];
   currentObj.defensiveSynergy = [];
   calculator(currentObj);
   metagame.push(currentObj);
 }
 
+var analyzer = function(metagame) {
 
-for (var m = 0; m < metagame.length; m++) {
-  for (var n = 0; n < metagame.length; n++) {
-    if (m !== n) {
-      var sameType = false;
-      for (var q = 0; q < metagame[m].typing.length; q++) {
-        for (var r = 0; r < metagame[n].typing.length; r++) {
-          if (metagame[m].typing[q] === metagame[n].typing[r]) {
-            sameType = true;
-          }
-        }
-      }
-      if (!sameType) {
-        var countNVE = 0;
-        for (var o = 0; o < metagame[m].offensiveNVE.length; o++) {
-          for (var p = 0; p < metagame[n].offensiveNVE.length; p++) {
-            if (metagame[m].offensiveNVE[o] === metagame[n].offensiveNVE[p]) {
-              countNVE++;
-            } else if (metagame[m].offensiveNVE[o].toLowerCase() === metagame[n].offensiveNVE[p].toLowerCase()) {
-              countNVE += 1.3;
+  for (var m = 0; m < metagame.length; m++) {
+    for (var n = 0; n < metagame.length; n++) {
+      if (m !== n) {
+        var sameType = false;
+        for (var q = 0; q < metagame[m].typing.length; q++) {
+          for (var r = 0; r < metagame[n].typing.length; r++) {
+            if (metagame[m].typing[q] === metagame[n].typing[r]) {
+              sameType = true;
             }
           }
         }
+        if (!sameType) {
 
-        var averageNVE = (countNVE / metagame[m].offensiveNVE.length) + (countNVE / metagame[n].offensiveNVE.length);
-        averageNVE /= 2;
-        averageNVE = averageNVE.toFixed(2);
-        metagame[m].offensiveSynergy.push([averageNVE, metagame[n].name]);
-
-
-        var countDefenseM = 0;
-        for (var u = 0; u < metagame[m].defensiveWeak.length; u++) {
-          for (var w = 0; w < metagame[n].defensiveResist.length; w++) {
-            if (metagame[m].defensiveWeak[u] === metagame[n].defensiveResist[w]) {
-              countDefenseM++;
+          var countNVE = 0;
+          for (var o = 0; o < metagame[m].offensiveNVE.length; o++) {
+            for (var p = 0; p < metagame[n].offensiveNVE.length; p++) {
+              if (metagame[m].offensiveNVE[o] === metagame[n].offensiveNVE[p]) {
+                countNVE++;
+              } else if (metagame[m].offensiveNVE[o].toLowerCase() === metagame[n].offensiveNVE[p].toLowerCase()) {
+                countNVE += 1.3;
+              }
             }
           }
-        }
-        var countDefenseN = 0;
-        for (var x = 0; x < metagame[n].defensiveWeak.length; x++) {
-          for (var y = 0; y < metagame[m].defensiveResist.length; y++) {
-            if (metagame[n].defensiveWeak[x] === metagame[m].defensiveResist[y]) {
-              countDefenseN++;
+
+          var averageNVE = (countNVE / metagame[m].offensiveNVE.length) + (countNVE / metagame[n].offensiveNVE.length);
+          averageNVE /= 2;
+          averageNVE = averageNVE.toFixed(2);
+          metagame[m].offensiveSynergy.push([averageNVE, metagame[n].name]);
+
+
+          var countDefenseM = 0;
+          for (var u = 0; u < metagame[m].defensiveWeak.length; u++) {
+            for (var w = 0; w < metagame[n].defensiveResist.length; w++) {
+              if (metagame[m].defensiveWeak[u] === metagame[n].defensiveResist[w]) {
+                countDefenseM++;
+              }
             }
           }
-        }
+          var countDefenseN = 0;
+          for (var x = 0; x < metagame[n].defensiveWeak.length; x++) {
+            for (var y = 0; y < metagame[m].defensiveResist.length; y++) {
+              if (metagame[n].defensiveWeak[x] === metagame[m].defensiveResist[y]) {
+                countDefenseN++;
+              }
+            }
+          }
 
-        var averageDefense = (countDefenseM / metagame[m].defensiveWeak.length) + (countDefenseN / metagame[n].defensiveWeak.length);
-        averageDefense /= 2;
-        averageDefense = averageDefense.toFixed(2);
-        metagame[m].defensiveSynergy.push([averageDefense, metagame[n].name]);
+          var averageDefense = (countDefenseM / metagame[m].defensiveWeak.length) + (countDefenseN / metagame[n].defensiveWeak.length);
+          averageDefense /= 2;
+          averageDefense = averageDefense.toFixed(2);
+          metagame[m].defensiveSynergy.push([averageDefense, metagame[n].name]);
+
+
+          var countComplimentM = 0;
+          for (var z = 0; z < metagame[m].offensiveNVE.length; z++) {
+            for (var a = 0; a < metagame[n].offensiveSE.length; a++) {
+              if (metagame[m].offensiveNVE[z] === metagame[n].offensiveSE[a]) {
+                countComplimentM++;
+              }
+            }
+          }
+
+          var countComplimentN = 0;
+          for (var b = 0; b < metagame[n].offensiveNVE.length; b++) {
+            for (var c = 0; c < metagame[m].offensiveSE.length; c++) {
+              if (metagame[n].offensiveNVE[b] === metagame[m].offensiveSE[c]) {
+                countComplimentN++;
+              }
+            }
+          }
+
+          var averageCompliment = (countComplimentM / metagame[m].offensiveNVE.length) + (countComplimentN / metagame[n].offensiveNVE.length);
+          averageCompliment /= 2;
+          averageCompliment = averageCompliment.toFixed(2);
+          metagame[m].offensiveCompliment.push([averageCompliment, metagame[n].name]);
+
+        }
       }
     }
+
+    metagame[m].offensiveSynergy.sort(function(a, b) {
+      if (a > b) {
+        return -1;
+      } else if (a > b) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+
+    metagame[m].defensiveSynergy.sort(function(a, b) {
+      if (a > b) {
+        return -1;
+      } else if (a > b) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+
+    metagame[m].offensiveCompliment.sort(function(a, b) {
+      if (a > b) {
+        return -1;
+      } else if (a > b) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
   }
-
-  metagame[m].offensiveSynergy.sort(function(a, b) {
-    if (a > b) {
-      return -1;
-    } else if (a > b) {
-      return 1;
-    } else {
-      return 0;
-    }
-  });
-
-  metagame[m].defensiveSynergy.sort(function(a, b) {
-    if (a > b) {
-      return -1;
-    } else if (a > b) {
-      return 1;
-    } else {
-      return 0;
-    }
-  });
 }
+
+analyzer(metagame);
 
 // var monoTypeCount = 0;
 // var dualTypeCount = 0;
@@ -200,5 +240,9 @@ for (var m = 0; m < metagame.length; m++) {
 // console.log('Krookodile offensive synergy: \n', metagame[7].offensiveSynergy.slice(0, 15));
 // console.log('Krookodile defensive synergy: \n', metagame[7].defensiveSynergy.slice(0, 15));
 
-console.log('Doublade offensive synergy: \n', metagame[metagame.length - 2].offensiveSynergy.slice(0, 15));
-console.log('Doublade defensive synergy: \n', metagame[metagame.length - 2].defensiveSynergy.slice(0, 15));
+// console.log('Doublade offensive synergy: \n', metagame[metagame.length - 2].offensiveSynergy.slice(0, 15));
+// console.log('Doublade defensive synergy: \n', metagame[metagame.length - 2].defensiveSynergy.slice(0, 15));
+
+// ['Tauros', 'Charizard', 'Venusaur', 'Blastoise', 'Sylveon', 'Haxorus', 'Copperajah', 'Krookodile', 'Machamp', 'Scyther', 'Gigalith', 'Rotom-W', 'Metagross', 'Ninetales-A', 'Torkoal', 'Nidoqueen', 'Slowking', 'Vanilluxe', 'Umbreon', 'Sandaconda', 'Espeon', 'Tangrowth', 'Raikou', 'Pinsir', 'Tornadus', 'Muk', 'Dusclops', 'Pangoro', 'Heliolisk', 'Swampert', 'Heracross', 'Dragalge', 'Kingdra', 'Slowking-G', 'Chandelure', 'Klefki', 'Doublade', 'Obstagoon', 'Rhyhorn']
+
+console.log('Tauros offensive synergy: \n', metagame[4].offensiveCompliment.slice(0, 10));
