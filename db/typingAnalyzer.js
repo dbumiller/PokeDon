@@ -226,9 +226,46 @@ var analyzer = function(metagame) {
     } else {
       metagame[m].comparisonMultiplier = 1 / metagame[m].defensiveSynergy[0][0];
     }
+
+    var currentMon;
+    metagame[m].comparisonTotalsObject = {};
+    for (var i = 0; i < metagame[m].offensiveSynergy.length; i++) {
+      currentMon = metagame[m].offensiveSynergy[i][1];
+      if (metagame[m].comparisonTotalsObject[currentMon] === undefined) {
+        metagame[m].comparisonTotalsObject[currentMon] = metagame[m].offensiveSynergy[i][0] * metagame[m].comparisonMultiplier;
+      } else {
+        metagame[m].comparisonTotalsObject[currentMon] += metagame[m].offensiveSynergy[i][0] * metagame[m].comparisonMultiplier;
+      }
+      currentMon = metagame[m].defensiveSynergy[i][1];
+      if (metagame[m].comparisonTotalsObject[currentMon] === undefined) {
+        metagame[m].comparisonTotalsObject[currentMon] = metagame[m].defensiveSynergy[i][0] * metagame[m].comparisonMultiplier;
+      } else {
+        metagame[m].comparisonTotalsObject[currentMon] += metagame[m].defensiveSynergy[i][0] * metagame[m].comparisonMultiplier;
+      }
+      currentMon = metagame[m].offensiveCompliment[i][1];
+      if (metagame[m].comparisonTotalsObject[currentMon] === undefined) {
+        metagame[m].comparisonTotalsObject[currentMon] = metagame[m].offensiveCompliment[i][0] * metagame[m].comparisonMultiplier;
+      } else {
+        metagame[m].comparisonTotalsObject[currentMon] += metagame[m].offensiveCompliment[i][0] * metagame[m].comparisonMultiplier;
+      }
+    }
+
+    metagame[m].comparisonTotalsArray = [];
+    for (key in metagame[m].comparisonTotalsObject) {
+      metagame[m].comparisonTotalsArray.push([metagame[m].comparisonTotalsObject[key].toFixed(2), key]);
+    }
+
+    metagame[m].comparisonTotalsArray.sort(function(a, b) {
+      if (a > b) {
+        return -1;
+      } else if (a > b) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+
   }
-
-
 }
 
 analyzer(metagame);
@@ -255,10 +292,12 @@ analyzer(metagame);
 
 // ['Tauros', 'Charizard', 'Venusaur', 'Blastoise', 'Sylveon', 'Haxorus', 'Copperajah', 'Krookodile', 'Machamp', 'Scyther', 'Gigalith', 'Rotom-W', 'Metagross', 'Ninetales-A', 'Torkoal', 'Nidoqueen', 'Slowking', 'Vanilluxe', 'Umbreon', 'Sandaconda', 'Espeon', 'Tangrowth', 'Raikou', 'Pinsir', 'Tornadus', 'Muk', 'Dusclops', 'Pangoro', 'Heliolisk', 'Swampert', 'Heracross', 'Dragalge', 'Kingdra', 'Slowking-G', 'Chandelure', 'Klefki', 'Doublade', 'Obstagoon', 'Rhyhorn']
 
-// for (var i = 0; i < metagame.length; i++) {
-//   if (metagame[i].name === 'Sylveon') {
-//     console.log(metagame[i].name + ' offensive compliment: \n', metagame[i].offensiveCompliment.slice(0, 10));
-//   }
-// }
+for (var i = 0; i < metagame.length; i++) {
+  if (metagame[i].name === 'Krookodile') {
+    console.log(metagame[i].name + ' offensive synergy: \n', metagame[i].offensiveSynergy.slice(0, 10));
+    console.log(metagame[i].name + ' offensive Compliment: \n', metagame[i].offensiveCompliment.slice(0, 10));
+    console.log(metagame[i].name + ' defensive synergy: \n', metagame[i].defensiveSynergy.slice(0, 10));
+    console.log(metagame[i].name + ' total synergy: \n', metagame[i].comparisonTotalsArray.slice(0, 10));
+  }
+}
 
-console.log(metagame[0].comparisonMultiplier);
