@@ -218,7 +218,17 @@ var analyzer = function(metagame) {
         return 0;
       }
     });
+
+    if (metagame[m].offensiveSynergy[0][0] >= metagame[m].defensiveSynergy[0][0] && metagame[m].offensiveSynergy[0][0] >= metagame[m].offensiveCompliment[0][0]) {
+      metagame[m].comparisonMultiplier = 1 / metagame[m].offensiveSynergy[0][0];
+    } else if (metagame[m].offensiveCompliment[0][0] >= metagame[m].defensiveSynergy[0][0] && metagame[m].offensiveCompliment[0][0] >= metagame[m].offensiveSynergy[0][0]) {
+      metagame[m].comparisonMultiplier = 1 / metagame[m].offensiveCompliment[0][0];
+    } else {
+      metagame[m].comparisonMultiplier = 1 / metagame[m].defensiveSynergy[0][0];
+    }
   }
+
+
 }
 
 analyzer(metagame);
@@ -245,4 +255,10 @@ analyzer(metagame);
 
 // ['Tauros', 'Charizard', 'Venusaur', 'Blastoise', 'Sylveon', 'Haxorus', 'Copperajah', 'Krookodile', 'Machamp', 'Scyther', 'Gigalith', 'Rotom-W', 'Metagross', 'Ninetales-A', 'Torkoal', 'Nidoqueen', 'Slowking', 'Vanilluxe', 'Umbreon', 'Sandaconda', 'Espeon', 'Tangrowth', 'Raikou', 'Pinsir', 'Tornadus', 'Muk', 'Dusclops', 'Pangoro', 'Heliolisk', 'Swampert', 'Heracross', 'Dragalge', 'Kingdra', 'Slowking-G', 'Chandelure', 'Klefki', 'Doublade', 'Obstagoon', 'Rhyhorn']
 
-console.log('Tauros offensive synergy: \n', metagame[4].offensiveCompliment.slice(0, 10));
+// for (var i = 0; i < metagame.length; i++) {
+//   if (metagame[i].name === 'Sylveon') {
+//     console.log(metagame[i].name + ' offensive compliment: \n', metagame[i].offensiveCompliment.slice(0, 10));
+//   }
+// }
+
+console.log(metagame[0].comparisonMultiplier);

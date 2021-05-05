@@ -35,3 +35,6 @@ bower_components/
 .floobit
 .floo
 .flooignore
+
+#huge jsons
+pokemon.json
