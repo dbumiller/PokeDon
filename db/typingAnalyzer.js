@@ -81,7 +81,7 @@ var calculator = function(pokemon) {
 }
 
 
-var names = ['Tauros', 'Charizard', 'Venusaur', 'Blastoise', 'Sylveon', 'Haxorus', 'Copperajah', 'Krookodile', 'Machamp', 'Scyther', 'Gigalith', 'Rotom-W', 'Metagross', 'Ninetales-A', 'Torkoal', 'Nidoqueen', 'Slowking', 'Vanilluxe', 'Umbreon', 'Sandaconda', 'Espeon', 'Tangrowth', 'Raikou', 'Pinsir', 'Tornadus', 'Muk', 'Dusclops', 'Pangoro', 'Heliolisk', 'Swampert', 'Heracross', 'Dragalge', 'Kingdra', 'Slowking-G', 'Chandelure', 'Klefki', 'Doublade', 'Obstagoon', 'Rhyhorn'];
+var names = ['Tauros', 'Charizard', 'Venusaur', 'Blastoise', 'Sylveon', 'Haxorus', 'Copperajah', 'Krookodile', 'Machamp', 'Scyther', 'Gigalith', 'Rotom-W', 'Metagross', 'Ninetales-A', 'Torkoal', 'Nidoqueen', 'Slowking', 'Vanilluxe', 'Umbreon', 'Sandaconda', 'Espeon', 'Tangrowth', 'Raikou', 'Pinsir', 'Tornadus', 'Muk', 'Dusclops', 'Pangoro', 'Heliolisk', 'Swampert', 'Heracross', 'Dragalge', 'Kingdra', 'Slowking-G', 'Chandelure', 'Klefki', 'Doublade', 'Obstagoon', 'Rhyperior'];
 var typings = [['normal'], ['fire', 'flying'], ['grass', 'poison'], ['water'], ['fairy'], ['dragon'], ['steel'], ['dark', 'ground'], ['fighting'], ['bug', 'flying'], ['rock'], ['electric', 'water'], ['steel', 'psychic'], ['ice', 'fairy'], ['fire'], ['ground', 'poison'], ['water', 'psychic'], ['ice'], ['dark'], ['ground'], ['psychic'], ['grass'], ['electric'], ['bug'], ['flying'], ['poison'], ['ghost'], ['dark', 'fighting'], ['electric', 'normal'], ['water', 'ground'], ['bug', 'fighting'], ['dragon', 'poison'], ['water', 'dragon'], ['poison', 'psychic'], ['ghost', 'fire'], ['steel', 'fairy'], ['ghost', 'steel'], ['dark', 'normal'], ['rock', 'ground']];
 
 
@@ -270,34 +270,27 @@ var analyzer = function(metagame) {
 
 analyzer(metagame);
 
-// var monoTypeCount = 0;
-// var dualTypeCount = 0;
-// for (var s = 0; s < metagame.length; s++) {
-//   var currentTopSynergy = metagame[s].defensiveSynergy.slice(0, 5);
-//   for (var t = 0; t < 5; t++) {
-//     if (currentTopSynergy[t][2].length === 1) {
-//       monoTypeCount++;
-//     } else {
-//       dualTypeCount++;
-//     }
-//   }
-// }
-// console.log('mono type count: ' + monoTypeCount + '\ndual type count: ' + dualTypeCount);
-
-// console.log('Krookodile offensive synergy: \n', metagame[7].offensiveSynergy.slice(0, 15));
-// console.log('Krookodile defensive synergy: \n', metagame[7].defensiveSynergy.slice(0, 15));
-
-// console.log('Doublade offensive synergy: \n', metagame[metagame.length - 2].offensiveSynergy.slice(0, 15));
-// console.log('Doublade defensive synergy: \n', metagame[metagame.length - 2].defensiveSynergy.slice(0, 15));
-
-// ['Tauros', 'Charizard', 'Venusaur', 'Blastoise', 'Sylveon', 'Haxorus', 'Copperajah', 'Krookodile', 'Machamp', 'Scyther', 'Gigalith', 'Rotom-W', 'Metagross', 'Ninetales-A', 'Torkoal', 'Nidoqueen', 'Slowking', 'Vanilluxe', 'Umbreon', 'Sandaconda', 'Espeon', 'Tangrowth', 'Raikou', 'Pinsir', 'Tornadus', 'Muk', 'Dusclops', 'Pangoro', 'Heliolisk', 'Swampert', 'Heracross', 'Dragalge', 'Kingdra', 'Slowking-G', 'Chandelure', 'Klefki', 'Doublade', 'Obstagoon', 'Rhyhorn']
 
 for (var i = 0; i < metagame.length; i++) {
-  if (metagame[i].name === 'Krookodile') {
+  if (metagame[i].name === 'Sylveon') {
     console.log(metagame[i].name + ' offensive synergy: \n', metagame[i].offensiveSynergy.slice(0, 10));
-    console.log(metagame[i].name + ' offensive Compliment: \n', metagame[i].offensiveCompliment.slice(0, 10));
+    console.log(metagame[i].name + ' offensive compliment: \n', metagame[i].offensiveCompliment.slice(0, 10));
     console.log(metagame[i].name + ' defensive synergy: \n', metagame[i].defensiveSynergy.slice(0, 10));
     console.log(metagame[i].name + ' total synergy: \n', metagame[i].comparisonTotalsArray.slice(0, 10));
   }
 }
 
+var league = {
+  teamA: {
+    teamId: 1,
+    userId: 1,
+    speedTiers: [],
+    typeMatchups: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  },
+  teamB: {
+    teamId: 2,
+    userId: 2,
+    speedTiers: [],
+    typeMatchups: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  },
+};
