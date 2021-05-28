@@ -99,6 +99,10 @@ const Pokemon = sequelize.define('pokemon', {
   momentum: {
     type: DataTypes.BOOLEAN,
     allowNull: false
+  },
+  speedControl: {
+    type:DataTypes.BOOLEAN,
+    allowNull: false
   }
 }, {
   timestamps: false
