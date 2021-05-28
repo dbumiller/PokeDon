@@ -123,6 +123,9 @@ const Team = sequelize.define('team', {
   timestamps: false
 });
 
+
+
 Team.hasMany(Pokemon);
+
 
 module.exports = MULTIPLE THINGS??

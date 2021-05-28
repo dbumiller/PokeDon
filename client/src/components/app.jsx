@@ -1,14 +1,22 @@
 import React from 'react';
+import Login from './Login.jsx';
+
 
 class App extends React.Component {
   constructor() {
     super();
+
+    this.state = {
+      pokemon: [],
+      team: [],
+      view: ''
+    }
   }
 
   render() {
     return (
       <div>
-        hey
+        <Login />
       </div>
     )
   }
