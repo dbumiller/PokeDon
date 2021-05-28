@@ -1,5 +1,6 @@
 import React from 'react';
 import Login from './Login.jsx';
+import TeamHome from './TeamHome.jsx';
 
 
 class App extends React.Component {
@@ -16,7 +17,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Login />
+        <TeamHome />
       </div>
     )
   }
