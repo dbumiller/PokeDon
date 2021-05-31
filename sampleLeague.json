@@ -647,7 +647,7 @@
   "Bisharp": {
     "no": 625,
     "typing": ["steel", "dark"],
-    "defensiveUtility": false,
+    "defensiveUtility": true,
     "wallbreaker": true,
     "sweeper": true,
     "hazardControl": false,

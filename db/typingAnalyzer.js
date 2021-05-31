@@ -1,3 +1,5 @@
+var sampleLeague = require('../sampleLeague.json');
+
 var typeChart = {
   top: ['bug', 'dark', 'dragon', 'electric', 'fairy', 'fighting', 'fire', 'flying', 'ghost', 'grass', 'ground', 'ice', 'normal', 'poison', 'psychic', 'rock', 'steel', 'water'],
   bug: [1, 2, 1, 1, .5, .5, .5, .5, .5, 2, 1, 1, 1, .5, 2, 1, .5, 1],
@@ -90,10 +92,27 @@ var typings = [['normal'], ['fire', 'flying'], ['grass', 'poison'], ['water'], [
 
 var metagame = [];
 
-for (var l = 0; l < names.length; l++) {
+// for (var l = 0; l < names.length; l++) {
+//   var currentObj = {};
+//   currentObj.name = names[l];
+//   currentObj.typing = typings[l];
+//   currentObj.offensiveEffectiveness = {};
+//   currentObj.defensiveEffectiveness = {};
+//   currentObj.offensiveSE = [];
+//   currentObj.offensiveNVE = [];
+//   currentObj.defensiveResist = [];
+//   currentObj.defensiveWeak = [];
+//   currentObj.offensiveSynergy = [];
+//   currentObj.offensiveCompliment = [];
+//   currentObj.defensiveSynergy = [];
+//   calculator(currentObj);
+//   metagame.push(currentObj);
+// }
+
+for (key in sampleLeague) {
   var currentObj = {};
-  currentObj.name = names[l];
-  currentObj.typing = typings[l];
+  currentObj.name = key;
+  currentObj.typing = sampleLeague[key].typing;
   currentObj.offensiveEffectiveness = {};
   currentObj.defensiveEffectiveness = {};
   currentObj.offensiveSE = [];
@@ -105,6 +124,7 @@ for (var l = 0; l < names.length; l++) {
   currentObj.defensiveSynergy = [];
   calculator(currentObj);
   metagame.push(currentObj);
+
 }
 
 var analyzer = function(metagame) {
@@ -272,7 +292,7 @@ analyzer(metagame);
 
 
 for (var i = 0; i < metagame.length; i++) {
-  if (metagame[i].name === 'Sylveon') {
+  if (metagame[i].name === 'Krookodile') {
     console.log(metagame[i].name + ' offensive synergy: \n', metagame[i].offensiveSynergy.slice(0, 10));
     console.log(metagame[i].name + ' offensive compliment: \n', metagame[i].offensiveCompliment.slice(0, 10));
     console.log(metagame[i].name + ' defensive synergy: \n', metagame[i].defensiveSynergy.slice(0, 10));
