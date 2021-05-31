@@ -49,15 +49,34 @@ var calculator = function(pokemon) {
             pokemon.defensiveEffectiveness[key] *= typeChart[key][k];
 
             if (j === pokemon.typing.length - 1) {
-              if (pokemon.defensiveEffectiveness[key] > 1) {
-                pokemon.defensiveWeak.push(key);
-              } else if (pokemon.defensiveEffectiveness[key] <= .5) {
-                pokemon.defensiveResist.push(key);
+              if (!pokemon.additionalResistances) {
+                if (pokemon.defensiveEffectiveness[key] > 1) {
+                  pokemon.defensiveWeak.push(key);
+                } else if (pokemon.defensiveEffectiveness[key] <= .5) {
+                  pokemon.defensiveResist.push(key);
+                }
+              } else {
+                for (var h = 0; h < pokemon.additionalResistances.length; h++) {
+                  if (pokemon.additionalResistances[h][1] === 0 && pokemon.additionalResistances[h][0] === key)
+                  pokemon.defensiveResist.push(pokemon.additionalResistances[h][0]);
+                }
+
+                if (pokemon.defensiveEffectiveness[key] > 1) {
+                  var found = false;
+                  for (var g = 0; g < pokemon.additionalResistances.length; g++) {
+                    if (key === pokemon.additionalResistances[g][0]) {
+                      found = true;
+                    }
+                  }
+                  if (!found) {
+                    pokemon.defensiveWeak.push(key);
+                  }
+                }
+
+                if (pokemon.defensiveEffectiveness[key] <= .5) {
+                  pokemon.defensiveResist.push(key);
+                }
               }
-              /* else if (defensiveEffectiveness[key] < .5) {
-                defensiveResist.push(key.toUpperCase());
-              }
-              */
             }
           }
         }
@@ -113,6 +132,7 @@ for (key in sampleLeague) {
   var currentObj = {};
   currentObj.name = key;
   currentObj.typing = sampleLeague[key].typing;
+  currentObj.additionalResistances = sampleLeague[key].additionalResistances;
   currentObj.offensiveEffectiveness = {};
   currentObj.defensiveEffectiveness = {};
   currentObj.offensiveSE = [];
@@ -124,7 +144,6 @@ for (key in sampleLeague) {
   currentObj.defensiveSynergy = [];
   calculator(currentObj);
   metagame.push(currentObj);
-
 }
 
 var analyzer = function(metagame) {
@@ -292,7 +311,7 @@ analyzer(metagame);
 
 
 for (var i = 0; i < metagame.length; i++) {
-  if (metagame[i].name === 'Krookodile') {
+  if (metagame[i].name === 'Araquanid') {
     console.log(metagame[i].name + ' offensive synergy: \n', metagame[i].offensiveSynergy.slice(0, 10));
     console.log(metagame[i].name + ' offensive compliment: \n', metagame[i].offensiveCompliment.slice(0, 10));
     console.log(metagame[i].name + ' defensive synergy: \n', metagame[i].defensiveSynergy.slice(0, 10));
