@@ -142,6 +142,7 @@ for (key in sampleLeague) {
   currentObj.offensiveSynergy = [];
   currentObj.offensiveCompliment = [];
   currentObj.defensiveSynergy = [];
+  currentObj.momentumFollowup = [];
   currentObj.trSetter = sampleLeague[key].trSetter;
   currentObj.defensiveUtility = sampleLeague[key].defensiveUtility;
   currentObj.wallbreaker = sampleLeague[key].wallbreaker;
@@ -247,6 +248,22 @@ var analyzer = function(metagame) {
                       metagame[m].offensiveCompliment.push([averageCompliment, metagame[n].name]);
 
           }
+
+          if (metagame[m].momentum && metagame[n].wallbreaker) {
+            var countMomentumFollowup = 0;
+            for (var z = 0; z < metagame[m].offensiveNVE.length; z++) {
+              for (var a = 0; a < metagame[n].offensiveSE.length; a++) {
+                if (metagame[m].offensiveNVE[z] === metagame[n].offensiveSE[a]) {
+                  countMomentumFollowup++;
+                }
+              }
+            }
+
+            var averageFollowup = (countMomentumFollowup / metagame[m].offensiveNVE.length);
+            averageFollowup.toFixed(2);
+            metagame[m].momentumFollowup.push([averageFollowup, metagame[n].name]);
+          }
+
         }
       }
     }
@@ -280,6 +297,7 @@ var analyzer = function(metagame) {
         return 0;
       }
     });
+
 
     // if (metagame[m].offensiveSynergy[0][0] >= metagame[m].defensiveSynergy[0][0] && metagame[m].offensiveSynergy[0][0] >= metagame[m].offensiveCompliment[0][0]) {
     //   metagame[m].comparisonMultiplier = 1 / metagame[m].offensiveSynergy[0][0];
@@ -334,10 +352,11 @@ analyzer(metagame);
 
 
 for (var i = 0; i < metagame.length; i++) {
-  if (metagame[i].name === 'Bisharp') {
+  if (metagame[i].name === 'Rotom-W') {
   console.log(metagame[i].name + ' offensive synergy: \n', metagame[i].offensiveSynergy.slice(0, 10));
     console.log(metagame[i].name + ' offensive compliment: \n', metagame[i].offensiveCompliment.slice(0, 10));
     console.log(metagame[i].name + ' defensive synergy: \n', metagame[i].defensiveSynergy.slice(0, 10));
+    console.log(metagame[i].name + ' momentum followup: \n', metagame[i].momentumFollowup.slice(0, 10));
     // console.log(metagame[i].name + ' total synergy: \n', metagame[i].comparisonTotalsArray.slice(0, 10));
   }
 }
