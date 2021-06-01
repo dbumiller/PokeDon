@@ -175,10 +175,6 @@ var analyzer = function(metagame) {
           }
         }
         if (!sameType) {
-
-          // if (metagame[m].name === 'Bisharp') {
-          //   console.log(metagame[m].sweeper + ' ' + metagame[m].breaker);
-          // }
           if ((metagame[m].sweeper && metagame[n].wallbreaker) || (metagame[m].wallbreaker && metagame[n].sweeper)) {
             var countNVE = 0;
             for (var o = 0; o < metagame[m].offensiveNVE.length; o++) {
@@ -229,6 +225,8 @@ var analyzer = function(metagame) {
                         for (var a = 0; a < metagame[n].offensiveSE.length; a++) {
                           if (metagame[m].offensiveNVE[z] === metagame[n].offensiveSE[a]) {
                             countComplimentM++;
+                          } else if (metagame[m].offensiveNVE[z].toLowerCase() === metagame[n].offensiveSE[a]) {
+                            countComplimentM += 1.3;
                           }
                         }
                       }
@@ -238,6 +236,8 @@ var analyzer = function(metagame) {
                         for (var c = 0; c < metagame[m].offensiveSE.length; c++) {
                           if (metagame[n].offensiveNVE[b] === metagame[m].offensiveSE[c]) {
                             countComplimentN++;
+                          } else if (metagame[n].offensiveNVE[b].toLowerCase() === metagame[m].offensiveSE[c]) {
+                            countComplimentN += 1.3;
                           }
                         }
                       }
@@ -249,18 +249,20 @@ var analyzer = function(metagame) {
 
           }
 
-          if (metagame[m].momentum && metagame[n].wallbreaker) {
+          if (metagame[m].momentum && (metagame[n].wallbreaker || metagame[n].sweeper)) {
             var countMomentumFollowup = 0;
             for (var z = 0; z < metagame[m].offensiveNVE.length; z++) {
               for (var a = 0; a < metagame[n].offensiveSE.length; a++) {
                 if (metagame[m].offensiveNVE[z] === metagame[n].offensiveSE[a]) {
                   countMomentumFollowup++;
+                } else if (metagame[m].offensiveNVE[z].toLowerCase() === metagame[n].offensiveSE[a]) {
+                  countMomentumFollowup += 1.3;
                 }
               }
             }
 
             var averageFollowup = (countMomentumFollowup / metagame[m].offensiveNVE.length);
-            averageFollowup.toFixed(2);
+            averageFollowup = averageFollowup.toFixed(2);
             metagame[m].momentumFollowup.push([averageFollowup, metagame[n].name]);
           }
 
@@ -271,7 +273,7 @@ var analyzer = function(metagame) {
     metagame[m].offensiveSynergy.sort(function(a, b) {
       if (a > b) {
         return -1;
-      } else if (a > b) {
+      } else if (a < b) {
         return 1;
       } else {
         return 0;
@@ -281,7 +283,7 @@ var analyzer = function(metagame) {
     metagame[m].defensiveSynergy.sort(function(a, b) {
       if (a > b) {
         return -1;
-      } else if (a > b) {
+      } else if (a < b) {
         return 1;
       } else {
         return 0;
@@ -291,12 +293,22 @@ var analyzer = function(metagame) {
     metagame[m].offensiveCompliment.sort(function(a, b) {
       if (a > b) {
         return -1;
-      } else if (a > b) {
+      } else if (a < b) {
         return 1;
       } else {
         return 0;
       }
     });
+
+    metagame[m].momentumFollowup.sort(function(a, b) {
+      if (a > b) {
+        return -1;
+      } else if (a < b) {
+        return 1;
+      } else {
+        return 0;
+      }
+    })
 
 
     // if (metagame[m].offensiveSynergy[0][0] >= metagame[m].defensiveSynergy[0][0] && metagame[m].offensiveSynergy[0][0] >= metagame[m].offensiveCompliment[0][0]) {
@@ -352,7 +364,7 @@ analyzer(metagame);
 
 
 for (var i = 0; i < metagame.length; i++) {
-  if (metagame[i].name === 'Rotom-W') {
+  if (metagame[i].name === 'Heliolisk') {
   console.log(metagame[i].name + ' offensive synergy: \n', metagame[i].offensiveSynergy.slice(0, 10));
     console.log(metagame[i].name + ' offensive compliment: \n', metagame[i].offensiveCompliment.slice(0, 10));
     console.log(metagame[i].name + ' defensive synergy: \n', metagame[i].defensiveSynergy.slice(0, 10));
