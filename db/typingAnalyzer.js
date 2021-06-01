@@ -142,9 +142,23 @@ for (key in sampleLeague) {
   currentObj.offensiveSynergy = [];
   currentObj.offensiveCompliment = [];
   currentObj.defensiveSynergy = [];
+  currentObj.trSetter = sampleLeague[key].trSetter;
+  currentObj.defensiveUtility = sampleLeague[key].defensiveUtility;
+  currentObj.wallbreaker = sampleLeague[key].wallbreaker;
+  currentObj.sweeper = sampleLeague[key].sweeper;
+  currentObj.hazardControl = sampleLeague[key].hazardControl;
+  currentObj.rocker = sampleLeague[key].rocker;
+  currentObj.spiker = sampleLeague[key].spiker;
+  currentObj.tSpiker = sampleLeague[key].tSpiker;
+  currentObj.webber = sampleLeague[key].webber;
+  currentObj.screener = sampleLeague[key].screener;
+  currentObj.priority = sampleLeague[key].priority;
+  currentObj.momentum = sampleLeague[key].momentum;
+  currentObj.speedControl = sampleLeague[key].speedControl;
   calculator(currentObj);
   metagame.push(currentObj);
 }
+
 
 var analyzer = function(metagame) {
 
@@ -160,6 +174,10 @@ var analyzer = function(metagame) {
           }
         }
         if (!sameType) {
+
+          // if ((metagame[m].sweeper && metagame[n].breaker) || metagame[m].breaker && metagame[n].sweeper) {
+
+          // }
 
           var countNVE = 0;
           for (var o = 0; o < metagame[m].offensiveNVE.length; o++) {
@@ -311,8 +329,8 @@ analyzer(metagame);
 
 
 for (var i = 0; i < metagame.length; i++) {
-  if (metagame[i].name === 'Araquanid') {
-    console.log(metagame[i].name + ' offensive synergy: \n', metagame[i].offensiveSynergy.slice(0, 10));
+  if (metagame[i].name === 'Bisharp') {
+  console.log(metagame[i].name + ' offensive synergy: \n', metagame[i].offensiveSynergy.slice(0, 10));
     console.log(metagame[i].name + ' offensive compliment: \n', metagame[i].offensiveCompliment.slice(0, 10));
     console.log(metagame[i].name + ' defensive synergy: \n', metagame[i].defensiveSynergy.slice(0, 10));
     console.log(metagame[i].name + ' total synergy: \n', metagame[i].comparisonTotalsArray.slice(0, 10));
