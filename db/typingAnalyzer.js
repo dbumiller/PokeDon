@@ -175,25 +175,27 @@ var analyzer = function(metagame) {
         }
         if (!sameType) {
 
-          // if ((metagame[m].sweeper && metagame[n].breaker) || metagame[m].breaker && metagame[n].sweeper) {
-
+          // if (metagame[m].name === 'Bisharp') {
+          //   console.log(metagame[m].sweeper + ' ' + metagame[m].breaker);
           // }
-
-          var countNVE = 0;
-          for (var o = 0; o < metagame[m].offensiveNVE.length; o++) {
-            for (var p = 0; p < metagame[n].offensiveNVE.length; p++) {
-              if (metagame[m].offensiveNVE[o] === metagame[n].offensiveNVE[p]) {
-                countNVE++;
-              } else if (metagame[m].offensiveNVE[o].toLowerCase() === metagame[n].offensiveNVE[p].toLowerCase()) {
-                countNVE += 1.3;
+          if ((metagame[m].sweeper && metagame[n].wallbreaker) || (metagame[m].wallbreaker && metagame[n].sweeper)) {
+            var countNVE = 0;
+            for (var o = 0; o < metagame[m].offensiveNVE.length; o++) {
+              for (var p = 0; p < metagame[n].offensiveNVE.length; p++) {
+                if (metagame[m].offensiveNVE[o] === metagame[n].offensiveNVE[p]) {
+                  countNVE++;
+                } else if (metagame[m].offensiveNVE[o].toLowerCase() === metagame[n].offensiveNVE[p].toLowerCase()) {
+                  countNVE += 1.3;
+                }
               }
             }
+
+            var averageNVE = (countNVE / metagame[m].offensiveNVE.length) + (countNVE / metagame[n].offensiveNVE.length);
+            averageNVE /= 2;
+            averageNVE = averageNVE.toFixed(2);
+            metagame[m].offensiveSynergy.push([averageNVE, metagame[n].name]);
           }
 
-          var averageNVE = (countNVE / metagame[m].offensiveNVE.length) + (countNVE / metagame[n].offensiveNVE.length);
-          averageNVE /= 2;
-          averageNVE = averageNVE.toFixed(2);
-          metagame[m].offensiveSynergy.push([averageNVE, metagame[n].name]);
 
 
           var countDefenseM = 0;
@@ -218,30 +220,33 @@ var analyzer = function(metagame) {
           averageDefense = averageDefense.toFixed(2);
           metagame[m].defensiveSynergy.push([averageDefense, metagame[n].name]);
 
+          if ((metagame[m].sweeper || metagame[m].wallbreaker) && (metagame[n].wallbreaker || metagame[n].sweeper)) {
 
-          var countComplimentM = 0;
-          for (var z = 0; z < metagame[m].offensiveNVE.length; z++) {
-            for (var a = 0; a < metagame[n].offensiveSE.length; a++) {
-              if (metagame[m].offensiveNVE[z] === metagame[n].offensiveSE[a]) {
-                countComplimentM++;
-              }
-            }
+
+                      var countComplimentM = 0;
+                      for (var z = 0; z < metagame[m].offensiveNVE.length; z++) {
+                        for (var a = 0; a < metagame[n].offensiveSE.length; a++) {
+                          if (metagame[m].offensiveNVE[z] === metagame[n].offensiveSE[a]) {
+                            countComplimentM++;
+                          }
+                        }
+                      }
+
+                      var countComplimentN = 0;
+                      for (var b = 0; b < metagame[n].offensiveNVE.length; b++) {
+                        for (var c = 0; c < metagame[m].offensiveSE.length; c++) {
+                          if (metagame[n].offensiveNVE[b] === metagame[m].offensiveSE[c]) {
+                            countComplimentN++;
+                          }
+                        }
+                      }
+
+                      var averageCompliment = (countComplimentM / metagame[m].offensiveNVE.length) + (countComplimentN / metagame[n].offensiveNVE.length);
+                      averageCompliment /= 2;
+                      averageCompliment = averageCompliment.toFixed(2);
+                      metagame[m].offensiveCompliment.push([averageCompliment, metagame[n].name]);
+
           }
-
-          var countComplimentN = 0;
-          for (var b = 0; b < metagame[n].offensiveNVE.length; b++) {
-            for (var c = 0; c < metagame[m].offensiveSE.length; c++) {
-              if (metagame[n].offensiveNVE[b] === metagame[m].offensiveSE[c]) {
-                countComplimentN++;
-              }
-            }
-          }
-
-          var averageCompliment = (countComplimentM / metagame[m].offensiveNVE.length) + (countComplimentN / metagame[n].offensiveNVE.length);
-          averageCompliment /= 2;
-          averageCompliment = averageCompliment.toFixed(2);
-          metagame[m].offensiveCompliment.push([averageCompliment, metagame[n].name]);
-
         }
       }
     }
@@ -276,51 +281,51 @@ var analyzer = function(metagame) {
       }
     });
 
-    if (metagame[m].offensiveSynergy[0][0] >= metagame[m].defensiveSynergy[0][0] && metagame[m].offensiveSynergy[0][0] >= metagame[m].offensiveCompliment[0][0]) {
-      metagame[m].comparisonMultiplier = 1 / metagame[m].offensiveSynergy[0][0];
-    } else if (metagame[m].offensiveCompliment[0][0] >= metagame[m].defensiveSynergy[0][0] && metagame[m].offensiveCompliment[0][0] >= metagame[m].offensiveSynergy[0][0]) {
-      metagame[m].comparisonMultiplier = 1 / metagame[m].offensiveCompliment[0][0];
-    } else {
-      metagame[m].comparisonMultiplier = 1 / metagame[m].defensiveSynergy[0][0];
-    }
+    // if (metagame[m].offensiveSynergy[0][0] >= metagame[m].defensiveSynergy[0][0] && metagame[m].offensiveSynergy[0][0] >= metagame[m].offensiveCompliment[0][0]) {
+    //   metagame[m].comparisonMultiplier = 1 / metagame[m].offensiveSynergy[0][0];
+    // } else if (metagame[m].offensiveCompliment[0][0] >= metagame[m].defensiveSynergy[0][0] && metagame[m].offensiveCompliment[0][0] >= metagame[m].offensiveSynergy[0][0]) {
+    //   metagame[m].comparisonMultiplier = 1 / metagame[m].offensiveCompliment[0][0];
+    // } else {
+    //   metagame[m].comparisonMultiplier = 1 / metagame[m].defensiveSynergy[0][0];
+    // }
 
-    var currentMon;
-    metagame[m].comparisonTotalsObject = {};
-    for (var i = 0; i < metagame[m].offensiveSynergy.length; i++) {
-      currentMon = metagame[m].offensiveSynergy[i][1];
-      if (metagame[m].comparisonTotalsObject[currentMon] === undefined) {
-        metagame[m].comparisonTotalsObject[currentMon] = metagame[m].offensiveSynergy[i][0] * metagame[m].comparisonMultiplier;
-      } else {
-        metagame[m].comparisonTotalsObject[currentMon] += metagame[m].offensiveSynergy[i][0] * metagame[m].comparisonMultiplier;
-      }
-      currentMon = metagame[m].defensiveSynergy[i][1];
-      if (metagame[m].comparisonTotalsObject[currentMon] === undefined) {
-        metagame[m].comparisonTotalsObject[currentMon] = metagame[m].defensiveSynergy[i][0] * metagame[m].comparisonMultiplier;
-      } else {
-        metagame[m].comparisonTotalsObject[currentMon] += metagame[m].defensiveSynergy[i][0] * metagame[m].comparisonMultiplier;
-      }
-      currentMon = metagame[m].offensiveCompliment[i][1];
-      if (metagame[m].comparisonTotalsObject[currentMon] === undefined) {
-        metagame[m].comparisonTotalsObject[currentMon] = metagame[m].offensiveCompliment[i][0] * metagame[m].comparisonMultiplier;
-      } else {
-        metagame[m].comparisonTotalsObject[currentMon] += metagame[m].offensiveCompliment[i][0] * metagame[m].comparisonMultiplier;
-      }
-    }
+    // var currentMon;
+    // metagame[m].comparisonTotalsObject = {};
+    // for (var i = 0; i < metagame[m].offensiveSynergy.length; i++) {
+    //   currentMon = metagame[m].offensiveSynergy[i][1];
+    //   if (metagame[m].comparisonTotalsObject[currentMon] === undefined) {
+    //     metagame[m].comparisonTotalsObject[currentMon] = metagame[m].offensiveSynergy[i][0] * metagame[m].comparisonMultiplier;
+    //   } else {
+    //     metagame[m].comparisonTotalsObject[currentMon] += metagame[m].offensiveSynergy[i][0] * metagame[m].comparisonMultiplier;
+    //   }
+    //   currentMon = metagame[m].defensiveSynergy[i][1];
+    //   if (metagame[m].comparisonTotalsObject[currentMon] === undefined) {
+    //     metagame[m].comparisonTotalsObject[currentMon] = metagame[m].defensiveSynergy[i][0] * metagame[m].comparisonMultiplier;
+    //   } else {
+    //     metagame[m].comparisonTotalsObject[currentMon] += metagame[m].defensiveSynergy[i][0] * metagame[m].comparisonMultiplier;
+    //   }
+    //   currentMon = metagame[m].offensiveCompliment[i][1];
+    //   if (metagame[m].comparisonTotalsObject[currentMon] === undefined) {
+    //     metagame[m].comparisonTotalsObject[currentMon] = metagame[m].offensiveCompliment[i][0] * metagame[m].comparisonMultiplier;
+    //   } else {
+    //     metagame[m].comparisonTotalsObject[currentMon] += metagame[m].offensiveCompliment[i][0] * metagame[m].comparisonMultiplier;
+    //   }
+    // }
 
-    metagame[m].comparisonTotalsArray = [];
-    for (key in metagame[m].comparisonTotalsObject) {
-      metagame[m].comparisonTotalsArray.push([metagame[m].comparisonTotalsObject[key].toFixed(2), key]);
-    }
+    // metagame[m].comparisonTotalsArray = [];
+    // for (key in metagame[m].comparisonTotalsObject) {
+    //   metagame[m].comparisonTotalsArray.push([metagame[m].comparisonTotalsObject[key].toFixed(2), key]);
+    // }
 
-    metagame[m].comparisonTotalsArray.sort(function(a, b) {
-      if (a > b) {
-        return -1;
-      } else if (a > b) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
+    // metagame[m].comparisonTotalsArray.sort(function(a, b) {
+    //   if (a > b) {
+    //     return -1;
+    //   } else if (a > b) {
+    //     return 1;
+    //   } else {
+    //     return 0;
+    //   }
+    // });
 
   }
 }
@@ -333,7 +338,7 @@ for (var i = 0; i < metagame.length; i++) {
   console.log(metagame[i].name + ' offensive synergy: \n', metagame[i].offensiveSynergy.slice(0, 10));
     console.log(metagame[i].name + ' offensive compliment: \n', metagame[i].offensiveCompliment.slice(0, 10));
     console.log(metagame[i].name + ' defensive synergy: \n', metagame[i].defensiveSynergy.slice(0, 10));
-    console.log(metagame[i].name + ' total synergy: \n', metagame[i].comparisonTotalsArray.slice(0, 10));
+    // console.log(metagame[i].name + ' total synergy: \n', metagame[i].comparisonTotalsArray.slice(0, 10));
   }
 }
 
