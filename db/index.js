@@ -1,9 +1,9 @@
 const {Sequelize, DataTypes} = require('sequelize');
 
-const sequelize = new Sequelize('to be determined', 'root', '') {
+const sequelize = new Sequelize('pokedon', 'root', '', {
   host: 'localhost',
   dialect: 'mysql'
-};
+});
 
 const Pokemon = sequelize.define('pokemon', {
   id: {
@@ -11,7 +11,7 @@ const Pokemon = sequelize.define('pokemon', {
     allowNull: false,
     primaryKey: true,
     autoIncrement: true
-  }
+  },
   no: {
     type: DataTypes.INTEGER,
     allowNull: false
@@ -128,8 +128,12 @@ const Team = sequelize.define('team', {
 });
 
 
-
+Pokemon.belongsTo(Team);
 Team.hasMany(Pokemon);
 
 
-module.exports = MULTIPLE THINGS??
+module.exports = {
+  sequelize,
+  Pokemon,
+  Team
+};

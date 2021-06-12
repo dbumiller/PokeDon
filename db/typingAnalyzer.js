@@ -381,27 +381,13 @@ var analyzer = function(metagame) {
 analyzer(metagame);
 
 
-for (var i = 0; i < metagame.length; i++) {
-  if (metagame[i].name === 'Blissey') {
-  console.log(metagame[i].name + ' offensive synergy: \n', metagame[i].offensiveSynergy.slice(0, 10));
-    console.log(metagame[i].name + ' offensive compliment: \n', metagame[i].offensiveCompliment.slice(0, 10));
-    console.log(metagame[i].name + ' defensive synergy: \n', metagame[i].defensiveSynergy.slice(0, 10));
-    console.log(metagame[i].name + ' momentum followup: \n', metagame[i].momentumFollowup.slice(0, 10));
-    // console.log(metagame[i].name + ' total synergy: \n', metagame[i].comparisonTotalsArray.slice(0, 10));
-  }
-}
+// for (var i = 0; i < metagame.length; i++) {
+//   if (metagame[i].name === 'Blissey') {
+//   console.log(metagame[i].name + ' offensive synergy: \n', metagame[i].offensiveSynergy.slice(0, 10));
+//     console.log(metagame[i].name + ' offensive compliment: \n', metagame[i].offensiveCompliment.slice(0, 10));
+//     console.log(metagame[i].name + ' defensive synergy: \n', metagame[i].defensiveSynergy.slice(0, 10));
+//     console.log(metagame[i].name + ' momentum followup: \n', metagame[i].momentumFollowup.slice(0, 10));
+//   }
+// }
 
-var league = {
-  teamA: {
-    teamId: 1,
-    userId: 1,
-    speedTiers: [],
-    typeMatchups: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  },
-  teamB: {
-    teamId: 2,
-    userId: 2,
-    speedTiers: [],
-    typeMatchups: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  },
-};
+module.exports = metagame;
