@@ -328,6 +328,12 @@ var analyzer = function(metagame) {
       }
     })
 
+    metagame[m].defensiveResist = metagame[m].defensiveResist.join('||||');
+    metagame[m].defensiveWeak = metagame[m].defensiveWeak.join('||||');
+    metagame[m].offensiveSynergy = metagame[m].offensiveSynergy.join('||||');
+    metagame[m].offensiveCompliment = metagame[m].offensiveCompliment.join('||||');
+    metagame[m].momentumFollowup = metagame[m].momentumFollowup.join('||||');
+
 
     // if (metagame[m].offensiveSynergy[0][0] >= metagame[m].defensiveSynergy[0][0] && metagame[m].offensiveSynergy[0][0] >= metagame[m].offensiveCompliment[0][0]) {
     //   metagame[m].comparisonMultiplier = 1 / metagame[m].offensiveSynergy[0][0];
@@ -380,17 +386,9 @@ var analyzer = function(metagame) {
 
 analyzer(metagame);
 
-for (var i = 0; i < metagame.length; i++) {
-  if (metagame[i].name === 'Rhyperior') {
-    metagame[i].offensiveSynergy = metagame[i].offensiveSynergy.join('||||');
-    metagame[i].offensiveSynergy = metagame[i].offensiveSynergy.split('||||');
-    console.log(metagame[i].offensiveSynergy);
-  }
-}
-
 
 // for (var i = 0; i < metagame.length; i++) {
-//   if (metagame[i].name === 'Rhyperior') {
+//   if (metagame[i].name === 'Blissey') {
 //   console.log(metagame[i].name + ' offensive synergy: \n', metagame[i].offensiveSynergy.slice(0, 10));
 //     console.log(metagame[i].name + ' offensive compliment: \n', metagame[i].offensiveCompliment.slice(0, 10));
 //     console.log(metagame[i].name + ' defensive synergy: \n', metagame[i].defensiveSynergy.slice(0, 10));

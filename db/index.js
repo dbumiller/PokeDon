@@ -28,14 +28,14 @@ const Pokemon = sequelize.define('pokemon', {
   //   type: DataTypes.BOOLEAN,
   //   allowNull: false
   // },
-  // resistances: {
-  //   type:DataTypes.ARRAY(DataTypes.STRING),
-  //   allowNull: false
-  // },
-  // weaknesses: {
-  //   type: DataTypes.ARRAY(DataTypes.STRING),
-  //   allowNull: false
-  // },
+  defensiveResist: {
+    type:DataTypes.STRING,
+    allowNull: false
+  },
+  defensiveWeak: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
   // offensiveSE: {
   //   type: DataTypes.ARRAY(DataTypes.STRING),
   //   allowNull: false
@@ -52,58 +52,62 @@ const Pokemon = sequelize.define('pokemon', {
   //   type: DataTypes.JSON,
   //   allowNull: false
   // },
-  // offensiveSynergy: {
-  //   type: DataTypes.ARRAY(DataTypes.ARRAY),
-  //   allowNull: false
-  // },
-  // offensiveCompliment: {
-  //   type: DataTypes.ARRAY(DataTypes.ARRAY),
-  //   allowNull: false
-  // },
-  // wallbreaker: {
-  //   type: DataTypes.BOOLEAN,
-  //   allowNull: false
-  // },
-  // sweeper: {
-  //   type: DataTypes.BOOLEAN,
-  //   allowNull: false
-  // },
-  // hazardRemoval: {
-  //   type: DataTypes.BOOLEAN,
-  //   allowNull: false
-  // },
-  // rocker: {
-  //   type: DataTypes.BOOLEAN,
-  //   allowNull: false
-  // },
-  // spiker: {
-  //   type: DataTypes.BOOLEAN,
-  //   allowNull: false
-  // },
-  // tSpiker: {
-  //   type: DataTypes.BOOLEAN,
-  //   allowNull: false
-  // },
-  // webber: {
-  //   type: DataTypes.BOOLEAN,
-  //   allowNull: false
-  // },
-  // screener: {
-  //   type: DataTypes.BOOLEAN,
-  //   allowNull: false
-  // },
-  // priority: {
-  //   type: DataTypes.BOOLEAN,
-  //   allowNull: false
-  // },
-  // momentum: {
-  //   type: DataTypes.BOOLEAN,
-  //   allowNull: false
-  // },
-  // speedControl: {
-  //   type:DataTypes.BOOLEAN,
-  //   allowNull: false
-  // }
+  offensiveSynergy: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  offensiveCompliment: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  momentumFollowup: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  wallbreaker: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  sweeper: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  hazardRemoval: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  rocker: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  spiker: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  tSpiker: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  webber: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  screener: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  priority: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  momentum: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  speedControl: {
+    type:DataTypes.BOOLEAN,
+    allowNull: false
+  }
 }, {
   timestamps: false
 });
