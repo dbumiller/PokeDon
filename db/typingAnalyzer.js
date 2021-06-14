@@ -382,7 +382,7 @@ analyzer(metagame);
 
 
 // for (var i = 0; i < metagame.length; i++) {
-//   if (metagame[i].name === 'Blissey') {
+//   if (metagame[i].name === 'Rhyperior') {
 //   console.log(metagame[i].name + ' offensive synergy: \n', metagame[i].offensiveSynergy.slice(0, 10));
 //     console.log(metagame[i].name + ' offensive compliment: \n', metagame[i].offensiveCompliment.slice(0, 10));
 //     console.log(metagame[i].name + ' defensive synergy: \n', metagame[i].defensiveSynergy.slice(0, 10));

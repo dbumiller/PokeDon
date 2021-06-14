@@ -21,7 +21,7 @@ const Pokemon = sequelize.define('pokemon', {
     allowNull: false
   },
   typing: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
+    type: DataTypes.STRING,
     allowNull: false
   },
   // defensiveUtility: {
@@ -104,7 +104,7 @@ const Pokemon = sequelize.define('pokemon', {
   //   type:DataTypes.BOOLEAN,
   //   allowNull: false
   // }
-// }, {
+}, {
   timestamps: false
 });
 
