@@ -380,6 +380,14 @@ var analyzer = function(metagame) {
 
 analyzer(metagame);
 
+for (var i = 0; i < metagame.length; i++) {
+  if (metagame[i].name === 'Rhyperior') {
+    metagame[i].offensiveSynergy = metagame[i].offensiveSynergy.join('||||');
+    metagame[i].offensiveSynergy = metagame[i].offensiveSynergy.split('||||');
+    console.log(metagame[i].offensiveSynergy);
+  }
+}
+
 
 // for (var i = 0; i < metagame.length; i++) {
 //   if (metagame[i].name === 'Rhyperior') {
