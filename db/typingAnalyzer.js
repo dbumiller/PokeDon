@@ -328,6 +328,7 @@ var analyzer = function(metagame) {
       }
     })
 
+    metagame[m].typing = metagame[m].typing.join('||||');
     metagame[m].defensiveResist = metagame[m].defensiveResist.join('||||');
     metagame[m].defensiveWeak = metagame[m].defensiveWeak.join('||||');
     metagame[m].offensiveSynergy = metagame[m].offensiveSynergy.join('||||');
@@ -385,7 +386,6 @@ var analyzer = function(metagame) {
 }
 
 analyzer(metagame);
-
 
 // for (var i = 0; i < metagame.length; i++) {
 //   if (metagame[i].name === 'Blissey') {

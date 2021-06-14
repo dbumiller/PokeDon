@@ -1,16 +1,18 @@
 const db = require('./index.js');
 const metagame = require('./typingAnalyzer');
 
-fire = ['fire'].join(',');
+// fire = ['fire'].join(',');
 
-charmander = {
-  no: 7,
-  name: "charmander",
-  typing: fire
-};
+// charmander = {
+//   no: 7,
+//   name: "charmander",
+//   typing: fire
+// };
 
 const seed = () => {
-  db.Pokemon.create(charmander);
+  for (var i = 0; i < metagame.length; i++) {
+    db.Pokemon.create(metagame[i]);
+  }
 }
 
 seed();

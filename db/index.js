@@ -12,10 +12,10 @@ const Pokemon = sequelize.define('pokemon', {
     primaryKey: true,
     autoIncrement: true
   },
-  no: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
+  // no: {
+  //   type: DataTypes.INTEGER,
+  //   allowNull: false
+  // },
   name: {
     type: DataTypes.STRING,
     allowNull: false
@@ -72,7 +72,7 @@ const Pokemon = sequelize.define('pokemon', {
     type: DataTypes.BOOLEAN,
     allowNull: false
   },
-  hazardRemoval: {
+  hazardControl: {
     type: DataTypes.BOOLEAN,
     allowNull: false
   },
