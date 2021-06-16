@@ -112,32 +112,32 @@ const Pokemon = sequelize.define('pokemon', {
   timestamps: false
 });
 
-// const Team = sequelize.define('team', {
-//   id: {
-//     type: DataTypes.INTEGER,
-//     allowNull: false,
-//     primaryKey: true,
-//     autoIncrement: true
-//   },
-//   name: {
-//     type: DataTypes.STRING,
-//     allowNull: false
-//   },
-//   typeMatchups: {
-//     type: DataTypes.JSON,
-//     allowNull: false
-//   }
-// }, {
-//   timestamps: false
-// });
+const Team = sequelize.define('team', {
+  teamId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  defense: {
+    type: DataTypes.JSON,
+    allowNull: false
+  }
+}, {
+  timestamps: false
+});
 
 
-// Pokemon.belongsTo(Team);
-// Team.hasMany(Pokemon);
+Pokemon.belongsTo(Team);
+Team.hasMany(Pokemon);
 
 
 module.exports = {
   sequelize,
   Pokemon,
-  // Team
+  Team
 };

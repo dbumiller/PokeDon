@@ -22,7 +22,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack -d --watch",
-    "start": "nodemon server/index.js"
+    "start": "nodemon server/index.js",
+    "seed": "mysql -u root <./db/schema.sql & node ./db/seed.js"
   },
   "author": "Donald Bumiller",
   "license": "ISC"
