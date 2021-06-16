@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Login extends React.Component {
+class Landing extends React.Component {
   constructor() {
     super();
 
@@ -34,4 +34,4 @@ class Login extends React.Component {
   }
 }
 
-module.exports = Login;
+module.exports = Landing;

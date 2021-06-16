@@ -21,7 +21,7 @@ const Pokemon = sequelize.define('pokemon', {
     allowNull: false
   },
   typing: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: false
   },
   // defensiveUtility: {
@@ -29,11 +29,11 @@ const Pokemon = sequelize.define('pokemon', {
   //   allowNull: false
   // },
   defensiveResist: {
-    type:DataTypes.STRING,
+    type:DataTypes.JSON,
     allowNull: false
   },
   defensiveWeak: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: false
   },
   // offensiveSE: {
@@ -53,15 +53,15 @@ const Pokemon = sequelize.define('pokemon', {
   //   allowNull: false
   // },
   offensiveSynergy: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: false
   },
   offensiveCompliment: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: false
   },
   momentumFollowup: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: false
   },
   wallbreaker: {

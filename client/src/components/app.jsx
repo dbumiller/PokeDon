@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from './Login.jsx';
+import Landing from './Landing.jsx';
 import TeamHome from './TeamHome.jsx';
 
 
@@ -17,7 +17,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <TeamHome />
+        <Landing />
       </div>
     )
   }

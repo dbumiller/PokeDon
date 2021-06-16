@@ -328,12 +328,12 @@ var analyzer = function(metagame) {
       }
     })
 
-    metagame[m].typing = metagame[m].typing.join('||||');
-    metagame[m].defensiveResist = metagame[m].defensiveResist.join('||||');
-    metagame[m].defensiveWeak = metagame[m].defensiveWeak.join('||||');
-    metagame[m].offensiveSynergy = metagame[m].offensiveSynergy.join('||||');
-    metagame[m].offensiveCompliment = metagame[m].offensiveCompliment.join('||||');
-    metagame[m].momentumFollowup = metagame[m].momentumFollowup.join('||||');
+    // metagame[m].typing = metagame[m].typing.join('||||');
+    // metagame[m].defensiveResist = metagame[m].defensiveResist.join('||||');
+    // metagame[m].defensiveWeak = metagame[m].defensiveWeak.join('||||');
+    // metagame[m].offensiveSynergy = metagame[m].offensiveSynergy.join('||||');
+    // metagame[m].offensiveCompliment = metagame[m].offensiveCompliment.join('||||');
+    // metagame[m].momentumFollowup = metagame[m].momentumFollowup.join('||||');
 
 
     // if (metagame[m].offensiveSynergy[0][0] >= metagame[m].defensiveSynergy[0][0] && metagame[m].offensiveSynergy[0][0] >= metagame[m].offensiveCompliment[0][0]) {
