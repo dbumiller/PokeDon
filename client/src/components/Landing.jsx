@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 
 class Landing extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       teams: [],
@@ -34,16 +34,18 @@ class Landing extends React.Component {
   }
 
   postTeam(e) {
+    // e.preventDefault();
+    // axios.post('/api/team', {
+    //   name: this.state.name
+    // })
+    // .then((response) => {
+    //   console.log(response);
+    // })
+    // .catch((err) => {
+    //   console.error(err);
+    // })
     e.preventDefault();
-    axios.post('/api/team', {
-      name: this.state.name
-    })
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((err) => {
-      console.error(err);
-    })
+    this.props.postTeam(this.state.name);
   }
 
   componentDidMount() {
@@ -82,11 +84,11 @@ class Landing extends React.Component {
             })}
           </select>
         </form>
-        <form onSubmit={this.postTeam}>
+        <form>
           <label>Make a new team
             <input name="name" onChange={this.handleInput} value = {this.state.name} />
           </label>
-          <button type='submit'>Create Team</button>
+          <button onClick= {this.postTeam}>Create Team</button>
         </form>
       </div>
     )
