@@ -12,20 +12,20 @@ class App extends React.Component {
       pokemon: [],
       teamName: '',
       defense: {},
-      view: ''
+      view: 'landing'
     }
 
     this.postTeam = this.postTeam.bind(this);
-    this.handleInput.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.changeView = this.changeView.bind(this);
   }
 
   postTeam(name) {
-    console.log(name);
     axios.post('/api/team', {
       name: name
     })
     .then((response) => {
-      console.log(response);
+      this.changeView('home');
     })
     .catch((err) => {
       console.error(err);
@@ -38,12 +38,31 @@ class App extends React.Component {
     })
   }
 
+  changeView(newView) {
+    this.setState({
+      view: newView
+    })
+  }
+
   render() {
-    return (
-      <div>
-        <Landing postTeam={this.postTeam} handleInput={this.handleInput}/>
-      </div>
-    )
+    if (this.state.view === 'landing') {
+      return (
+        <div>
+          <Landing postTeam={this.postTeam} handleInput={this.handleInput} changeView={this.changeView}/>
+        </div>
+      )
+    }
+    else if (this.state.view === 'home') {
+      return (
+        <div>
+          <TeamHome />
+        </div>
+      )
+    } else {
+      return (
+        <div>huh</div>
+      )
+    }
   }
 }
 
