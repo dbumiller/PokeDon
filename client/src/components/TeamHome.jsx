@@ -12,15 +12,13 @@ class TeamHome extends React.Component {
   render() {
     return (
       <div>
-        <button>My Team</button>
-        <br></br>
         <button>Add / Remove a Pokemon</button>
         <br></br>
-        <button>Offensive Synergies</button>
+        <button>My Team</button>
         <br></br>
-        <button>Offensive Compliments</button>
+        <button>Offense</button>
         <br></br>
-        <button>Defensive Synergy</button>
+        <button>Defense</button>
       </div>
     )
   }

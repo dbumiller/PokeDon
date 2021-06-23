@@ -27,7 +27,7 @@ const seed = () => {
     'water': 0
   }
 
-  var teams = ["New Bark Town Knights", "Vermillion City Veterans", "Viridian Forest Caterpie Massacre"];
+  var teams = ["New Bark Town Knights", "Vermillion City Veterans", "Viridian Forest Caterpie Carnage"];
 
   for (var i = 0; i < teams.length; i++) {
     var current = {
