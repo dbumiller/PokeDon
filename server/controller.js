@@ -24,6 +24,15 @@ const controller = {
   },
   delete: (req, res) => {
     res.status(200).send(`deleted ${req.params.id}`);
+  },
+  choosePokemon: (req, res) => {
+    model.pokemon.choosePokemon(req.params.id, req.body.id)
+    .then((results) => {
+      res.status(200).send(results);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    })
   }
 }
 

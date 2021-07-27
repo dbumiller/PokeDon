@@ -30,7 +30,13 @@ const teams = {
 }
 
 const pokemon = {
-
+  choosePokemon: (pokeId, id) => {
+    return db.Pokemon.update({teamId: id}, {
+      where: {
+        id: pokeId
+      }
+    });
+  }
 }
 
 module.exports = {
