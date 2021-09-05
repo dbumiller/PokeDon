@@ -20,4 +20,8 @@ router
   .route('/team/:id')
   .get(controller.getRoster)
 
+  router
+  .route('/pokemon/:id')
+  .put(controller.choosePokemon)
+
 module.exports = router;

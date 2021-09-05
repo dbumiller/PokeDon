@@ -107,6 +107,11 @@ const Pokemon = sequelize.define('pokemon', {
   speedControl: {
     type:DataTypes.BOOLEAN,
     allowNull: false
+  },
+  teamId: {
+    type:DataTypes.INTEGER,
+    references: 'teams',
+    referencesKey: 'teamId'
   }
 }, {
   timestamps: false
