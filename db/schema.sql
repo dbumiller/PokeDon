@@ -30,6 +30,7 @@ CREATE TABLE pokemons (
   priority BOOLEAN NOT NULL,
   momentum BOOLEAN NOT NULL,
   speedControl BOOLEAN NOT NULL,
+  defensiveUtility BOOLEAN NOT NULL,
   teamId INT,
   CONSTRAINT team
   FOREIGN KEY (teamId)

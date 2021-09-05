@@ -108,6 +108,10 @@ const Pokemon = sequelize.define('pokemon', {
     type:DataTypes.BOOLEAN,
     allowNull: false
   },
+  defensiveUtility: {
+    type:DataTypes.BOOLEAN,
+    allowNull: false
+  },
   teamId: {
     type:DataTypes.INTEGER,
     references: 'teams',
