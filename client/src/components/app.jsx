@@ -18,6 +18,7 @@ class App extends React.Component {
     this.postTeam = this.postTeam.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.changeView = this.changeView.bind(this);
+    this.selectTeam = this.selectTeam.bind(this);
   }
 
   postTeam(name) {
@@ -33,6 +34,13 @@ class App extends React.Component {
     .catch((err) => {
       console.error(err);
     })
+  }
+
+  selectTeam(name) {
+    this.setState({
+      teamName: name
+    });
+    this.changeView('home');
   }
 
   handleInput(e) {
@@ -51,7 +59,7 @@ class App extends React.Component {
     if (this.state.view === 'landing') {
       return (
         <div>
-          <Landing postTeam={this.postTeam} handleInput={this.handleInput} changeView={this.changeView}/>
+          <Landing postTeam={this.postTeam} handleInput={this.handleInput} changeView={this.changeView} selectTeam={this.selectTeam}/>
         </div>
       )
     }

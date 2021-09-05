@@ -7,19 +7,23 @@ class Landing extends React.Component {
 
     this.state = {
       teams: [],
-      name: ''
+      name: '',
+      selectedName: ''
     };
 
     this.getTeams = this.getTeams.bind(this);
     this.postTeam = this.postTeam.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
+    this.selectTeam = this.selectTeam.bind(this);
   }
 
   getTeams() {
     axios.get('/api/team')
     .then((results) => {
       this.setState({
-        teams: results.data
+        teams: results.data,
+        selectedName: results.data[0].name
       })
     })
     .catch((err) => {
@@ -31,6 +35,17 @@ class Landing extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     })
+  }
+
+  handleSelect(e) {
+    this.setState({
+      selectedName: e.target.value
+    })
+  }
+
+  selectTeam(e) {
+    e.preventDefault();
+    this.props.selectTeam(this.state.selectedName);
   }
 
   postTeam(e) {
@@ -47,13 +62,14 @@ class Landing extends React.Component {
       <div>
         <form>
           <label>Choose an existing team: </label>
-          <select name="teams" id="teams">
+          <select name="teams" id="teams" onChange={this.handleSelect}>
             {this.state.teams.map((team, index) => {
               return (
                 <option value={team.name} key={index}>{team.name}</option>
               )
             })}
           </select>
+          <button onClick={this.selectTeam}>Select Team</button>
         </form>
         <form>
           <label>Make a new team
