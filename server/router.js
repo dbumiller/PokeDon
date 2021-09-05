@@ -18,6 +18,6 @@ router
 
   router
   .route('/team/:id')
-
+  .get(controller.getRoster)
 
 module.exports = router;

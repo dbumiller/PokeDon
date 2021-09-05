@@ -37,6 +37,16 @@ const controller = {
     .catch((err) => {
       res.status(400).send(err);
     })
+  },
+
+  getRoster: (req, res) => {
+    model.pokemon.getRoster(req.params.id)
+    .then((results) => {
+      res.status(200).send(results);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    })
   }
 }
 

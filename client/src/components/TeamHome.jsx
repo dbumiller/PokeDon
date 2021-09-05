@@ -9,6 +9,10 @@ class TeamHome extends React.Component {
   }
 }
 
+componentDidMount() {
+  this.props.getRoster(this.props.teamId);
+}
+
   render() {
     return (
       <div>

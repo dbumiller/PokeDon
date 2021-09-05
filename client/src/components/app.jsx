@@ -20,6 +20,7 @@ class App extends React.Component {
     this.handleInput = this.handleInput.bind(this);
     this.changeView = this.changeView.bind(this);
     this.selectTeam = this.selectTeam.bind(this);
+    this.getRoster = this.getRoster.bind(this);
   }
 
   postTeam(name, id) {
@@ -59,6 +60,18 @@ class App extends React.Component {
     })
   }
 
+  getRoster(teamId) {
+    axios.get(`/api/team/${teamId}`)
+    .then((results) => {
+      this.setState({
+        pokemon: results
+      })
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+  }
+
   render() {
     if (this.state.view === 'landing') {
       return (
@@ -70,7 +83,7 @@ class App extends React.Component {
     else if (this.state.view === 'home') {
       return (
         <div>
-          <TeamHome teamName={this.state.teamName}/>
+          <TeamHome teamName={this.state.teamName} teamId={this.state.teamId} getRoster={this.getRoster}/>
         </div>
       )
     } else {
