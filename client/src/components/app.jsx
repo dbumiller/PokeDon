@@ -68,10 +68,9 @@ class App extends React.Component {
       )
     }
     else if (this.state.view === 'home') {
-      console.log(this.state.teamId);
       return (
         <div>
-          <TeamHome />
+          <TeamHome teamName={this.state.teamName}/>
         </div>
       )
     } else {

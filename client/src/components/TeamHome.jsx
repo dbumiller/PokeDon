@@ -1,8 +1,8 @@
 import React from 'react';
 
 class TeamHome extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
   this.state = {
 
@@ -12,6 +12,7 @@ class TeamHome extends React.Component {
   render() {
     return (
       <div>
+        <div>{this.props.teamName}</div>
         <button>Add / Remove a Pokemon</button>
         <br></br>
         <button>My Team</button>
