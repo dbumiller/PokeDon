@@ -25,6 +25,9 @@ class App extends React.Component {
       name: name
     })
     .then((response) => {
+      this.setState({
+        teamName: name
+      });
       this.changeView('home');
     })
     .catch((err) => {
