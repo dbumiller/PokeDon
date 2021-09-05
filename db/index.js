@@ -137,8 +137,8 @@ const Team = sequelize.define('team', {
 });
 
 
-Pokemon.belongsTo(Team);
-Team.hasMany(Pokemon);
+// Pokemon.belongsTo(Team);
+// Team.hasMany(Pokemon);
 
 
 module.exports = {

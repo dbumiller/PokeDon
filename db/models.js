@@ -39,7 +39,7 @@ const pokemon = {
   },
   getRoster: (id) => {
     return db.Pokemon.findAll({
-      attributes: [`id`, `name`, `typing`, `defensiveResist`, `defensiveWeak`, `offensiveSynergy`, `offensiveCompliment`, `momentumFollowup`, `wallbreaker`, `sweeper`, `hazardControl`, `rocker`, `spiker`, `tSpiker`, `webber`, `screener`, `priority`, `momentum`, `speedControl`, `teamId`],
+
       where: {
         teamId: id
       }
