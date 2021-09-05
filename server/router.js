@@ -16,4 +16,8 @@ router
   .get(controller.teamGet)
   .post(controller.teamPost)
 
+  router
+  .route('/team/:id')
+
+
 module.exports = router;

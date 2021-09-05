@@ -45,12 +45,19 @@ class Landing extends React.Component {
 
   selectTeam(e) {
     e.preventDefault();
-    this.props.selectTeam(this.state.selectedName);
+    var id;
+    for (var i = 0; i < this.state.teams.length; i++) {
+      if (this.state.selectedName === this.state.teams[i].name) {
+        id = this.state.teams[i].teamId;
+      }
+    }
+
+    this.props.selectTeam(this.state.selectedName, id);
   }
 
   postTeam(e) {
     e.preventDefault();
-    this.props.postTeam(this.state.name);
+    this.props.postTeam(this.state.name, this.state.teams.length + 1);
   }
 
   componentDidMount() {

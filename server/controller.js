@@ -19,12 +19,16 @@ const controller = {
       res.status(400).send(err);
     })
   },
+
+
   put: (req, res) => {
     res.status(200).send(`updated ${req.params.id}`);
   },
   delete: (req, res) => {
     res.status(200).send(`deleted ${req.params.id}`);
   },
+
+
   choosePokemon: (req, res) => {
     model.pokemon.choosePokemon(req.params.id, req.body.id)
     .then((results) => {

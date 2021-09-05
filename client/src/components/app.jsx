@@ -11,6 +11,7 @@ class App extends React.Component {
     this.state = {
       pokemon: [],
       teamName: '',
+      teamId: -1,
       defense: {},
       view: 'landing'
     }
@@ -21,13 +22,15 @@ class App extends React.Component {
     this.selectTeam = this.selectTeam.bind(this);
   }
 
-  postTeam(name) {
+  postTeam(name, id) {
     axios.post('/api/team', {
-      name: name
+      name: name,
+      teamId: id
     })
     .then((response) => {
       this.setState({
-        teamName: name
+        teamName: name,
+        teamId: id
       });
       this.changeView('home');
     })
@@ -36,9 +39,10 @@ class App extends React.Component {
     })
   }
 
-  selectTeam(name) {
+  selectTeam(name, id) {
     this.setState({
-      teamName: name
+      teamName: name,
+      teamId: id
     });
     this.changeView('home');
   }
@@ -64,6 +68,7 @@ class App extends React.Component {
       )
     }
     else if (this.state.view === 'home') {
+      console.log(this.state.teamId);
       return (
         <div>
           <TeamHome />
