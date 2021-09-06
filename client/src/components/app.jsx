@@ -28,7 +28,7 @@ class App extends React.Component {
     this.getRoster = this.getRoster.bind(this);
   }
 
-  postTeam(name, id) {
+  postTeam(name, id, defense) {
     axios.post('/api/team', {
       name: name,
       teamId: id
@@ -36,7 +36,8 @@ class App extends React.Component {
       .then((response) => {
         this.setState({
           teamName: name,
-          teamId: id
+          teamId: id,
+          defense: defense
         });
         this.changeView('home');
       })
@@ -45,10 +46,11 @@ class App extends React.Component {
       })
   }
 
-  selectTeam(name, id) {
+  selectTeam(name, id, defense) {
     this.setState({
       teamName: name,
-      teamId: id
+      teamId: id,
+      defense: defense
     });
     this.changeView('home');
   }
@@ -109,7 +111,7 @@ class App extends React.Component {
       )
     } else if (this.state.view === 'defense') {
       return (
-        <DefensiveSynergy />
+        <DefensiveSynergy teamName={this.state.teamName} teamId={this.state.teamId} defense={this.state.defense}/>
       )
     } else {
       return (
