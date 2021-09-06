@@ -83,9 +83,13 @@ class App extends React.Component {
     else if (this.state.view === 'home') {
       return (
         <div>
-          <TeamHome teamName={this.state.teamName} teamId={this.state.teamId} getRoster={this.getRoster}/>
+          <TeamHome teamName={this.state.teamName} teamId={this.state.teamId} getRoster={this.getRoster} changeView={this.changeView}/>
         </div>
       )
+      }  else if (this.state.view === 'browsePokemon') {
+        return (
+          <div>browse</div>
+        )
     } else {
       return (
         <div>huh</div>

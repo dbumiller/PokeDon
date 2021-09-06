@@ -7,6 +7,13 @@ class TeamHome extends React.Component {
   this.state = {
 
   }
+  this.editView = this.editView.bind(this);
+}
+
+editView(e) {
+  e.preventDefault();
+  console.log(e.target.name);
+  this.props.changeView(e.target.name);
 }
 
 componentDidMount() {
@@ -17,7 +24,7 @@ componentDidMount() {
     return (
       <div>
         <div>{this.props.teamName}</div>
-        <button>Add / Remove a Pokemon</button>
+        <button name="browsePokemon" onClick={this.editView}>Browse Pokemon</button>
         <br></br>
         <button>My Team</button>
         <br></br>
