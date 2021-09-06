@@ -2,6 +2,10 @@ import React from 'react';
 import Landing from './Landing.jsx';
 import TeamHome from './TeamHome.jsx';
 import BrowsePokemon from './BrowsePokemon.jsx';
+import DefensiveSynergy from './DefensiveSynergy.jsx';
+import Momentum from './Momentum.jsx';
+import OffensiveSynergy from './OffensiveSynergy.jsx';
+import OffensiveCompliment from './OffensiveCompliment.jsx';
 import axios from 'axios';
 
 
@@ -29,16 +33,16 @@ class App extends React.Component {
       name: name,
       teamId: id
     })
-    .then((response) => {
-      this.setState({
-        teamName: name,
-        teamId: id
-      });
-      this.changeView('home');
-    })
-    .catch((err) => {
-      console.error(err);
-    })
+      .then((response) => {
+        this.setState({
+          teamName: name,
+          teamId: id
+        });
+        this.changeView('home');
+      })
+      .catch((err) => {
+        console.error(err);
+      })
   }
 
   selectTeam(name, id) {
@@ -63,37 +67,53 @@ class App extends React.Component {
 
   getRoster(teamId) {
     axios.get(`/api/team/${teamId}`)
-    .then((results) => {
-      this.setState({
-        pokemon: results
+      .then((results) => {
+        this.setState({
+          pokemon: results
+        })
       })
-    })
-    .catch((err) => {
-      console.error(err);
-    })
+      .catch((err) => {
+        console.error(err);
+      })
   }
 
   render() {
     if (this.state.view === 'landing') {
       return (
         <div>
-          <Landing postTeam={this.postTeam} handleInput={this.handleInput} changeView={this.changeView} selectTeam={this.selectTeam}/>
+          <Landing postTeam={this.postTeam} handleInput={this.handleInput} changeView={this.changeView} selectTeam={this.selectTeam} />
         </div>
       )
     }
     else if (this.state.view === 'home') {
       return (
         <div>
-          <TeamHome teamName={this.state.teamName} teamId={this.state.teamId} getRoster={this.getRoster} changeView={this.changeView}/>
+          <TeamHome teamName={this.state.teamName} teamId={this.state.teamId} getRoster={this.getRoster} changeView={this.changeView} />
         </div>
       )
-      }  else if (this.state.view === 'browsePokemon') {
-        return (
-          <div>browse</div>
-        )
+    } else if (this.state.view === 'browsePokemon') {
+      return (
+        <BrowsePokemon />
+      )
+    } else if (this.state.view === 'offensiveCompliment') {
+      return (
+        <OffensiveCompliment />
+      )
+    } else if (this.state.view === 'offensiveSynergy') {
+      return (
+        <OffensiveSynergy />
+      )
+    } else if (this.state.view === 'momentumFollowup') {
+      return (
+        <Momentum />
+      )
+    } else if (this.state.view === 'defense') {
+      return (
+        <DefensiveSynergy />
+      )
     } else {
       return (
-        <div><BrowsePokemon/></div>
+        <div>huh</div>
       )
     }
   }

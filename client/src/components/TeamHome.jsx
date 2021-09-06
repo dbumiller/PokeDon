@@ -25,11 +25,15 @@ componentDidMount() {
         <div>{this.props.teamName}</div>
         <button name="browsePokemon" onClick={this.editView}>Browse Pokemon</button>
         <br></br>
-        <button>My Team</button>
+        <button name="myTeam" onClick={this.editView}>My Team</button>
         <br></br>
-        <button>Offense</button>
+        <button name="offensiveSynergy" onClick={this.editView}>Offensive Synergy</button>
         <br></br>
-        <button>Defense</button>
+        <button name="offensiveCompliment" onClick={this.editView}>Offensive Compliment</button>
+        <br></br>
+        <button name="momentumFollowup" onClick={this.editView}>Momentum Followup</button>
+        <br></br>
+        <button name="defense" onClick={this.editView}>Defense</button>
       </div>
     )
   }
