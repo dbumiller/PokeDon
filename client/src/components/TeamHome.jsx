@@ -12,7 +12,6 @@ class TeamHome extends React.Component {
 
 editView(e) {
   e.preventDefault();
-  console.log(e.target.name);
   this.props.changeView(e.target.name);
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import Landing from './Landing.jsx';
 import TeamHome from './TeamHome.jsx';
+import BrowsePokemon from './BrowsePokemon.jsx';
 import axios from 'axios';
 
 
@@ -92,7 +93,7 @@ class App extends React.Component {
         )
     } else {
       return (
-        <div>huh</div>
+        <div><BrowsePokemon/></div>
       )
     }
   }
