@@ -13,6 +13,7 @@ class MyTeam extends React.Component {
     return (
       <div>
         myteam
+        {this.props.pokemon[0].name}
       </div>
     )
   }
