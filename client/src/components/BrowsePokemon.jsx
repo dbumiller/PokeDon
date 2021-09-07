@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import BrowseElement from './BrowseElement.jsx';
 
 class BrowsePokemon extends React.Component {
   constructor(props) {
@@ -14,14 +15,14 @@ class BrowsePokemon extends React.Component {
 
   getPokemon() {
     axios.get('/api/pokemon')
-    .then((results) => {
-      this.setState({
-        pokemon: results
+      .then((results) => {
+        this.setState({
+          pokemon: results.data
+        })
       })
-    })
-    .catch((err) => {
-      console.error(err);
-    })
+      .catch((err) => {
+        console.error(err);
+      })
   }
 
   componentDidMount() {
@@ -32,6 +33,13 @@ class BrowsePokemon extends React.Component {
     return (
       <div>
         browse
+        <ul className="pokemon">
+          {this.state.pokemon.map((pokemon, index) => {
+            return (
+              <BrowseElement pokemon={pokemon} key={index} />
+            )
+          })}
+        </ul>
       </div>
     )
   }
