@@ -47,6 +47,16 @@ const controller = {
     .catch((err) => {
       res.status(400).send(err);
     })
+  },
+
+  getAllPokemon: (req, res) => {
+    model.pokemon.getAll()
+    .then((results) => {
+      res.status(200).send(results);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    })
   }
 }
 

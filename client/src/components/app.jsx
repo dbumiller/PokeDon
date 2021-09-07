@@ -95,19 +95,19 @@ class App extends React.Component {
       )
     } else if (this.state.view === 'browsePokemon') {
       return (
-        <BrowsePokemon />
+        <BrowsePokemon teamName={this.state.teamName} teamId={this.state.teamId}/>
       )
     } else if (this.state.view === 'offensiveCompliment') {
       return (
-        <OffensiveCompliment />
+        <OffensiveCompliment teamName={this.state.teamName} teamId={this.state.teamId}/>
       )
     } else if (this.state.view === 'offensiveSynergy') {
       return (
-        <OffensiveSynergy />
+        <OffensiveSynergy teamName={this.state.teamName} teamId={this.state.teamId} pokemon={this.state.pokemon}/>
       )
     } else if (this.state.view === 'momentumFollowup') {
       return (
-        <Momentum />
+        <Momentum teamName={this.state.teamName} teamId={this.state.teamId}/>
       )
     } else if (this.state.view === 'defense') {
       return (

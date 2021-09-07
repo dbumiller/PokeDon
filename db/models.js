@@ -44,6 +44,9 @@ const pokemon = {
         teamId: id
       }
     });
+  },
+  getAll: () => {
+    return db.Pokemon.findAll();
   }
 }
 

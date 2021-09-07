@@ -24,4 +24,8 @@ router
   .route('/pokemon/:id')
   .put(controller.choosePokemon)
 
+  router
+  .route('/pokemon')
+  .get(controller.getAllPokemon)
+
 module.exports = router;
