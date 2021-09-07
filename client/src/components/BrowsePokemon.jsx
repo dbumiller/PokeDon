@@ -11,6 +11,7 @@ class BrowsePokemon extends React.Component {
     }
 
     this.getPokemon = this.getPokemon.bind(this);
+    this.goBack = this.goBack.bind(this);
   }
 
   getPokemon() {
@@ -29,10 +30,17 @@ class BrowsePokemon extends React.Component {
     this.getPokemon();
   }
 
+  goBack(e) {
+    e.preventDefault();
+    this.props.changeView('home');
+  }
+
   render() {
     return (
       <div>
         browse
+        <br></br>
+        <button onClick={this.goBack}>Back</button>
         <ul className="pokemon">
           {this.state.pokemon.map((pokemon, index) => {
             return (
@@ -40,6 +48,7 @@ class BrowsePokemon extends React.Component {
             )
           })}
         </ul>
+        <button onClick={this.goBack}>Back</button>
       </div>
     )
   }
