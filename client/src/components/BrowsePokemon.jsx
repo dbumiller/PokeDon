@@ -36,7 +36,7 @@ class BrowsePokemon extends React.Component {
         <ul className="pokemon">
           {this.state.pokemon.map((pokemon, index) => {
             return (
-              <BrowseElement pokemon={pokemon} key={index} />
+              <BrowseElement pokemon={pokemon} key={index} teamId={this.props.teamId}/>
             )
           })}
         </ul>
