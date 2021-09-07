@@ -1,16 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 
-class BrowseElement extends React.Component {
+class MyTeamElement extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      chosen: false
+      removed: false
     }
 
-    this.choosePokemon = this.choosePokemon.bind(this);
     this.removePokemon = this.removePokemon.bind(this);
+    this.choosePokemon = this.choosePokemon.bind(this);
   }
 
   choosePokemon(e) {
@@ -18,14 +18,14 @@ class BrowseElement extends React.Component {
     axios.put(`/api/pokemon/${this.props.pokemon.id}`, {
       "id": this.props.teamId
     })
-      .then((results) => {
-        this.setState({
-          chosen: true
-        })
+    .then((results) => {
+      this.setState({
+        removed: false
       })
-      .catch((err) => {
-        console.error(err);
-      })
+    })
+    .catch((err) => {
+      console.error(err);
+    })
   }
 
   removePokemon(e) {
@@ -35,7 +35,7 @@ class BrowseElement extends React.Component {
     })
       .then((results) => {
         this.setState({
-          chosen: false
+          removed: true
         })
       })
       .catch((err) => {
@@ -55,16 +55,16 @@ class BrowseElement extends React.Component {
       }
     }
 
-    if (!this.state.chosen) {
+    if (this.state.removed === false) {
       return (
         <div>
-          {infoString} <button onClick={this.choosePokemon}>Add Pokemon</button>
+          {infoString} <button onClick={this.removePokemon}>Remove Pokemon</button>
         </div>
       )
     } else {
       return (
         <div>
-          {infoString} <button onClick={this.removePokemon}>Chosen. Click to undo</button>
+          {infoString} <button onClick={this.choosePokemon}>Removed. Click to undo</button>
         </div>
       )
     }
@@ -72,4 +72,4 @@ class BrowseElement extends React.Component {
   }
 }
 
-module.exports = BrowseElement;
+module.exports = MyTeamElement;
