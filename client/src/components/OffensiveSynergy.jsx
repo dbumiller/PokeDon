@@ -1,4 +1,5 @@
 import React from 'react';
+import OffensiveSynergySingle from './OffensiveSynergySingle.jsx';
 
 class OffensiveSynergy extends React.Component {
   constructor(props) {
@@ -21,6 +22,13 @@ class OffensiveSynergy extends React.Component {
         offensive synergy
         <br></br>
         <button onClick={this.goBack}>Back</button>
+        <ul className="teamRoster">
+          {this.props.pokemon.map((pokemon, index) => {
+            return (
+              <OffensiveSynergySingle pokemon={pokemon} key={index} teamId={this.props.teamId}/>
+            )
+          })}
+        </ul>
       </div>
     )
   }

@@ -72,7 +72,7 @@ class App extends React.Component {
     axios.get(`/api/team/${teamId}`)
       .then((results) => {
         this.setState({
-          pokemon: results
+          pokemon: results.data
         })
       })
       .catch((err) => {
@@ -116,7 +116,7 @@ class App extends React.Component {
       )
     } else if (this.state.view ==='myTeam') {
       return (
-        <MyTeam teamName={this.state.teamName} teamId={this.state.teamId} pokemon={this.state.pokemon.data} changeView={this.changeView}/>
+        <MyTeam teamName={this.state.teamName} teamId={this.state.teamId} pokemon={this.state.pokemon} changeView={this.changeView}/>
       )
     } else {
       return (
