@@ -794,7 +794,7 @@
   "Heracross": {
     "no": 214,
     "typing": ["bug", "fighting"],
-    "defensiveUtility": false,
+    "defensiveUtility": true,
     "wallbreaker": true,
     "sweeper": true,
     "hazardControl": false,

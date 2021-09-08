@@ -19,7 +19,7 @@ class OffensiveSynergy extends React.Component {
   render() {
     return (
       <div>
-        offensive synergy
+        Offensive Synergy: How much the checks and counters to a pair of pokemon overlap. The higher the number, the more the overlap. This tool is to help you find pokemon that will wear down checks for each other. Think of a wallbreaker wearing a defensive pokemon down so that a sweeper can sweep through the opposing team.
         <br></br>
         <button onClick={this.goBack}>Back</button>
         <ul className="teamRoster">
