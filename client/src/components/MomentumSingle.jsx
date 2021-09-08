@@ -1,6 +1,6 @@
 import React from 'react';
 
-class OffensiveSynergySingle extends React.Component {
+class MomentumSingle extends React.Component {
   constructor(props) {
     super(props);
 
@@ -10,10 +10,10 @@ class OffensiveSynergySingle extends React.Component {
   }
 
   render() {
-    if (!this.props.pokemon.wallbreaker && !this.props.pokemon.sweeper) {
+    if (!this.props.pokemon.momentum) {
       return (
         <div>
-          {this.props.pokemon.name} has limited offensive utility
+          {this.props.pokemon.name} does not provide momentum
           <br></br>
           <br></br>
         </div>
@@ -21,9 +21,9 @@ class OffensiveSynergySingle extends React.Component {
     }
     return (
       <div>
-        {this.props.pokemon.name} Offensive Synergy
+        {this.props.pokemon.name} Momentum Followup
         <ul>
-          {this.props.pokemon.offensiveSynergy.map((pokemon, index) => {
+          {this.props.pokemon.momentumFollowup.map((pokemon, index) => {
             if (Number(pokemon[0]) > 0) {
               return (
                 <div key={index}>{pokemon[0]} {pokemon[1]}</div>
@@ -37,4 +37,4 @@ class OffensiveSynergySingle extends React.Component {
   }
 }
 
-module.exports = OffensiveSynergySingle;
+module.exports = MomentumSingle;

@@ -100,7 +100,7 @@ class App extends React.Component {
       )
     } else if (this.state.view === 'offensiveCompliment') {
       return (
-        <OffensiveCompliment teamName={this.state.teamName} teamId={this.state.teamId}/>
+        <OffensiveCompliment teamName={this.state.teamName} teamId={this.state.teamId} pokemon={this.state.pokemon} changeView={this.changeView}/>
       )
     } else if (this.state.view === 'offensiveSynergy') {
       return (
@@ -108,7 +108,7 @@ class App extends React.Component {
       )
     } else if (this.state.view === 'momentumFollowup') {
       return (
-        <Momentum teamName={this.state.teamName} teamId={this.state.teamId}/>
+        <Momentum teamName={this.state.teamName} teamId={this.state.teamId} pokemon={this.state.pokemon} changeView={this.changeView}/>
       )
     } else if (this.state.view === 'defense') {
       return (

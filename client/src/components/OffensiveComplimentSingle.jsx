@@ -1,6 +1,6 @@
 import React from 'react';
 
-class OffensiveSynergySingle extends React.Component {
+class OffensiveComplimentSingle extends React.Component {
   constructor(props) {
     super(props);
 
@@ -21,9 +21,9 @@ class OffensiveSynergySingle extends React.Component {
     }
     return (
       <div>
-        {this.props.pokemon.name} Offensive Synergy
+        {this.props.pokemon.name} Offensive Compliment
         <ul>
-          {this.props.pokemon.offensiveSynergy.map((pokemon, index) => {
+          {this.props.pokemon.offensiveCompliment.map((pokemon, index) => {
             if (Number(pokemon[0]) > 0) {
               return (
                 <div key={index}>{pokemon[0]} {pokemon[1]}</div>
@@ -37,4 +37,4 @@ class OffensiveSynergySingle extends React.Component {
   }
 }
 
-module.exports = OffensiveSynergySingle;
+module.exports = OffensiveComplimentSingle;
