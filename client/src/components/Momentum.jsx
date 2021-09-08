@@ -29,6 +29,8 @@ class Momentum extends React.Component {
             )
           })}
         </ul>
+        <br></br>
+        <button onClick={this.goBack}>Back</button>
       </div>
     )
   }
