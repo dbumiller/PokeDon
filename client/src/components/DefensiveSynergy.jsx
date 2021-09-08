@@ -26,8 +26,36 @@ class DefensiveSynergy extends React.Component {
   }
 
   componentDidMount() {
+    var defense = {};
+    for (var key in this.state.defenseChart) {
+      defense[key] = this.state.defenseChart[key];
+    }
+
+    for (var i = 0; i < this.props.pokemon.length; i++) {
+      for (var key in defense) {
+        if (this.props.pokemon[i].defensiveUtility) {
+          for (var j = 0; j < this.props.pokemon[i].defensiveResist.length; j++) {
+            if (key === this.props.pokemon[i].defensiveResist[j]) {
+              defense[key]++;
+            }
+          }
+        }
+
+        for (var j = 0; j < this.props.pokemon[i].defensiveWeak.length; j++) {
+          if (key === this.props.pokemon[i].defensiveWeak[j]) {
+            defense[key]--;
+          }
+        }
+      }
+    }
+
+    this.setState({
+      defenseChart: defense
+    })
+
     this.getPokemon();
   }
+
 
   goBack(e) {
     e.preventDefault();
@@ -35,30 +63,9 @@ class DefensiveSynergy extends React.Component {
   }
 
   render() {
-    if (this.state.allPokemon.length !== 0) {
-      var defense = this.state.defenseChart;
-      for (var i = 0; i < this.props.pokemon.length; i++) {
-        for (var key in defense) {
-          if (this.props.pokemon[i].defensiveUtility) {
-            for (var j = 0; j < this.props.pokemon[i].defensiveResist.length; j++) {
-              if (key === this.props.pokemon[i].defensiveResist[j]) {
-                defense[key]++;
-              }
-            }
-          }
-
-          for (var j = 0; j < this.props.pokemon[i].defensiveWeak.length; j++) {
-            if (key === this.props.pokemon[i].defensiveWeak[j]) {
-              defense[key]--;
-            }
-          }
-        }
-      }
-    }
-
     var output = '';
-    for (key in defense) {
-      output += key + ':  ' + defense[key] + ', ';
+    for (var key in this.state.defenseChart) {
+      output += key + ':  ' + this.state.defenseChart[key] + ', ';
     }
 
     return (
