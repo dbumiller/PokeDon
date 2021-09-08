@@ -10,7 +10,7 @@ class DefensiveSynergy extends React.Component {
   }
 
   render() {
-    console.log(this.props.defense);
+    //I can rank the typings for both sides of things. So my biggest weakness is both my least valued defensive asset, and most desired defensive addition. My biggest strength is my move valued defensive asset, and lease desired defensive addition. Then add maybe?
     return (
       <div>
         defense

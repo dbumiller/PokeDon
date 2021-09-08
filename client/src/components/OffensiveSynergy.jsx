@@ -7,12 +7,20 @@ class OffensiveSynergy extends React.Component {
     this.state = {
 
     }
+    this.goBack = this.goBack.bind(this);
+  }
+
+  goBack(e) {
+    e.preventDefault();
+    this.props.changeView('home');
   }
 
   render() {
     return (
       <div>
         offensive synergy
+        <br></br>
+        <button onClick={this.goBack}>Back</button>
       </div>
     )
   }
