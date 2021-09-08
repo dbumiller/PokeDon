@@ -29,8 +29,8 @@ class OffensiveSynergy extends React.Component {
             )
           })}
         </ul>
-        <br>
-        <button onClick={this.goBack}>Back</button></br>
+        <br></br>
+        <button onClick={this.goBack}>Back</button>
       </div>
     )
   }
