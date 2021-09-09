@@ -88,30 +88,40 @@ class DefensiveSynergy extends React.Component {
       sum += sortedChart[i][0];
     }
     var average = sum / 18;
-    // console.log(average);
+
     for (var i = 0; i < sortedChart.length; i++) {
       sortedChart[i][0] -= average;
     }
     console.log(sortedChart);
 
-    var bottomThird = [];
+    var belowAverage = [];
     var bottomFour = [];
+    var aboveAverage = [];
 
     for (var i = 0; i < sortedChart.length; i++) {
-      if (sortedChart[i][0] <= sortedChart[5][0]) {
-        bottomThird.push([sortedChart[i][0], sortedChart[i][1]]);
+      // if (sortedChart[i][0] <= sortedChart[5][0]) {
+        if (sortedChart[i][0] < 0) {
+        belowAverage.push([sortedChart[i][0], sortedChart[i][1]]);
       }
       if (sortedChart[i][0] <= sortedChart[3][0]) {
         bottomFour.push([sortedChart[i][0], sortedChart[i][1]]);
       }
+      if (sortedChart[i][0] > 0) {
+        aboveAverage.push([sortedChart[i][0], sortedChart[i][1]]);
+      }
     }
 
     console.log(bottomFour);
+    console.log(belowAverage);
+    console.log(aboveAverage);
 
     var arrayForSorting = [];
     for (var i = 0; i < this.state.allPokemon.length; i++) {
       var current = [];
       var bottomFourValue = 0;
+      var belowAverageCount = 0;
+      var aboveAverageValue = 0;
+
       for (var j = 0; j < bottomFour.length; j++) {
         for (var k = 0; k < this.state.allPokemon[i].defensiveResist.length; k++) {
           if (bottomFour[j][1] === this.state.allPokemon[i].defensiveResist[k]) {
@@ -125,14 +135,37 @@ class DefensiveSynergy extends React.Component {
         }
       }
 
-      console.log(this.state.allPokemon[i].name, bottomFourValue);
+      for (var j = 0; j < belowAverage.length; j++) {
+        for (var k = 0; k < this.state.allPokemon[i].defensiveResist.length; k++) {
+          if (belowAverage[j][1] === this.state.allPokemon[i].defensiveResist[k]) {
+            belowAverageCount++;
+          }
+        }
+      }
+
+      for (var j = 0; j < aboveAverage.length; j++) {
+        // for (var k = 0; k < this.state.allPokemon[i].defensiveResist.length; k++) {
+        //   if (aboveAverage[j][1] === this.state.allPokemon[i].defensiveResist[k]) {
+        //     aboveAverageValue -= aboveAverage[j][0];
+        //   }
+        // }
+        for (var k = 0; k <this.state.allPokemon[i].defensiveWeak.length; k++) {
+          if (aboveAverage[j][1] === this.state.allPokemon[i].defensiveWeak[k]) {
+            aboveAverageValue += aboveAverage[j][0];
+          }
+        }
+      }
+
+
+      // console.log(this.state.allPokemon[i].name, bottomFourValue, belowAverageCount);
+      console.log(this.state.allPokemon[i].name, aboveAverageValue);
     }
 
 
 
     return (
       <div>
-        Defense: Below is your team's type chart followed by a list of pokemon sorted by how much they fill your team's defensive needs. The numbers for any given pokemon are sorted by importance, with most important on the left. The first number for each pokemon is weighted and represents how the pokemon fills in your defense against your biggest type weaknesses. The second number is weighted and represents how much the pokemon takes advantage of your team's defensive strengths. The third number is not weighted and represents how many of your weaker type matchups the pokemon resists.
+        Defense: Below is your team's type chart followed by a list of pokemon sorted by how much they fill your team's defensive needs. The numbers for any given pokemon are sorted by importance, with most important on the left. The first number for each pokemon is weighted and represents how the pokemon fills in your defense against your biggest type weaknesses. The second number is weighted and represents how much the pokemon takes advantage of your team's defensive strengths. The third number is not weighted and represents how many of your below-average defensive matchups the pokemon resists.
         <br></br>
         <button onClick={this.goBack}>Back</button>
         <div>
