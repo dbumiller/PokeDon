@@ -83,48 +83,50 @@ class DefensiveSynergy extends React.Component {
       }
     });
 
-    // var sum = 0;
-    // for (var i = 0; i < sortedChart.length; i++) {
-    //   sum += sortedChart[i][0];
-    // }
-    // var average = sum / 18;
+    var sum = 0;
+    for (var i = 0; i < sortedChart.length; i++) {
+      sum += sortedChart[i][0];
+    }
+    var average = sum / 18;
     // console.log(average);
-    // for (var i = 0; i < sortedChart.length; i++) {
-    //   sortedChart[i][0] -= average;
-    // }
+    for (var i = 0; i < sortedChart.length; i++) {
+      sortedChart[i][0] -= average;
+    }
     console.log(sortedChart);
 
-    // var bottomThird = [];
-    // var bottomFour = [];
+    var bottomThird = [];
+    var bottomFour = [];
 
-    // for (var i = 0; i < sortedChart.length; i++) {
-    //   if (sortedChart[i][0] <= sortedChart[5][0]) {
-    //     bottomThird.push([sortedChart[i][0], sortedChart[i][1]]);
-    //   }
-    //   if (sortedChart[i][0] <= sortedChart[3][0]) {
-    //     bottomFour.push([sortedChart[i][0], sortedChart[i][1]]);
-    //   }
-    // }
+    for (var i = 0; i < sortedChart.length; i++) {
+      if (sortedChart[i][0] <= sortedChart[5][0]) {
+        bottomThird.push([sortedChart[i][0], sortedChart[i][1]]);
+      }
+      if (sortedChart[i][0] <= sortedChart[3][0]) {
+        bottomFour.push([sortedChart[i][0], sortedChart[i][1]]);
+      }
+    }
 
-    // var arrayForSorting = [];
-    // for (var i = 0; i < this.state.allPokemon.length; i++) {
-    //   var current = [];
-    //   var bottomFourValue = 0;
-    //   for (var j = 0; j < bottomFour.length; j++) {
-    //     for (var k = 0; k < this.state.allPokemon[i].defensiveResist.length; k++) {
-    //       if (bottomFour[j][1] === this.state.allPokemon[i].defensiveResist[k]) {
-    //         bottomFourValue += Math.abs(bottomFour[j][0]);
-    //       }
-    //     }
-    //     for (var k = 0; k <this.state.allPokemon[i].defensiveWeak.length; k++) {
-    //       if (bottomFour[j][1] === this.state.allPokemon[i].defensiveWeak[k]) {
-    //         bottomFourValue += bottomFour[j][0];
-    //       }
-    //     }
-    //   }
+    console.log(bottomFour);
 
-    //   console.log(this.state.allPokemon[i].name, bottomFourValue, bottomFour);
-    // }
+    var arrayForSorting = [];
+    for (var i = 0; i < this.state.allPokemon.length; i++) {
+      var current = [];
+      var bottomFourValue = 0;
+      for (var j = 0; j < bottomFour.length; j++) {
+        for (var k = 0; k < this.state.allPokemon[i].defensiveResist.length; k++) {
+          if (bottomFour[j][1] === this.state.allPokemon[i].defensiveResist[k]) {
+            bottomFourValue -= bottomFour[j][0];
+          }
+        }
+        for (var k = 0; k <this.state.allPokemon[i].defensiveWeak.length; k++) {
+          if (bottomFour[j][1] === this.state.allPokemon[i].defensiveWeak[k]) {
+            bottomFourValue += bottomFour[j][0];
+          }
+        }
+      }
+
+      console.log(this.state.allPokemon[i].name, bottomFourValue);
+    }
 
 
 
