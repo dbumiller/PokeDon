@@ -10,10 +10,9 @@ class DefenseSingle extends React.Component {
   }
 
   render() {
-    // console.log(this.props.pokemon[0]);
     return (
       <div>
-        {this.props.pokemon[0]} Defense: {this.props.pokemon[1]} , {this.props.pokemon[2]}, {this.props.pokemon[3]}
+        {this.props.pokemon[0]} Defense: {this.props.pokemon[1]}, {this.props.pokemon[2]}, {this.props.pokemon[3]}
         <br></br>
       </div>
     )

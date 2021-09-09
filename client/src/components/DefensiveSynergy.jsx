@@ -182,7 +182,7 @@ class DefensiveSynergy extends React.Component {
 
     return (
       <div>
-        Defense: Below is your team's type chart followed by a list of pokemon sorted by how much they fill your team's defensive needs. The numbers for any given pokemon are sorted by importance, with most important on the left. The first number for each pokemon is weighted and represents how the pokemon fills in your defense against your biggest type weaknesses. The second number is weighted and represents how much the pokemon takes advantage of your team's defensive strengths. The third number is not weighted and represents how many of your below-average defensive matchups the pokemon resists.
+        Defense: Below is your team's type chart followed by a list of pokemon sorted by how much they fill your team's defensive needs. The numbers for any given pokemon are sorted by importance, with most important on the left. The first number for each pokemon is weighted and represents how the pokemon fills in your defense against your biggest type weaknesses. The second number is not weighted and represents how many of your below-average defensive matchups the pokemon resists. The third number is weighted and represents how much the pokemon takes advantage of your team's defensive strengths.
         <br></br>
         <button onClick={this.goBack}>Back</button>
         <div>
