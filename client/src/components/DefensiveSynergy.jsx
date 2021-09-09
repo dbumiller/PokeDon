@@ -73,7 +73,7 @@ class DefensiveSynergy extends React.Component {
       sortedChart.push([this.state.defenseChart[key], key]);
     }
 
-    sortedChart.sort(function(b, a) {
+    sortedChart.sort(function (b, a) {
       if (a[0] > b[0]) {
         return -1;
       } else if (a[0] < b[0]) {
@@ -100,7 +100,7 @@ class DefensiveSynergy extends React.Component {
 
     for (var i = 0; i < sortedChart.length; i++) {
       // if (sortedChart[i][0] <= sortedChart[5][0]) {
-        if (sortedChart[i][0] < 0) {
+      if (sortedChart[i][0] < 0) {
         belowAverage.push([sortedChart[i][0], sortedChart[i][1]]);
       }
       if (sortedChart[i][0] <= sortedChart[3][0]) {
@@ -122,23 +122,25 @@ class DefensiveSynergy extends React.Component {
       var belowAverageCount = 0;
       var aboveAverageValue = 0;
 
-      for (var j = 0; j < bottomFour.length; j++) {
-        for (var k = 0; k < this.state.allPokemon[i].defensiveResist.length; k++) {
-          if (bottomFour[j][1] === this.state.allPokemon[i].defensiveResist[k]) {
-            bottomFourValue -= bottomFour[j][0];
+      if (this.state.allPokemon[i].defensiveUtility) {
+        for (var j = 0; j < bottomFour.length; j++) {
+          for (var k = 0; k < this.state.allPokemon[i].defensiveResist.length; k++) {
+            if (bottomFour[j][1] === this.state.allPokemon[i].defensiveResist[k]) {
+              bottomFourValue -= bottomFour[j][0];
+            }
+          }
+          for (var k = 0; k < this.state.allPokemon[i].defensiveWeak.length; k++) {
+            if (bottomFour[j][1] === this.state.allPokemon[i].defensiveWeak[k]) {
+              bottomFourValue += bottomFour[j][0];
+            }
           }
         }
-        for (var k = 0; k <this.state.allPokemon[i].defensiveWeak.length; k++) {
-          if (bottomFour[j][1] === this.state.allPokemon[i].defensiveWeak[k]) {
-            bottomFourValue += bottomFour[j][0];
-          }
-        }
-      }
 
-      for (var j = 0; j < belowAverage.length; j++) {
-        for (var k = 0; k < this.state.allPokemon[i].defensiveResist.length; k++) {
-          if (belowAverage[j][1] === this.state.allPokemon[i].defensiveResist[k]) {
-            belowAverageCount++;
+        for (var j = 0; j < belowAverage.length; j++) {
+          for (var k = 0; k < this.state.allPokemon[i].defensiveResist.length; k++) {
+            if (belowAverage[j][1] === this.state.allPokemon[i].defensiveResist[k]) {
+              belowAverageCount++;
+            }
           }
         }
       }
@@ -149,7 +151,7 @@ class DefensiveSynergy extends React.Component {
         //     aboveAverageValue -= aboveAverage[j][0];
         //   }
         // }
-        for (var k = 0; k <this.state.allPokemon[i].defensiveWeak.length; k++) {
+        for (var k = 0; k < this.state.allPokemon[i].defensiveWeak.length; k++) {
           if (aboveAverage[j][1] === this.state.allPokemon[i].defensiveWeak[k]) {
             aboveAverageValue += aboveAverage[j][0];
           }
@@ -158,8 +160,22 @@ class DefensiveSynergy extends React.Component {
 
 
       // console.log(this.state.allPokemon[i].name, bottomFourValue, belowAverageCount);
-      console.log(this.state.allPokemon[i].name, aboveAverageValue);
+      // console.log(this.state.allPokemon[i].name, aboveAverageValue);
+
+      arrayForSorting.push([this.state.allPokemon[i].name, bottomFourValue, belowAverageCount, aboveAverageValue]);
+
+      arrayForSorting.sort(function (b, a) {
+        if (a[1] < b[1]) {
+          return -1;
+        } else if (a[1] > b[1]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
     }
+
+    console.log(arrayForSorting);
 
 
 
