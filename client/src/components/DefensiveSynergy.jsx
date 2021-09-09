@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import DefenseSingle from './DefenseSingle.jsx';
 
 class DefensiveSynergy extends React.Component {
   constructor(props) {
@@ -92,7 +93,7 @@ class DefensiveSynergy extends React.Component {
     for (var i = 0; i < sortedChart.length; i++) {
       sortedChart[i][0] -= average;
     }
-    console.log(sortedChart);
+    // console.log(sortedChart);
 
     var belowAverage = [];
     var bottomFour = [];
@@ -111,9 +112,9 @@ class DefensiveSynergy extends React.Component {
       }
     }
 
-    console.log(bottomFour);
-    console.log(belowAverage);
-    console.log(aboveAverage);
+    // console.log(bottomFour);
+    // console.log(belowAverage);
+    // console.log(aboveAverage);
 
     var arrayForSorting = [];
     for (var i = 0; i < this.state.allPokemon.length; i++) {
@@ -175,7 +176,7 @@ class DefensiveSynergy extends React.Component {
       });
     }
 
-    console.log(arrayForSorting);
+    // console.log(arrayForSorting);
 
 
 
@@ -188,6 +189,13 @@ class DefensiveSynergy extends React.Component {
           {output}
         </div>
         <br></br>
+        <ul className="defensiveListing">
+          {arrayForSorting.map((pokemon, index) => {
+            return (
+              <DefenseSingle pokemon={pokemon} key={index} teamId={this.props.teamId} />
+            )
+          })}
+        </ul>
         <button onClick={this.goBack}>Back</button>
       </div>
     )
