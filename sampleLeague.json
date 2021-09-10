@@ -1052,7 +1052,7 @@
     "no": 51,
     "typing": ["ground", "steel"],
     "defensiveUtility": false,
-    "wallbreaker": false,
+    "wallbreaker": true,
     "sweeper": true,
     "hazardControl": false,
     "rocker": false,
