@@ -64,6 +64,10 @@ const Pokemon = sequelize.define('pokemon', {
     type: DataTypes.JSON,
     allowNull: false
   },
+  momentousLeadIn: {
+    type: DataTypes.JSON,
+    allowNull: false
+  },
   wallbreaker: {
     type: DataTypes.BOOLEAN,
     allowNull: false

@@ -143,6 +143,7 @@ for (key in sampleLeague) {
   currentObj.offensiveCompliment = [];
   currentObj.defensiveSynergy = [];
   currentObj.momentumFollowup = [];
+  currentObj.momentousLeadIn = [];
   currentObj.trSetter = sampleLeague[key].trSetter;
   currentObj.defensiveUtility = sampleLeague[key].defensiveUtility;
   currentObj.wallbreaker = sampleLeague[key].wallbreaker;
@@ -282,6 +283,7 @@ var analyzer = function(metagame) {
             var averageFollowup = (countMomentumFollowup / combinedNVEDefensiveWeak.length);
             averageFollowup = averageFollowup.toFixed(2);
             metagame[m].momentumFollowup.push([averageFollowup, metagame[n].name]);
+            metagame[n].momentousLeadIn.push([averageFollowup, metagame[m].name]);
           }
 
         }
@@ -382,6 +384,17 @@ var analyzer = function(metagame) {
     //   }
     // });
 
+  }
+  for (var m = 0; m < metagame.length; m++) {
+    metagame[m].momentousLeadIn.sort(function(a, b) {
+      if (a > b) {
+        return -1;
+      } else if (a < b) {
+        return 1;
+      } else {
+        return 0;
+      }
+    })
   }
 }
 

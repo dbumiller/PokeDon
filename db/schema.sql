@@ -19,6 +19,7 @@ CREATE TABLE pokemons (
   offensiveSynergy JSON NOT NULL,
   offensiveCompliment JSON NOT NULL,
   momentumFollowup JSON NOT NULL,
+  momentousLeadIn JSON NOT NULL,
   wallbreaker BOOLEAN NOT NULL,
   sweeper BOOLEAN NOT NULL,
   hazardControl BOOLEAN NOT NULL,
