@@ -1482,7 +1482,7 @@
     "priority": false,
     "momentum": true,
     "speedControl": true,
-    "additionalResistances": ["ground", 0]
+    "additionalResistances": [["ground", 0]]
   },
   "Sigilyph": {
     "no": 561,
