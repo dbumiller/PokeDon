@@ -1612,5 +1612,37 @@
     "priority": false,
     "momentum": false,
     "speedControl": true
+  },
+  "Decidueye": {
+    "no": 724,
+    "typing": ["grass", "ghost"],
+    "defensiveUtility": true,
+    "wallbreaker": true,
+    "sweeper": false,
+    "hazardControl": true,
+    "rocker": false,
+    "spiker": false,
+    "tSpiker": false,
+    "webber": false,
+    "screener": false,
+    "priority": true,
+    "momentum": true,
+    "speedControl": false
+  },
+  "Golisopod": {
+    "no": 768,
+    "typing": ["bug", "water"],
+    "defensiveUtility": true,
+    "wallbreaker": true,
+    "sweeper": false,
+    "hazardControl": false,
+    "rocker": false,
+    "spiker": true,
+    "tSpiker": false,
+    "webber": false,
+    "screener": false,
+    "priority": true,
+    "momentum": false,
+    "speedControl": false
   }
 }

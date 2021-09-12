@@ -8,6 +8,8 @@ class DefensiveSynergy extends React.Component {
 
     this.state = {
       defenseChart: this.props.defense,
+      resists: {},
+      weaknesses: {},
       allPokemon: []
     }
     this.getPokemon = this.getPokemon.bind(this);
@@ -28,8 +30,13 @@ class DefensiveSynergy extends React.Component {
 
   componentDidMount() {
     var defense = {};
+    var weaknesses = {};
+    var resistances = {};
+
     for (var key in this.state.defenseChart) {
       defense[key] = this.state.defenseChart[key];
+      weaknesses[key] = this.state.defenseChart[key];
+      resistances[key] = this.state.defenseChart[key];
     }
 
     for (var i = 0; i < this.props.pokemon.length; i++) {
@@ -38,6 +45,7 @@ class DefensiveSynergy extends React.Component {
           for (var j = 0; j < this.props.pokemon[i].defensiveResist.length; j++) {
             if (key === this.props.pokemon[i].defensiveResist[j]) {
               defense[key]++;
+              resistances[key]++;
             }
           }
         }
@@ -45,13 +53,16 @@ class DefensiveSynergy extends React.Component {
         for (var j = 0; j < this.props.pokemon[i].defensiveWeak.length; j++) {
           if (key === this.props.pokemon[i].defensiveWeak[j]) {
             defense[key]--;
+            weaknesses[key]++;
           }
         }
       }
     }
 
     this.setState({
-      defenseChart: defense
+      defenseChart: defense,
+      weaknesses: weaknesses,
+      resistances: resistances
     })
 
     this.getPokemon();
@@ -64,9 +75,17 @@ class DefensiveSynergy extends React.Component {
   }
 
   render() {
-    var output = '';
+    var outputWeak = 'Weaknesses: ';
+    for (var key in this.state.weaknesses) {
+      outputWeak += key + ':  ' + this.state.weaknesses[key] + ', ';
+    }
+    var outputResist = 'Resistances: ';
+    for (var key in this.state.resistances) {
+      outputResist += key + ':  ' + this.state.resistances[key] + ', ';
+    }
+    var outputCombine = 'Combined: ';
     for (var key in this.state.defenseChart) {
-      output += key + ':  ' + this.state.defenseChart[key] + ', ';
+      outputCombine += key + ':  ' + this.state.defenseChart[key] + ', ';
     }
 
     var sortedChart = [];
@@ -186,7 +205,11 @@ class DefensiveSynergy extends React.Component {
         <br></br>
         <button onClick={this.goBack}>Back</button>
         <div>
-          {output}
+          {outputResist}
+          <br></br>
+          {outputWeak}
+          <br></br>
+          {outputCombine}
         </div>
         <br></br>
         <ul className="defensiveListing">
