@@ -13,7 +13,9 @@
     "screener": false,
     "priority": true,
     "momentum": true,
-    "speedControl": true
+    "speedControl": true,
+    "speed": 136,
+    "attackStat": "physical"
   },
   "Sylveon": {
     "no": 700,
@@ -29,7 +31,9 @@
     "screener": false,
     "priority": false,
     "momentum": false,
-    "speedControl": false
+    "speedControl": false,
+    "speed": 60,
+    "attackingStat": "special"
   },
   "Rotom-W": {
     "no": 479,
@@ -46,7 +50,9 @@
     "priority": false,
     "momentum": true,
     "speedControl": true,
-    "additionalResistances": [["ground", 0]]
+    "additionalResistances": [["ground", 0]],
+    "speed": 86,
+    "attackingStat": "special"
   },
   "Haxorus": {
     "no": 612,
