@@ -34,6 +34,8 @@ componentDidMount() {
         <button name="momentumFollowup" onClick={this.editView}>Momentum Followup</button>
         <br></br>
         <button name="defense" onClick={this.editView}>Defense</button>
+        <br></br>
+        <button name="speed" onClick={this.editView}>Speed</button>
       </div>
     )
   }
