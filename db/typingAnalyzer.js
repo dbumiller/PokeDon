@@ -157,6 +157,8 @@ for (key in sampleLeague) {
   currentObj.priority = sampleLeague[key].priority;
   currentObj.momentum = sampleLeague[key].momentum;
   currentObj.speedControl = sampleLeague[key].speedControl;
+  currentObj.speed = sampleLeague[key].speed;
+  currentObj.attackingStat = sampleLeague[key].attackingStat;
   calculator(currentObj);
   metagame.push(currentObj);
 }
