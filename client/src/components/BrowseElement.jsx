@@ -15,6 +15,7 @@ class BrowseElement extends React.Component {
 
   choosePokemon(e) {
     e.preventDefault();
+    this.props.addToChosen(this.props.pokemon.name);
     axios.put(`/api/pokemon/${this.props.pokemon.id}`, {
       "id": this.props.teamId
     })
@@ -30,6 +31,7 @@ class BrowseElement extends React.Component {
 
   removePokemon(e) {
     e.preventDefault();
+    this.props.removeFromChosen(this.props.pokemon.name);
     axios.put(`/api/pokemon/${this.props.pokemon.id}`, {
       "id": null
     })
@@ -55,19 +57,40 @@ class BrowseElement extends React.Component {
       }
     }
 
-    if (!this.state.chosen) {
-      return (
-        <div>
-          {infoString} <button onClick={this.choosePokemon}>Add Pokemon</button>
-        </div>
-      )
-    } else {
+    var chosen = false;
+    for (var i = 0; i < this.props.chosen.length; i++) {
+      if (this.props.pokemon.name === this.props.chosen[i]) {
+        chosen = true;
+      }
+    }
+
+    if (chosen) {
       return (
         <div>
           {infoString} <button onClick={this.removePokemon}>Chosen. Click to undo</button>
         </div>
       )
+    } else {
+      return (
+        <div>
+          {infoString} <button onClick={this.choosePokemon}>Add Pokemon</button>
+        </div>
+      )
     }
+
+    // if (!this.state.chosen) {
+    //   return (
+    //     <div>
+    //       {infoString} <button onClick={this.choosePokemon}>Add Pokemon</button>
+    //     </div>
+    //   )
+    // } else {
+    //   return (
+    //     <div>
+    //       {infoString} <button onClick={this.removePokemon}>Chosen. Click to undo</button>
+    //     </div>
+    //   )
+    // }
 
   }
 }

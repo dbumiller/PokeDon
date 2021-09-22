@@ -9,12 +9,15 @@ class BrowsePokemon extends React.Component {
     this.state = {
       pokemon: [],
       currentPokemon: [],
-      search: ''
+      search: '',
+      chosen: []
     }
 
     this.getPokemon = this.getPokemon.bind(this);
     this.goBack = this.goBack.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.addToChosen = this.addToChosen.bind(this);
+    this.removeFromChosen = this.removeFromChosen.bind(this);
   }
 
   getPokemon() {
@@ -37,6 +40,33 @@ class BrowsePokemon extends React.Component {
   goBack(e) {
     e.preventDefault();
     this.props.changeView('home');
+  }
+
+  addToChosen(name) {
+    var newChosen = [];
+    for (var i = 0; i < this.state.chosen.length; i++) {
+      newChosen.push(this.state.chosen[i]);
+    }
+
+    newChosen.push(name);
+    this.setState({
+      chosen: newChosen
+    })
+    console.log(this.state.chosen);
+  }
+
+  removeFromChosen(name) {
+    var newChosen = [];
+    for (var i = 0; i < this.state.chosen.length; i++) {
+      if (this.state.chosen[i] !== name) {
+        newChosen.push(this.state.chosen[i]);
+      }
+    }
+
+    this.setState({
+      chosen: newChosen
+    })
+    console.log(this.state.chosen);
   }
 
   handleInput(e) {
@@ -69,13 +99,15 @@ class BrowsePokemon extends React.Component {
         browse
         <br></br>
         <button onClick={this.goBack}>Back</button>
+        <br></br>
+        <br></br>
         <label>Search
           <input onChange={this.handleInput} value={this.state.search}></input>
         </label>
         <ul className="pokemon">
           {this.state.currentPokemon.map((pokemon, index) => {
             return (
-              <BrowseElement pokemon={pokemon} key={index} teamId={this.props.teamId}/>
+              <BrowseElement pokemon={pokemon} key={index} teamId={this.props.teamId} addToChosen={this.addToChosen} chosen={this.state.chosen} removeFromChosen={this.removeFromChosen}/>
             )
           })}
         </ul>
