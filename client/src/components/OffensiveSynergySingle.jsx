@@ -26,7 +26,7 @@ class OffensiveSynergySingle extends React.Component {
           {this.props.pokemon.offensiveSynergy.map((pokemon, index) => {
             if (Number(pokemon[0]) > 0) {
               return (
-                <div key={index}>{pokemon[0]} {pokemon[1]}</div>
+                <div key={index}>{pokemon[0]} {pokemon[1]} {pokemon[2].toUpperCase()}</div>
               )
             }
           })}

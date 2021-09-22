@@ -15,7 +15,7 @@
     "momentum": true,
     "speedControl": true,
     "speed": 136,
-    "attackStat": "physical"
+    "attackingStat": "physical"
   },
   "Sylveon": {
     "no": 700,

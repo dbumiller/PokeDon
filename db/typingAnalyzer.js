@@ -193,7 +193,7 @@ var analyzer = function(metagame) {
             var averageNVE = (countNVE / metagame[m].offensiveNVE.length) + (countNVE / metagame[n].offensiveNVE.length);
             averageNVE /= 2;
             averageNVE = averageNVE.toFixed(2);
-            metagame[m].offensiveSynergy.push([averageNVE, metagame[n].name]);
+            metagame[m].offensiveSynergy.push([averageNVE, metagame[n].name, metagame[n].attackingStat]);
           }
 
 
@@ -248,7 +248,7 @@ var analyzer = function(metagame) {
                       var averageCompliment = (countComplimentM / metagame[m].offensiveNVE.length) + (countComplimentN / metagame[n].offensiveNVE.length);
                       averageCompliment /= 2;
                       averageCompliment = averageCompliment.toFixed(2);
-                      metagame[m].offensiveCompliment.push([averageCompliment, metagame[n].name]);
+                      metagame[m].offensiveCompliment.push([averageCompliment, metagame[n].name, metagame[n].attackingStat]);
 
           }
 
