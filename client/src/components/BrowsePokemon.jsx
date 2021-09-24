@@ -52,7 +52,6 @@ class BrowsePokemon extends React.Component {
     this.setState({
       chosen: newChosen
     })
-    console.log(this.state.chosen);
   }
 
   removeFromChosen(name) {
@@ -66,7 +65,6 @@ class BrowsePokemon extends React.Component {
     this.setState({
       chosen: newChosen
     })
-    console.log(this.state.chosen);
   }
 
   handleInput(e) {
@@ -100,6 +98,13 @@ class BrowsePokemon extends React.Component {
         <br></br>
         <button onClick={this.goBack}>Back</button>
         <br></br>
+        {/* <ul className="roster">
+          {this.props.team.map((pokemon, index) => {
+            return (
+              <li key={index}>{pokemon.name}</li>
+            )
+          })}
+        </ul> */}
         <br></br>
         <label>Search
           <input onChange={this.handleInput} value={this.state.search}></input>
@@ -107,7 +112,7 @@ class BrowsePokemon extends React.Component {
         <ul className="pokemon">
           {this.state.currentPokemon.map((pokemon, index) => {
             return (
-              <BrowseElement pokemon={pokemon} key={index} teamId={this.props.teamId} addToChosen={this.addToChosen} chosen={this.state.chosen} removeFromChosen={this.removeFromChosen}/>
+              <BrowseElement pokemon={pokemon} key={index} teamId={this.props.teamId} addToChosen={this.addToChosen} chosen={this.state.chosen} removeFromChosen={this.removeFromChosen} getRoster={this.props.getRoster}/>
             )
           })}
         </ul>

@@ -23,6 +23,7 @@ class BrowseElement extends React.Component {
         this.setState({
           chosen: true
         })
+        this.props.getRoster(this.props.teamId);
       })
       .catch((err) => {
         console.error(err);
@@ -39,6 +40,7 @@ class BrowseElement extends React.Component {
         this.setState({
           chosen: false
         })
+        this.props.getRoster(this.props.teamId);
       })
       .catch((err) => {
         console.error(err);

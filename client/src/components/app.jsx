@@ -97,7 +97,7 @@ class App extends React.Component {
       )
     } else if (this.state.view === 'browsePokemon') {
       return (
-        <BrowsePokemon teamName={this.state.teamName} teamId={this.state.teamId} changeView={this.changeView}/>
+        <BrowsePokemon teamName={this.state.teamName} teamId={this.state.teamId} changeView={this.changeView} team={this.state.pokemon} getRoster={this.getRoster}/>
       )
     } else if (this.state.view === 'offensiveCompliment') {
       return (
