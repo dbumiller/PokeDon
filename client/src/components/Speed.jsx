@@ -97,10 +97,19 @@ class Speed extends React.Component {
 
 
 
+    if (this.state.speeds.length === 0) {
+      return (
+        <div>
+          Speed Tiers
+          <br></br>
+          Please check back after picking a pokemon or two!
+        </div>
+      )
+    }
 
     return (
     <div>
-      Speed
+      Speed Tiers
       <br></br>
       <button onClick={this.goBack}>Back</button>
       <ul className="speeds">
