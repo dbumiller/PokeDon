@@ -14,8 +14,7 @@ class OffensiveComplimentSingle extends React.Component {
   }
 
   choosePokemon(name) {
-    // e.preventDefault();
-    // this.props.addToChosen(this.props.pokemon.name);
+    this.props.addToChosen(name);
     axios.put(`/api/pokemon/${name}`, {
       "id": this.props.teamId
     })
@@ -23,17 +22,16 @@ class OffensiveComplimentSingle extends React.Component {
         this.setState({
           chosen: true
         })
-        // this.props.getRoster(this.props.teamId);
+        this.props.getRoster(this.props.teamId);
       })
       .catch((err) => {
         console.error(err);
       })
   }
 
-  removePokemon(e) {
-    e.preventDefault();
-    // this.props.removeFromChosen(this.props.pokemon.name);
-    axios.put(`/api/pokemon/${this.props.pokemon.id}`, {
+  removePokemon(name) {
+    this.props.removeFromChosen(name);
+    axios.put(`/api/pokemon/${name}`, {
       "id": null
     })
       .then((results) => {
@@ -65,16 +63,16 @@ class OffensiveComplimentSingle extends React.Component {
           {this.props.pokemon.offensiveCompliment.map((pokemon, index) => {
             if (Number(pokemon[0]) > 0) {
 
-              // var chosen = false;
-              // for (var i = 0; i < this.props.chosen.length; i++) {
-              //   if (pokemon[1] === this.props.chosen[i]) {
-              //     chosen = true;
-              //   }
-              // }
+              var chosen = false;
+              for (var i = 0; i < this.props.chosen.length; i++) {
+                if (pokemon[1] === this.props.chosen[i]) {
+                  chosen = true;
+                }
+              }
 
-              if (this.state.chosen) {
+              if (chosen) {
                 return (
-                  <div key={index}>{pokemon[0]} {pokemon[1]} {pokemon[2].toUpperCase()} <button onClick={this.removePokemon}>Chosen. Click to undo</button> </div>
+                  <div key={index}>{pokemon[0]} {pokemon[1]} {pokemon[2].toUpperCase()} <button onClick={() => {this.removePokemon(pokemon[1])}}>Chosen. Click to undo</button> </div>
                 )
               } else {
                 return (
