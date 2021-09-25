@@ -60,6 +60,15 @@ class Speed extends React.Component {
             gaps[k][2].push(this.state.pokemon[j]);
           }
         }
+        gaps[k][2].sort(function(a, b) {
+          if (Number(a.speed) > Number(b.speed)) {
+            return -1;
+          } else if (Number(a.speed) < Number(b.speed)) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
         k++;
       }
     }
@@ -79,6 +88,24 @@ class Speed extends React.Component {
             <div key={index}>
               {pokemon[1]} {pokemon[0]}
             </div>
+          )
+        })}
+      </ul>
+      <ul className="gaps">
+        {gaps.map((gap, gapIndex) => {
+          return (
+            <li key={gapIndex}>
+              {gap[0]} - {gap[1]}
+              <ul className="gapFiller">
+                {gap[2].map((filler, fillerIndex) => {
+                  return (
+                    <div key={fillerIndex}>
+                      {filler.name} {filler.speed}
+                    </div>
+                  )
+                })}
+              </ul>
+            </li>
           )
         })}
       </ul>
