@@ -51,8 +51,30 @@ class Speed extends React.Component {
 
     var gaps = [];
     var k = 0;
+
+    if (speeds.length > 0) {
+      if (speeds[0][0] < 105) {
+        gaps.push([[200], [104], []]);
+        for (var j = 0; j < this.state.pokemon.length; j++) {
+          if (this.state.pokemon[j].speed >= 104) {
+            gaps[k][2].push(this.state.pokemon[j]);
+          }
+        }
+        gaps[k][2].sort(function(a, b) {
+          if (Number(a.speed) > Number(b.speed)) {
+            return -1;
+          } else if (Number(a.speed) < Number(b.speed)) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        k++;
+      }
+    }
+
     for (var i = 1; i < speeds.length; i++) {
-      if (speeds[i - 1][0] <= 115 && (speeds[i - 1][0] - speeds[i][0] >= 15)) {
+      if (speeds[i - 1][0] <= 110 && (speeds[i - 1][0] - speeds[i][0] >= 15)) {
         gaps.push([speeds[i - 1][0], speeds[i][0], []]);
 
         for (var j = 0; j < this.state.pokemon.length; j++) {
@@ -72,7 +94,6 @@ class Speed extends React.Component {
         k++;
       }
     }
-    console.log(gaps);
 
 
 
