@@ -31,11 +31,20 @@ const teams = {
 
 const pokemon = {
   choosePokemon: (pokeId, id) => {
-    return db.Pokemon.update({teamId: id}, {
-      where: {
-        id: pokeId
-      }
-    });
+    if (isNaN(pokeId)) {
+      return db.Pokemon.update({teamId: id}, {
+        where: {
+          name: pokeId
+        }
+      });
+    } else {
+      return db.Pokemon.update({teamId: id}, {
+        where: {
+          id: pokeId
+        }
+      });
+    }
+
   },
   getRoster: (id) => {
     return db.Pokemon.findAll({
