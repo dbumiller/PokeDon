@@ -1848,5 +1848,23 @@
     "speedControl": false,
     "speed": 40,
     "attackingStat": "physical"
+  },
+  "Camerupt": {
+    "no": 323,
+    "typing": ["fire", "ground"],
+    "defensiveUtility": true,
+    "wallbreaker": true,
+    "sweeper": false,
+    "hazardControl": false,
+    "rocker": true,
+    "spiker": false,
+    "tSpiker": false,
+    "webber": false,
+    "screener": false,
+    "priority": false,
+    "momentum": false,
+    "speedControl": false,
+    "speed": 40,
+    "attackingStat": "mixed"
   }
 }

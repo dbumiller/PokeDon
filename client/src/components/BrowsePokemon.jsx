@@ -98,13 +98,13 @@ class BrowsePokemon extends React.Component {
         <br></br>
         <button onClick={this.goBack}>Back</button>
         <br></br>
-        {/* <ul className="roster">
+        <ul className="roster">
           {this.props.team.map((pokemon, index) => {
             return (
               <li key={index}>{pokemon.name}</li>
             )
           })}
-        </ul> */}
+        </ul>
         <br></br>
         <label>Search
           <input onChange={this.handleInput} value={this.state.search}></input>

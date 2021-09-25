@@ -31,7 +31,15 @@ class Speed extends React.Component {
     for (var i = 0; i < this.props.pokemon.length; i++) {
       speeds.push([this.props.pokemon[i].speed, this.props.pokemon[i].name]);
     }
-    speeds.sort();
+    speeds.sort(function(a, b) {
+      if (Number(a[0]) > Number(b[0])) {
+        return -1;
+      } else if (Number(a[0]) < Number(b[0])) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
 
     return (
     <div>
