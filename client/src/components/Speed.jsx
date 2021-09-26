@@ -39,7 +39,7 @@ class Speed extends React.Component {
     for (var i = 0; i < this.props.pokemon.length; i++) {
       speeds.push([this.props.pokemon[i].speed, this.props.pokemon[i].name]);
     }
-    speeds.sort(function(a, b) {
+    speeds.sort(function (a, b) {
       if (Number(a[0]) > Number(b[0])) {
         return -1;
       } else if (Number(a[0]) < Number(b[0])) {
@@ -54,13 +54,13 @@ class Speed extends React.Component {
 
     if (speeds.length > 0) {
       if (speeds[0][0] < 105) {
-        gaps.push([[200], [104], []]);
+        gaps.push([200, 104, []]);
         for (var j = 0; j < this.state.pokemon.length; j++) {
           if (this.state.pokemon[j].speed >= 104) {
             gaps[k][2].push(this.state.pokemon[j]);
           }
         }
-        gaps[k][2].sort(function(a, b) {
+        gaps[k][2].sort(function (a, b) {
           if (Number(a.speed) > Number(b.speed)) {
             return -1;
           } else if (Number(a.speed) < Number(b.speed)) {
@@ -74,7 +74,7 @@ class Speed extends React.Component {
     }
 
     for (var i = 1; i < speeds.length; i++) {
-      if (speeds[i - 1][0] <= 110 && (speeds[i - 1][0] - speeds[i][0] >= 15)) {
+      if (speeds[i - 1][0] <= 110 && (speeds[i - 1][0] - speeds[i][0] >= 15) && speeds[i][0] >= 40) {
         gaps.push([speeds[i - 1][0], speeds[i][0], []]);
 
         for (var j = 0; j < this.state.pokemon.length; j++) {
@@ -82,7 +82,7 @@ class Speed extends React.Component {
             gaps[k][2].push(this.state.pokemon[j]);
           }
         }
-        gaps[k][2].sort(function(a, b) {
+        gaps[k][2].sort(function (a, b) {
           if (Number(a.speed) > Number(b.speed)) {
             return -1;
           } else if (Number(a.speed) < Number(b.speed)) {
@@ -95,52 +95,82 @@ class Speed extends React.Component {
       }
     }
 
+    var lower;
+    for (var i = 0; i < speeds.length; i++) {
+      if (speeds[i][0] > 40) {
+        lower = speeds[i][0];
+      }
+    }
+
+    if (lower > 55) {
+      gaps.push([lower, 40, []]);
+      for (var j = 0; j < this.state.pokemon.length; j++) {
+        if (this.state.pokemon[j].speed > 40 && this.state.pokemon[j].speed < lower) {
+          gaps[k][2].push(this.state.pokemon[j]);
+        }
+      }
+      gaps[k][2].sort(function (a, b) {
+        if (Number(a.speed) > Number(b.speed)) {
+          return -1;
+        } else if (Number(a.speed) < Number(b.speed)) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      k++;
+    }
 
 
-    if (this.state.speeds.length === 0) {
+
+    if (this.props.pokemon.length <= 3) {
       return (
         <div>
           Speed Tiers
           <br></br>
-          Please check back after picking a pokemon or two!
+          <button onClick={this.goBack}>Back</button>
+          <br></br>
+          You're doing great so far, check back after picking another pokemon or two!
+          <br></br>
+          <button onClick={this.goBack}>Back</button>
         </div>
       )
     }
 
     return (
-    <div>
-      Speed Tiers
-      <br></br>
-      <button onClick={this.goBack}>Back</button>
-      <ul className="speeds">
-        {speeds.map((pokemon, index) => {
-          return (
-            <div key={index}>
-              {pokemon[1]} {pokemon[0]}
-            </div>
-          )
-        })}
-      </ul>
-      <ul className="gaps">
-        {gaps.map((gap, gapIndex) => {
-          return (
-            <li key={gapIndex}>
-              {gap[0]} - {gap[1]}
-              <ul className="gapFiller">
-                {gap[2].map((filler, fillerIndex) => {
-                  return (
-                    <div key={fillerIndex}>
-                      {filler.name} {filler.speed}
-                    </div>
-                  )
-                })}
-              </ul>
-            </li>
-          )
-        })}
-      </ul>
-      <button onClick={this.goBack}>Back</button>
-    </div>
+      <div>
+        Speed Tiers
+        <br></br>
+        <button onClick={this.goBack}>Back</button>
+        <ul className="speeds">
+          {speeds.map((pokemon, index) => {
+            return (
+              <div key={index}>
+                {pokemon[1]} {pokemon[0]}
+              </div>
+            )
+          })}
+        </ul>
+        <ul className="gaps">
+          {gaps.map((gap, gapIndex) => {
+            return (
+              <li key={gapIndex}>
+                {gap[0]} - {gap[1]}
+                <ul className="gapFiller">
+                  {gap[2].map((filler, fillerIndex) => {
+                    return (
+                      <div key={fillerIndex}>
+                        {filler.name} {filler.speed}
+                      </div>
+                    )
+                  })}
+                </ul>
+              </li>
+            )
+          })}
+        </ul>
+        <button onClick={this.goBack}>Back</button>
+      </div>
     )
   }
 }

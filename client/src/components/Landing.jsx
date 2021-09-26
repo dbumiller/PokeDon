@@ -8,7 +8,8 @@ class Landing extends React.Component {
     this.state = {
       teams: [],
       name: '',
-      selectedName: ''
+      selectedName: '',
+      triedBlank: false
     };
 
     this.getTeams = this.getTeams.bind(this);
@@ -56,8 +57,15 @@ class Landing extends React.Component {
   }
 
   postTeam(e) {
-    e.preventDefault();
-    this.props.postTeam(this.state.name, this.state.teams.length + 1, this.state.teams[0].defense);
+    if (this.state.name !== '') {
+      e.preventDefault();
+      this.props.postTeam(this.state.name, this.state.teams.length + 1, this.state.teams[0].defense);
+    } else {
+      e.preventDefault();
+      this.setState({
+        triedBlank: true
+      })
+    }
   }
 
   componentDidMount() {
@@ -65,27 +73,52 @@ class Landing extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <form>
-          <label>Choose an existing team: </label>
-          <select name="teams" id="teams" onChange={this.handleSelect}>
-            {this.state.teams.map((team, index) => {
-              return (
-                <option value={team.name} key={index}>{team.name}</option>
-              )
-            })}
-          </select>
-          <button onClick={this.selectTeam}>Select Team</button>
-        </form>
-        <form>
-          <label>Make a new team
-            <input name="name" onChange={this.handleInput} value = {this.state.name} />
-          </label>
-          <button onClick= {this.postTeam}>Create Team</button>
-        </form>
-      </div>
-    )
+    if (this.state.triedBlank) {
+      return (
+        <div>
+          <form>
+            <label>Choose an existing team: </label>
+            <select name="teams" id="teams" onChange={this.handleSelect}>
+              {this.state.teams.map((team, index) => {
+                return (
+                  <option value={team.name} key={index}>{team.name}</option>
+                )
+              })}
+            </select>
+            <button onClick={this.selectTeam}>Select Team</button>
+          </form>
+          <form>
+            <label>Make a new team
+              <input name="name" onChange={this.handleInput} value = {this.state.name} />
+            </label>
+            <button onClick= {this.postTeam}>Create Team</button>
+          </form>
+^^^ This field is required ^^^
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <form>
+            <label>Choose an existing team: </label>
+            <select name="teams" id="teams" onChange={this.handleSelect}>
+              {this.state.teams.map((team, index) => {
+                return (
+                  <option value={team.name} key={index}>{team.name}</option>
+                )
+              })}
+            </select>
+            <button onClick={this.selectTeam}>Select Team</button>
+          </form>
+          <form>
+            <label>Make a new team
+              <input name="name" onChange={this.handleInput} value = {this.state.name} />
+            </label>
+            <button onClick= {this.postTeam}>Create Team</button>
+          </form>
+        </div>
+      )
+    }
   }
 }
 
