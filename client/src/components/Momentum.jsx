@@ -54,7 +54,7 @@ class Momentum extends React.Component {
         <ul className="teamRoster">
           {this.props.pokemon.map((pokemon, index) => {
             return (
-              <MomentumSingle pokemon={pokemon} key={index} teamId={this.props.teamId} getRoster={this.props.getRoster} addToChosen={this.addToChosen} removeFromChosen={this.removeFromChosen}/>
+              <MomentumSingle pokemon={pokemon} key={index} teamId={this.props.teamId} getRoster={this.props.getRoster} addToChosen={this.addToChosen} removeFromChosen={this.removeFromChosen} chosen={this.state.chosen}/>
             )
           })}
         </ul>
