@@ -5,8 +5,43 @@ class MomentumSingle extends React.Component {
     super(props);
 
     this.state = {
-
+      chosen: false
     }
+
+    this.choosePokemon = this.choosePokemon.bind(this);
+    this.removePokemon = this.removePokemon.bind(this);
+  }
+
+  choosePokemon(name) {
+    this.props.addToChosen(name);
+    axios.put(`/api/pokemon/${name}`, {
+      "id": this.props.teamId
+    })
+      .then((results) => {
+        this.setState({
+          chosen: true
+        })
+        this.props.getRoster(this.props.teamId);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+  }
+
+  removePokemon(name) {
+    this.props.removeFromChosen(name);
+    axios.put(`/api/pokemon/${name}`, {
+      "id": null
+    })
+      .then((results) => {
+        this.setState({
+          chosen: false
+        })
+        this.props.getRoster(this.props.teamId);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
   }
 
   render() {
