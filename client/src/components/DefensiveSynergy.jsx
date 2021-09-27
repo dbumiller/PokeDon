@@ -10,10 +10,13 @@ class DefensiveSynergy extends React.Component {
       defenseChart: this.props.defense,
       resists: {},
       weaknesses: {},
-      allPokemon: []
+      allPokemon: [],
+      chosen: []
     }
     this.getPokemon = this.getPokemon.bind(this);
     this.goBack = this.goBack.bind(this);
+    this.addToChosen = this.addToChosen.bind(this);
+    this.removeFromChosen = this.removeFromChosen.bind(this);
   }
 
   getPokemon() {
@@ -28,7 +31,82 @@ class DefensiveSynergy extends React.Component {
       })
   }
 
+  addToChosen(name) {
+    var newChosen = [];
+    for (var i = 0; i < this.state.chosen.length; i++) {
+      newChosen.push(this.state.chosen[i]);
+    }
+
+    newChosen.push(name);
+    this.setState({
+    chosen: newChosen
+  })
+  }
+
+  removeFromChosen(name) {
+    var newChosen = [];
+    for (var i = 0; i < this.state.chosen.length; i++) {
+      if (this.state.chosen[i] !== name) {
+        newChosen.push(this.state.chosen[i]);
+      }
+    }
+
+    this.setState({
+      chosen: newChosen
+    })
+  }
+
+  // componentDidMount() {
+    // var defense = {};
+    // var weaknesses = {};
+    // var resistances = {};
+
+    // for (var key in this.state.defenseChart) {
+    //   defense[key] = this.state.defenseChart[key];
+    //   weaknesses[key] = this.state.defenseChart[key];
+    //   resistances[key] = this.state.defenseChart[key];
+    // }
+
+    // for (var i = 0; i < this.props.pokemon.length; i++) {
+    //   for (var key in defense) {
+    //     if (this.props.pokemon[i].defensiveUtility) {
+    //       for (var j = 0; j < this.props.pokemon[i].defensiveResist.length; j++) {
+    //         if (key === this.props.pokemon[i].defensiveResist[j]) {
+    //           defense[key]++;
+    //           resistances[key]++;
+    //         }
+    //       }
+    //     }
+
+    //     for (var j = 0; j < this.props.pokemon[i].defensiveWeak.length; j++) {
+    //       if (key === this.props.pokemon[i].defensiveWeak[j]) {
+    //         defense[key]--;
+    //         weaknesses[key]++;
+    //       }
+    //     }
+    //   }
+    // }
+
+    // this.setState({
+    //   defenseChart: defense,
+    //   weaknesses: weaknesses,
+    //   resistances: resistances
+    // })
+
+    // this.getPokemon();
+  // }
+
   componentDidMount() {
+    this.getPokemon();
+  }
+
+
+  goBack(e) {
+    e.preventDefault();
+    this.props.changeView('home');
+  }
+
+  render() {
     var defense = {};
     var weaknesses = {};
     var resistances = {};
@@ -59,38 +137,33 @@ class DefensiveSynergy extends React.Component {
       }
     }
 
-    this.setState({
-      defenseChart: defense,
-      weaknesses: weaknesses,
-      resistances: resistances
-    })
-
-    this.getPokemon();
-  }
+    // this.setState({
+    //   defenseChart: defense,
+    //   weaknesses: weaknesses,
+    //   resistances: resistances
+    // })
 
 
-  goBack(e) {
-    e.preventDefault();
-    this.props.changeView('home');
-  }
 
-  render() {
+
+
+
     var outputWeak = 'Weaknesses: ';
-    for (var key in this.state.weaknesses) {
-      outputWeak += key + ':  ' + this.state.weaknesses[key] + ', ';
+    for (var key in weaknesses) {
+      outputWeak += key + ':  ' + weaknesses[key] + ', ';
     }
     var outputResist = 'Resistances: ';
-    for (var key in this.state.resistances) {
-      outputResist += key + ':  ' + this.state.resistances[key] + ', ';
+    for (var key in resistances) {
+      outputResist += key + ':  ' + resistances[key] + ', ';
     }
     var outputCombine = 'Combined: ';
-    for (var key in this.state.defenseChart) {
-      outputCombine += key + ':  ' + this.state.defenseChart[key] + ', ';
+    for (var key in defense) {
+      outputCombine += key + ':  ' + defense[key] + ', ';
     }
 
     var sortedChart = [];
-    for (var key in this.state.defenseChart) {
-      sortedChart.push([this.state.defenseChart[key], key]);
+    for (var key in defense) {
+      sortedChart.push([defense[key], key]);
     }
 
     sortedChart.sort(function (b, a) {
@@ -215,7 +288,7 @@ class DefensiveSynergy extends React.Component {
         <ul className="defensiveListing">
           {arrayForSorting.map((pokemon, index) => {
             return (
-              <DefenseSingle pokemon={pokemon} key={index} teamId={this.props.teamId} />
+              <DefenseSingle pokemon={pokemon} key={index} teamId={this.props.teamId} chosen={this.state.chosen} addToChosen={this.addToChosen} removeFromChosen={this.removeFromChosen} getRoster={this.props.getRoster}/>
             )
           })}
         </ul>
