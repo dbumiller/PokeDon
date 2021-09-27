@@ -199,7 +199,7 @@ class DefensiveSynergy extends React.Component {
     for (var i = 0; i < sortedChart.length; i++) {
       sortedChart[i][0] -= average;
     }
-    // console.log(sortedChart);
+
 
     var belowAverage = [];
     var bottomFour = [];
@@ -218,9 +218,7 @@ class DefensiveSynergy extends React.Component {
       }
     }
 
-    // console.log(bottomFour);
-    // console.log(belowAverage);
-    // console.log(aboveAverage);
+
 
     var arrayForSorting = [];
     for (var i = 0; i < this.state.allPokemon.length; i++) {
@@ -266,9 +264,6 @@ class DefensiveSynergy extends React.Component {
       }
 
 
-      // console.log(this.state.allPokemon[i].name, bottomFourValue, belowAverageCount);
-      // console.log(this.state.allPokemon[i].name, aboveAverageValue);
-
       arrayForSorting.push([this.state.allPokemon[i].name, bottomFourValue, belowAverageCount, aboveAverageValue]);
 
       arrayForSorting.sort(function (b, a) {
@@ -282,7 +277,6 @@ class DefensiveSynergy extends React.Component {
       });
     }
 
-    // console.log(arrayForSorting);
 
 
 
