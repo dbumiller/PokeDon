@@ -17,6 +17,7 @@ class DefensiveSynergy extends React.Component {
     this.goBack = this.goBack.bind(this);
     this.addToChosen = this.addToChosen.bind(this);
     this.removeFromChosen = this.removeFromChosen.bind(this);
+    this.removePokemon = this.removePokemon.bind(this);
   }
 
   getPokemon() {
@@ -54,6 +55,19 @@ class DefensiveSynergy extends React.Component {
     this.setState({
       chosen: newChosen
     })
+  }
+
+  removePokemon(name) {
+    this.removeFromChosen(name);
+    axios.put(`/api/pokemon/${name}`, {
+      "id": null
+    })
+      .then((results) => {
+        this.props.getRoster(this.props.teamId);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
   }
 
   // componentDidMount() {
@@ -284,7 +298,13 @@ class DefensiveSynergy extends React.Component {
           <br></br>
           {outputCombine}
         </div>
-        <br></br>
+        <ul className="roster">
+          {this.props.team.map((pokemon, index) => {
+            return (
+              <li key={index}>{pokemon.name} <button onClick={() => {this.removePokemon(pokemon.name)}}>Click to remove from team</button></li>
+            )
+          })}
+        </ul>
         <ul className="defensiveListing">
           {arrayForSorting.map((pokemon, index) => {
             return (
