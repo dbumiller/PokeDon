@@ -105,7 +105,7 @@ class App extends React.Component {
       )
     } else if (this.state.view === 'offensiveSynergy') {
       return (
-        <OffensiveSynergy teamName={this.state.teamName} teamId={this.state.teamId} pokemon={this.state.pokemon} changeView={this.changeView}/>
+        <OffensiveSynergy teamName={this.state.teamName} teamId={this.state.teamId} pokemon={this.state.pokemon} changeView={this.changeView} getRoster={this.getRoster}/>
       )
     } else if (this.state.view === 'momentumFollowup') {
       return (

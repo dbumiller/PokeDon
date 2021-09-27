@@ -6,14 +6,41 @@ class OffensiveSynergy extends React.Component {
     super(props);
 
     this.state = {
-
+      chosen: []
     }
     this.goBack = this.goBack.bind(this);
+    this.addToChosen = this.addToChosen.bind(this);
+    this.removeFromChosen = this.removeFromChosen.bind(this);
   }
 
   goBack(e) {
     e.preventDefault();
     this.props.changeView('home');
+  }
+
+  addToChosen(name) {
+    var newChosen = [];
+    for (var i = 0; i < this.state.chosen.length; i++) {
+      newChosen.push(this.state.chosen[i]);
+    }
+
+    newChosen.push(name);
+    this.setState({
+    chosen: newChosen
+  })
+  }
+
+  removeFromChosen(name) {
+    var newChosen = [];
+    for (var i = 0; i < this.state.chosen.length; i++) {
+      if (this.state.chosen[i] !== name) {
+        newChosen.push(this.state.chosen[i]);
+      }
+    }
+
+    this.setState({
+      chosen: newChosen
+    })
   }
 
   render() {
@@ -25,7 +52,7 @@ class OffensiveSynergy extends React.Component {
         <ul className="teamRoster">
           {this.props.pokemon.map((pokemon, index) => {
             return (
-              <OffensiveSynergySingle pokemon={pokemon} key={index} teamId={this.props.teamId}/>
+              <OffensiveSynergySingle pokemon={pokemon} key={index} teamId={this.props.teamId} getRoster={this.props.getRoster} addToChosen={this.addToChosen} removeFromChosen={this.removeFromChosen} chosen={this.state.chosen}/>
             )
           })}
         </ul>

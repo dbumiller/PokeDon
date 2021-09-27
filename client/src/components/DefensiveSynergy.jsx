@@ -298,6 +298,8 @@ class DefensiveSynergy extends React.Component {
           <br></br>
           {outputCombine}
         </div>
+        <br></br>
+        <div>The Squad</div>
         <ul className="roster">
           {this.props.team.map((pokemon, index) => {
             return (
