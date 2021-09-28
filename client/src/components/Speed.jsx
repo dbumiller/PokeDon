@@ -95,14 +95,20 @@ class Speed extends React.Component {
       }
     }
 
+
+    var nextIsForty = false;
+
+    var nextIsForty = false;
     var lower;
     for (var i = 0; i < speeds.length; i++) {
       if (speeds[i][0] > 40) {
         lower = speeds[i][0];
+      } else if (speeds[i][0] === 40) {
+        nextIsForty = true;
       }
     }
 
-    if (lower > 55) {
+    if (lower > 55 && !nextIsForty) {
       gaps.push([lower, 40, []]);
       for (var j = 0; j < this.state.pokemon.length; j++) {
         if (this.state.pokemon[j].speed > 40 && this.state.pokemon[j].speed < lower) {
