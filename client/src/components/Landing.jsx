@@ -93,7 +93,7 @@ class Landing extends React.Component {
             </label>
             <button onClick= {this.postTeam}>Create Team</button>
           </form>
-^^^ This field is required ^^^
+^^^ This field is required to create a new team ^^^
         </div>
       )
     } else {
