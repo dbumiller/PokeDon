@@ -102,31 +102,13 @@ var calculator = function(pokemon) {
 }
 
 
-// var names = ['Tauros', 'Charizard', 'Venusaur', 'Blastoise', 'Sylveon', 'Haxorus', 'Copperajah', 'Krookodile', 'Machamp', 'Scyther', 'Gigalith', 'Rotom-W', 'Metagross', 'Ninetales-A', 'Torkoal', 'Nidoqueen', 'Slowking', 'Vanilluxe', 'Umbreon', 'Sandaconda', 'Espeon', 'Tangrowth', 'Raikou', 'Pinsir', 'Tornadus', 'Muk', 'Dusclops', 'Pangoro', 'Heliolisk', 'Swampert', 'Heracross', 'Dragalge', 'Kingdra', 'Slowking-G', 'Chandelure', 'Klefki', 'Doublade', 'Obstagoon', 'Rhyperior'];
-// var typings = [['normal'], ['fire', 'flying'], ['grass', 'poison'], ['water'], ['fairy'], ['dragon'], ['steel'], ['dark', 'ground'], ['fighting'], ['bug', 'flying'], ['rock'], ['electric', 'water'], ['steel', 'psychic'], ['ice', 'fairy'], ['fire'], ['ground', 'poison'], ['water', 'psychic'], ['ice'], ['dark'], ['ground'], ['psychic'], ['grass'], ['electric'], ['bug'], ['flying'], ['poison'], ['ghost'], ['dark', 'fighting'], ['electric', 'normal'], ['water', 'ground'], ['bug', 'fighting'], ['dragon', 'poison'], ['water', 'dragon'], ['poison', 'psychic'], ['ghost', 'fire'], ['steel', 'fairy'], ['ghost', 'steel'], ['dark', 'normal'], ['rock', 'ground']];
-
 
 
 
 
 var metagame = [];
 
-// for (var l = 0; l < names.length; l++) {
-//   var currentObj = {};
-//   currentObj.name = names[l];
-//   currentObj.typing = typings[l];
-//   currentObj.offensiveEffectiveness = {};
-//   currentObj.defensiveEffectiveness = {};
-//   currentObj.offensiveSE = [];
-//   currentObj.offensiveNVE = [];
-//   currentObj.defensiveResist = [];
-//   currentObj.defensiveWeak = [];
-//   currentObj.offensiveSynergy = [];
-//   currentObj.offensiveCompliment = [];
-//   currentObj.defensiveSynergy = [];
-//   calculator(currentObj);
-//   metagame.push(currentObj);
-// }
+
 
 for (key in sampleLeague) {
   var currentObj = {};
@@ -332,59 +314,6 @@ var analyzer = function(metagame) {
       }
     })
 
-    // metagame[m].typing = metagame[m].typing.join('||||');
-    // metagame[m].defensiveResist = metagame[m].defensiveResist.join('||||');
-    // metagame[m].defensiveWeak = metagame[m].defensiveWeak.join('||||');
-    // metagame[m].offensiveSynergy = metagame[m].offensiveSynergy.join('||||');
-    // metagame[m].offensiveCompliment = metagame[m].offensiveCompliment.join('||||');
-    // metagame[m].momentumFollowup = metagame[m].momentumFollowup.join('||||');
-
-
-    // if (metagame[m].offensiveSynergy[0][0] >= metagame[m].defensiveSynergy[0][0] && metagame[m].offensiveSynergy[0][0] >= metagame[m].offensiveCompliment[0][0]) {
-    //   metagame[m].comparisonMultiplier = 1 / metagame[m].offensiveSynergy[0][0];
-    // } else if (metagame[m].offensiveCompliment[0][0] >= metagame[m].defensiveSynergy[0][0] && metagame[m].offensiveCompliment[0][0] >= metagame[m].offensiveSynergy[0][0]) {
-    //   metagame[m].comparisonMultiplier = 1 / metagame[m].offensiveCompliment[0][0];
-    // } else {
-    //   metagame[m].comparisonMultiplier = 1 / metagame[m].defensiveSynergy[0][0];
-    // }
-
-    // var currentMon;
-    // metagame[m].comparisonTotalsObject = {};
-    // for (var i = 0; i < metagame[m].offensiveSynergy.length; i++) {
-    //   currentMon = metagame[m].offensiveSynergy[i][1];
-    //   if (metagame[m].comparisonTotalsObject[currentMon] === undefined) {
-    //     metagame[m].comparisonTotalsObject[currentMon] = metagame[m].offensiveSynergy[i][0] * metagame[m].comparisonMultiplier;
-    //   } else {
-    //     metagame[m].comparisonTotalsObject[currentMon] += metagame[m].offensiveSynergy[i][0] * metagame[m].comparisonMultiplier;
-    //   }
-    //   currentMon = metagame[m].defensiveSynergy[i][1];
-    //   if (metagame[m].comparisonTotalsObject[currentMon] === undefined) {
-    //     metagame[m].comparisonTotalsObject[currentMon] = metagame[m].defensiveSynergy[i][0] * metagame[m].comparisonMultiplier;
-    //   } else {
-    //     metagame[m].comparisonTotalsObject[currentMon] += metagame[m].defensiveSynergy[i][0] * metagame[m].comparisonMultiplier;
-    //   }
-    //   currentMon = metagame[m].offensiveCompliment[i][1];
-    //   if (metagame[m].comparisonTotalsObject[currentMon] === undefined) {
-    //     metagame[m].comparisonTotalsObject[currentMon] = metagame[m].offensiveCompliment[i][0] * metagame[m].comparisonMultiplier;
-    //   } else {
-    //     metagame[m].comparisonTotalsObject[currentMon] += metagame[m].offensiveCompliment[i][0] * metagame[m].comparisonMultiplier;
-    //   }
-    // }
-
-    // metagame[m].comparisonTotalsArray = [];
-    // for (key in metagame[m].comparisonTotalsObject) {
-    //   metagame[m].comparisonTotalsArray.push([metagame[m].comparisonTotalsObject[key].toFixed(2), key]);
-    // }
-
-    // metagame[m].comparisonTotalsArray.sort(function(a, b) {
-    //   if (a > b) {
-    //     return -1;
-    //   } else if (a > b) {
-    //     return 1;
-    //   } else {
-    //     return 0;
-    //   }
-    // });
 
   }
   for (var m = 0; m < metagame.length; m++) {
@@ -401,15 +330,6 @@ var analyzer = function(metagame) {
 }
 
 analyzer(metagame);
-
-// for (var i = 0; i < metagame.length; i++) {
-//   if (metagame[i].name === 'Blissey') {
-//   console.log(metagame[i].name + ' offensive synergy: \n', metagame[i].offensiveSynergy.slice(0, 10));
-//     console.log(metagame[i].name + ' offensive compliment: \n', metagame[i].offensiveCompliment.slice(0, 10));
-//     console.log(metagame[i].name + ' defensive synergy: \n', metagame[i].defensiveSynergy.slice(0, 10));
-//     console.log(metagame[i].name + ' momentum followup: \n', metagame[i].momentumFollowup.slice(0, 10));
-//   }
-// }
 
 
 module.exports = metagame;
