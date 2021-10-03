@@ -629,7 +629,7 @@
     "screener": false,
     "priority": false,
     "momentum": false,
-    "`speedControl": true,
+    "speedControl": true,
     "speed": 110,
     "attackingStat": "special"
   },
@@ -2029,5 +2029,23 @@
     "speedControl": true,
     "speed": 102,
     "attackingStat": "mixed"
+  },
+  "Doublade": {
+    "no": 323,
+    "typing": ["ghost", "steel"],
+    "defensiveUtility": true,
+    "wallbreaker": false,
+    "sweeper": true,
+    "hazardControl": false,
+    "rocker": false,
+    "spiker": false,
+    "tSpiker": false,
+    "webber": false,
+    "screener": false,
+    "priority": false,
+    "momentum": false,
+    "speedControl": false,
+    "speed": 35,
+    "attackingStat": "physical"
   }
 }

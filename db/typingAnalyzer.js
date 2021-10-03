@@ -141,6 +141,7 @@ for (key in sampleLeague) {
   currentObj.speedControl = sampleLeague[key].speedControl;
   currentObj.speed = sampleLeague[key].speed;
   currentObj.attackingStat = sampleLeague[key].attackingStat;
+  currentObj.locked = false;
   calculator(currentObj);
   metagame.push(currentObj);
 }

@@ -116,6 +116,9 @@ const Pokemon = sequelize.define('pokemon', {
     type:DataTypes.BOOLEAN,
     allowNull: false
   },
+  locked: {
+    type:DataTypes.BOOLEAN
+  },
   speed: {
     type:DataTypes.INTEGER,
     allowNull: false

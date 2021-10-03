@@ -34,6 +34,7 @@ CREATE TABLE pokemons (
   defensiveUtility BOOLEAN NOT NULL,
   speed INT NOT NULL,
   attackingStat VARCHAR(100) NOT NULL,
+  locked BOOLEAN,
   teamId INT,
   CONSTRAINT team
   FOREIGN KEY (teamId)
