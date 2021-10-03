@@ -56,6 +56,20 @@ const pokemon = {
   },
   getAll: () => {
     return db.Pokemon.findAll();
+  },
+  lock: (name) => {
+    return db.Pokemon.update({locked: true}, {
+      where: {
+        name: name
+      }
+    });
+  },
+  unlock: (name) => {
+    return db.Pokemon.update({locked: false}, {
+      where: {
+        name: name
+      }
+    });
   }
 }
 

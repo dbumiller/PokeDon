@@ -21,13 +21,6 @@ const controller = {
   },
 
 
-  put: (req, res) => {
-    res.status(200).send(`updated ${req.params.id}`);
-  },
-  delete: (req, res) => {
-    res.status(200).send(`deleted ${req.params.id}`);
-  },
-
 
   choosePokemon: (req, res) => {
     model.pokemon.choosePokemon(req.params.id, req.body.id)
@@ -48,7 +41,6 @@ const controller = {
       res.status(400).send(err);
     })
   },
-
   getAllPokemon: (req, res) => {
     model.pokemon.getAll()
     .then((results) => {
@@ -56,6 +48,25 @@ const controller = {
     })
     .catch((err) => {
       res.status(400).send(err);
+    })
+  },
+  lock: (req, res) => {
+    console.log(req.params)
+    model.pokemon.lock(req.params.name)
+    .then((results) => {
+      res.status(200).send(results);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    })
+  },
+  unlock: (req, res) => {
+    model.pokemon.unlock(req.params.name)
+    .then((results) => {
+      res.status(200).send(results);
+    })
+    .catch((err) => {
+      res.status(400).send(err)
     })
   }
 }

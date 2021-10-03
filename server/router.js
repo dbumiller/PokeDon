@@ -1,15 +1,7 @@
 const router = require('express').Router();
 const controller = require('./controller.js');
 
-router
-  .route('/')
-  // .get(controller.get)
-  // .post(controller.post)
 
-router
-  .route('/:id')
-  .put(controller.put)
-  .delete(controller.delete)
 
   router
   .route('/team')
@@ -27,5 +19,13 @@ router
   router
   .route('/pokemon')
   .get(controller.getAllPokemon)
+
+  router
+  .route('/pokemon/lock/:name')
+  .put(controller.lock)
+
+  router
+  .route('/pokemon/unlock/:name')
+  .put(controller.unlock)
 
 module.exports = router;
