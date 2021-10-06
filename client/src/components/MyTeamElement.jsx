@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import LockToggleButton from './LockToggleButton.jsx';
 
 class MyTeamElement extends React.Component {
   constructor(props) {
@@ -58,13 +59,13 @@ class MyTeamElement extends React.Component {
     if (this.state.removed === false) {
       return (
         <div>
-          {infoString} <button onClick={this.removePokemon}>Remove Pokemon</button>
+          {infoString} <button onClick={this.removePokemon}>Remove Pokemon</button> <LockToggleButton pokemon={this.props.pokemon}/>
         </div>
       )
     } else {
       return (
         <div>
-          {infoString} <button onClick={this.choosePokemon}>Removed. Click to undo</button>
+          {infoString} <button onClick={this.choosePokemon}>Removed. Click to undo</button> <LockToggleButton pokemon={this.props.pokemon}/>
         </div>
       )
     }
