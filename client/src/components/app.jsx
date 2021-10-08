@@ -20,7 +20,8 @@ class App extends React.Component {
       teamName: '',
       teamId: -1,
       defense: {},
-      view: 'landing'
+      view: 'landing',
+      lockStatuses: {}
     }
 
     this.postTeam = this.postTeam.bind(this);
@@ -28,6 +29,7 @@ class App extends React.Component {
     this.changeView = this.changeView.bind(this);
     this.selectTeam = this.selectTeam.bind(this);
     this.getRoster = this.getRoster.bind(this);
+    this.getPokemon = this.getPokemon.bind(this);
   }
 
   postTeam(name, id, defense) {
@@ -67,6 +69,24 @@ class App extends React.Component {
     this.setState({
       view: newView
     })
+    this.getPokemon();
+  }
+
+  getPokemon() {
+    axios.get('/api/pokemon')
+      .then((results) => {
+        var locksObject = {};
+        for (var i = 0; i < results.data.length; i++) {
+          var name = results.data[i].name;
+          locksObject[name] = [results.data[i].locked, results.data[i].teamId];
+        }
+        this.setState({
+          lockStatuses: locksObject
+        })
+      })
+      .catch((err) => {
+        console.error(err);
+      })
   }
 
   getRoster(teamId) {
