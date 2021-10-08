@@ -60,7 +60,7 @@ class MomentumSingle extends React.Component {
           {this.props.pokemon.name} Momentum Followup
           <ul>
             {this.props.pokemon.momentumFollowup.map((pokemon, index) => {
-              if (Number(pokemon[0]) > 0) {
+              if (Number(pokemon[0]) > 0 && !this.props.lockStatuses[pokemon[1]][0]) {
 
                 var chosen = false;
                 for (var i = 0; i < this.props.chosen.length; i++) {
@@ -89,7 +89,7 @@ class MomentumSingle extends React.Component {
           {this.props.pokemon.name} Momentum Lead-in
           <ul>
             {this.props.pokemon.momentousLeadIn.map((pokemon, index) => {
-              if (Number(pokemon[0]) > 0) {
+              if (Number(pokemon[0]) > 0 && !this.props.lockStatuses[pokemon[1]][0]) {
 
                 var chosen = false;
                 for (var i = 0; i < this.props.chosen.length; i++) {
@@ -118,7 +118,7 @@ class MomentumSingle extends React.Component {
           {this.props.pokemon.name} Momentum Lead-in
           <ul>
             {this.props.pokemon.momentousLeadIn.map((pokemon, index) => {
-              if (Number(pokemon[0]) > 0) {
+              if (Number(pokemon[0]) > 0 && (!this.props.lockStatuses[pokemon[1]][0])) {
 
                 var chosen = false;
                 for (var i = 0; i < this.props.chosen.length; i++) {
@@ -142,7 +142,7 @@ class MomentumSingle extends React.Component {
           {this.props.pokemon.name} Momentum Followup
           <ul>
             {this.props.pokemon.momentumFollowup.map((pokemon, index) => {
-              if (Number(pokemon[0]) > 0) {
+              if (Number(pokemon[0]) > 0 && !this.props.lockStatuses[pokemon[1]][0]) {
 
                 var chosen = false;
                 for (var i = 0; i < this.props.chosen.length; i++) {
