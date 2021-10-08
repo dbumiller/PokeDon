@@ -112,28 +112,28 @@ class App extends React.Component {
     else if (this.state.view === 'home') {
       return (
         <div>
-          <TeamHome teamName={this.state.teamName} teamId={this.state.teamId} getRoster={this.getRoster} changeView={this.changeView} />
+          <TeamHome teamName={this.state.teamName} teamId={this.state.teamId} getRoster={this.getRoster} changeView={this.changeView}  lockStatuses={this.state.lockStatuses}/>
         </div>
       )
     } else if (this.state.view === 'browsePokemon') {
       return (
-        <BrowsePokemon teamName={this.state.teamName} teamId={this.state.teamId} changeView={this.changeView} team={this.state.pokemon} getRoster={this.getRoster}/>
+        <BrowsePokemon teamName={this.state.teamName} teamId={this.state.teamId} changeView={this.changeView} team={this.state.pokemon} getRoster={this.getRoster} lockStatuses={this.state.lockStatuses}/>
       )
     } else if (this.state.view === 'offensiveCompliment') {
       return (
-        <OffensiveCompliment teamName={this.state.teamName} teamId={this.state.teamId} pokemon={this.state.pokemon} changeView={this.changeView} getRoster={this.getRoster}/>
+        <OffensiveCompliment teamName={this.state.teamName} teamId={this.state.teamId} pokemon={this.state.pokemon} changeView={this.changeView} getRoster={this.getRoster} lockStatuses={this.state.lockStatuses}/>
       )
     } else if (this.state.view === 'offensiveSynergy') {
       return (
-        <OffensiveSynergy teamName={this.state.teamName} teamId={this.state.teamId} pokemon={this.state.pokemon} changeView={this.changeView} getRoster={this.getRoster}/>
+        <OffensiveSynergy teamName={this.state.teamName} teamId={this.state.teamId} pokemon={this.state.pokemon} changeView={this.changeView} getRoster={this.getRoster} lockStatuses={this.state.lockStatuses}/>
       )
     } else if (this.state.view === 'momentumFollowup') {
       return (
-        <Momentum teamName={this.state.teamName} teamId={this.state.teamId} pokemon={this.state.pokemon} changeView={this.changeView} getRoster={this.getRoster}/>
+        <Momentum teamName={this.state.teamName} teamId={this.state.teamId} pokemon={this.state.pokemon} changeView={this.changeView} getRoster={this.getRoster} lockStatuses={this.state.lockStatuses}/>
       )
     } else if (this.state.view === 'defense') {
       return (
-        <DefensiveSynergy teamName={this.state.teamName} teamId={this.state.teamId} team={this.state.pokemon} defense={this.state.defense} changeView={this.changeView} pokemon={this.state.pokemon} getRoster={this.getRoster}/>
+        <DefensiveSynergy teamName={this.state.teamName} teamId={this.state.teamId} team={this.state.pokemon} defense={this.state.defense} changeView={this.changeView} pokemon={this.state.pokemon} getRoster={this.getRoster} lockStatuses={this.state.lockStatuses}/>
       )
     } else if (this.state.view ==='myTeam') {
       return (
@@ -141,7 +141,7 @@ class App extends React.Component {
       )
     } else if (this.state.view = 'speed') {
       return (
-        <Speed teamName={this.state.speed} teamId={this.state.teamId} pokemon={this.state.pokemon} changeView={this.changeView}/>
+        <Speed teamName={this.state.speed} teamId={this.state.teamId} pokemon={this.state.pokemon} changeView={this.changeView} lockStatuses={this.state.lockStatuses}/>
       )
     } else {
       return (

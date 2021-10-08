@@ -111,9 +111,11 @@ class BrowsePokemon extends React.Component {
         </label>
         <ul className="pokemon">
           {this.state.currentPokemon.map((pokemon, index) => {
-            return (
-              <BrowseElement pokemon={pokemon} key={index} teamId={this.props.teamId} addToChosen={this.addToChosen} chosen={this.state.chosen} removeFromChosen={this.removeFromChosen} getRoster={this.props.getRoster}/>
-            )
+            if (!this.props.lockStatuses[pokemon.name][0]) {
+              return (
+                <BrowseElement pokemon={pokemon} key={index} teamId={this.props.teamId} addToChosen={this.addToChosen} chosen={this.state.chosen} removeFromChosen={this.removeFromChosen} getRoster={this.props.getRoster}/>
+              )
+            }
           })}
         </ul>
         <button onClick={this.goBack}>Back</button>
