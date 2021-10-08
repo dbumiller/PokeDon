@@ -303,9 +303,11 @@ class DefensiveSynergy extends React.Component {
         </ul>
         <ul className="defensiveListing">
           {arrayForSorting.map((pokemon, index) => {
-            return (
-              <DefenseSingle pokemon={pokemon} key={index} teamId={this.props.teamId} chosen={this.state.chosen} addToChosen={this.addToChosen} removeFromChosen={this.removeFromChosen} getRoster={this.props.getRoster}/>
-            )
+            if (!this.props.lockStatuses[pokemon[0]][0]) {
+              return (
+                <DefenseSingle pokemon={pokemon} key={index} teamId={this.props.teamId} chosen={this.state.chosen} addToChosen={this.addToChosen} removeFromChosen={this.removeFromChosen} getRoster={this.props.getRoster}/>
+              )
+            }
           })}
         </ul>
         <button onClick={this.goBack}>Back</button>
