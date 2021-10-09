@@ -53,7 +53,7 @@ class OffensiveCompliment extends React.Component {
         <ul className="teamRoster">
           {this.props.pokemon.map((pokemon, index) => {
             return (
-              <OffensiveComplimentSingle pokemon={pokemon} key={index} teamId={this.props.teamId} getRoster={this.props.getRoster} addToChosen={this.addToChosen} removeFromChosen={this.removeFromChosen} chosen={this.state.chosen}/>
+              <OffensiveComplimentSingle pokemon={pokemon} key={index} teamId={this.props.teamId} getRoster={this.props.getRoster} addToChosen={this.addToChosen} removeFromChosen={this.removeFromChosen} chosen={this.state.chosen} lockStatuses={this.props.lockStatuses}/>
             )
           })}
         </ul>
