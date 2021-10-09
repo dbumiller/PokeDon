@@ -61,7 +61,7 @@ class OffensiveSynergySingle extends React.Component {
         {this.props.pokemon.name} Offensive Synergy
         <ul>
           {this.props.pokemon.offensiveSynergy.map((pokemon, index) => {
-            if (Number(pokemon[0]) > 0) {
+            if (Number(pokemon[0]) > 0 && (!this.props.lockStatuses[pokemon[1]][0] || this.props.lockStatuses[pokemon[1]][1] === this.props.teamId)) {
 
               var chosen = false;
               for (var i = 0; i < this.props.chosen.length; i++) {

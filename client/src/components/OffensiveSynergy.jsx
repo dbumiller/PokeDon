@@ -52,7 +52,7 @@ class OffensiveSynergy extends React.Component {
         <ul className="teamRoster">
           {this.props.pokemon.map((pokemon, index) => {
             return (
-              <OffensiveSynergySingle pokemon={pokemon} key={index} teamId={this.props.teamId} getRoster={this.props.getRoster} addToChosen={this.addToChosen} removeFromChosen={this.removeFromChosen} chosen={this.state.chosen}/>
+              <OffensiveSynergySingle pokemon={pokemon} key={index} teamId={this.props.teamId} getRoster={this.props.getRoster} addToChosen={this.addToChosen} removeFromChosen={this.removeFromChosen} chosen={this.state.chosen} lockStatuses={this.props.lockStatuses}/>
             )
           })}
         </ul>
