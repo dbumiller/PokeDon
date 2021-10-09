@@ -36,6 +36,8 @@ componentDidMount() {
         <button name="defense" onClick={this.editView}>Defense</button>
         <br></br>
         <button name="speed" onClick={this.editView}>Speed</button>
+        <br></br>
+        <button name="allTeams" onClick={this.editView}>All Teams</button>
       </div>
     )
   }

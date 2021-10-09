@@ -6,6 +6,7 @@ import DefensiveSynergy from './DefensiveSynergy.jsx';
 import Momentum from './Momentum.jsx';
 import OffensiveSynergy from './OffensiveSynergy.jsx';
 import OffensiveCompliment from './OffensiveCompliment.jsx';
+import AllTeams from './AllTeams.jsx';
 import MyTeam from './MyTeam.jsx';
 import Speed from './Speed.jsx';
 import axios from 'axios';
@@ -139,9 +140,13 @@ class App extends React.Component {
       return (
         <MyTeam teamName={this.state.teamName} teamId={this.state.teamId} pokemon={this.state.pokemon} changeView={this.changeView}/>
       )
-    } else if (this.state.view = 'speed') {
+    } else if (this.state.view === 'speed') {
       return (
         <Speed teamName={this.state.speed} teamId={this.state.teamId} pokemon={this.state.pokemon} changeView={this.changeView} lockStatuses={this.state.lockStatuses}/>
+      )
+    } else if (this.state.view === 'allTeams') {
+      return (
+        <AllTeams changeView={this.changeView} lockStatuses={this.state.lockStatuses}/>
       )
     } else {
       return (
