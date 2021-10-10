@@ -472,7 +472,7 @@
   "Obstagoon": {
     "no": 862,
     "typing": ["dark", "normal"],
-    "defensiveUtility": false,
+    "defensiveUtility": true,
     "wallbreaker": true,
     "sweeper": false,
     "hazardControl": false,
@@ -1868,7 +1868,7 @@
     "attackingStat": "mixed"
   },
   "Walrein": {
-    "no": 323,
+    "no": 365,
     "typing": ["water", "ice"],
     "defensiveUtility": true,
     "wallbreaker": true,
@@ -1887,7 +1887,7 @@
     "attackingStat": "physical"
   },
   "Lapras": {
-    "no": 323,
+    "no": 131,
     "typing": ["water", "ice"],
     "defensiveUtility": true,
     "wallbreaker": true,
@@ -1905,7 +1905,7 @@
     "attackingStat": "special"
   },
   "Quagsire": {
-    "no": 323,
+    "no": 195,
     "typing": ["water", "ground"],
     "defensiveUtility": true,
     "wallbreaker": false,
@@ -1923,7 +1923,7 @@
     "attackingStat": "N/A"
   },
   "Gallade": {
-    "no": 323,
+    "no": 475,
     "typing": ["fighting", "psychic"],
     "defensiveUtility": false,
     "wallbreaker": true,
@@ -1941,7 +1941,7 @@
     "attackingStat": "physical"
   },
   "Rampardos": {
-    "no": 323,
+    "no": 409,
     "typing": ["rock"],
     "defensiveUtility": false,
     "wallbreaker": true,
@@ -1959,7 +1959,7 @@
     "attackingStat": "physical"
   },
   "Absol": {
-    "no": 323,
+    "no": 359,
     "typing": ["dark"],
     "defensiveUtility": false,
     "wallbreaker": true,
@@ -1977,7 +1977,7 @@
     "attackingStat": "physical"
   },
   "Empoleon": {
-    "no": 323,
+    "no": 395,
     "typing": ["steel", "water"],
     "defensiveUtility": true,
     "wallbreaker": true,
@@ -1995,7 +1995,7 @@
     "attackingStat": "special"
   },
   "Tyranitar": {
-    "no": 323,
+    "no": 248,
     "typing": ["rock", "dark"],
     "defensiveUtility": true,
     "wallbreaker": true,
@@ -2013,7 +2013,7 @@
     "attackingStat": "mixed"
   },
   "Garchomp": {
-    "no": 323,
+    "no": 445,
     "typing": ["ground", "dragon"],
     "defensiveUtility": true,
     "wallbreaker": true,
@@ -2031,7 +2031,7 @@
     "attackingStat": "mixed"
   },
   "Doublade": {
-    "no": 323,
+    "no": 680,
     "typing": ["ghost", "steel"],
     "defensiveUtility": true,
     "wallbreaker": false,
