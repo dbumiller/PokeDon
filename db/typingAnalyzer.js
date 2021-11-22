@@ -1,4 +1,4 @@
-var sampleLeague = require('../sampleLeague.json');
+var sampleLeague = require('../seasonThree.json');
 
 var typeChart = {
   top: ['bug', 'dark', 'dragon', 'electric', 'fairy', 'fighting', 'fire', 'flying', 'ghost', 'grass', 'ground', 'ice', 'normal', 'poison', 'psychic', 'rock', 'steel', 'water'],
@@ -82,6 +82,7 @@ var calculator = function(pokemon) {
         }
       }
 
+      // console.log(pokemon.name, currentTyping);
       if (typeChart[currentTyping][k] === 2) {
         pokemon.offensiveEffectiveness[currentTarget] += 1;
       } else if (typeChart[currentTyping][k] <= .5) {
