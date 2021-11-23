@@ -596,11 +596,11 @@
     "tSpiker": false,
     "webber": false,
     "screener": false,
-    "priority": false,
+    "priority": true,
     "momentum": false,
     "speedControl": false,
     "speed": 70,
-    "attackingStat": "physical"
+    "attackingStat": "mixed"
   },
   "Rapidash": {
     "no": 199,
@@ -875,7 +875,7 @@
   "Jynx": {
     "no": 199,
     "typing": ["psychic", "ice"],
-    "defensiveUtility": false,
+    "defensiveUtility": true,
     "wallbreaker": true,
     "sweeper": false,
     "hazardControl": false,
@@ -888,7 +888,8 @@
     "momentum": false,
     "speedControl": true,
     "speed": 95,
-    "attackingStat": "special"
+    "attackingStat": "special",
+    "additionalResistances": [["water", 0]]
   },
   "Pinsir": {
     "no": 199,
@@ -2251,7 +2252,7 @@
   },
   "Haunter": {
     "no": 199,
-    "typing": ["ghost"],
+    "typing": ["ghost", "poison"],
     "defensiveUtility": false,
     "wallbreaker": true,
     "sweeper": true,
@@ -2715,7 +2716,7 @@
     "priority": false,
     "momentum": false,
     "speedControl": false,
-    "speed": 8,
+    "speed": 68,
     "attackingStat": "physical",
     "additionalResistances": ["electric", 0]
   },
@@ -2736,5 +2737,23 @@
     "speedControl": false,
     "speed": 65,
     "attackingStat": "mixed"
+  },
+  "Kadabra": {
+    "no": 199,
+    "typing": ["psychic"],
+    "defensiveUtility": false,
+    "wallbreaker": true,
+    "sweeper": true,
+    "hazardControl": false,
+    "rocker": false,
+    "spiker": false,
+    "tSpiker": false,
+    "webber": false,
+    "screener": false,
+    "priority": false,
+    "momentum": false,
+    "speedControl": true,
+    "speed": 105,
+    "attackingStat": "special"
   }
 }
