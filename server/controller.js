@@ -51,7 +51,6 @@ const controller = {
     })
   },
   lock: (req, res) => {
-    console.log(req.params)
     model.pokemon.lock(req.params.name)
     .then((results) => {
       res.status(200).send(results);
