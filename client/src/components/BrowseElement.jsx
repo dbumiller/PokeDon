@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {Typography} from '@material-ui/core';
 
 class BrowseElement extends React.Component {
   constructor(props) {
@@ -69,13 +70,22 @@ class BrowseElement extends React.Component {
     if (chosen) {
       return (
         <div>
+                    <Typography
+            color="secondary"
+          >
           {infoString} <button onClick={this.removePokemon}>Chosen. Click to undo</button>
+          </Typography>
         </div>
       )
     } else {
       return (
         <div>
-          {infoString} <button onClick={this.choosePokemon}>Add Pokemon</button>
+          <Typography
+            color="secondary"
+          >
+            {infoString}
+          <button onClick={this.choosePokemon}>Add Pokemon</button>
+          </Typography>
         </div>
       )
     }

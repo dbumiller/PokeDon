@@ -58,7 +58,6 @@ const pokemon = {
     return db.Pokemon.findAll();
   },
   lock: (name) => {
-    console.log('hey')
     return db.Pokemon.update({locked: true}, {
       where: {
         name: name
@@ -66,7 +65,6 @@ const pokemon = {
     });
   },
   unlock: (name) => {
-    console.log('you')
     return db.Pokemon.update({locked: false}, {
       where: {
         name: name

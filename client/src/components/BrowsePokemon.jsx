@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import BrowseElement from './BrowseElement.jsx';
+import {Typography} from '@material-ui/core'
 
 class BrowsePokemon extends React.Component {
   constructor(props) {
@@ -94,7 +95,13 @@ class BrowsePokemon extends React.Component {
   render() {
     return (
       <div>
+        <Typography
+        variant="h3"
+        color="primary"
+        align="center"
+        >
         browse
+        </Typography>
         <br></br>
         <button onClick={this.goBack}>Back</button>
         <br></br>
