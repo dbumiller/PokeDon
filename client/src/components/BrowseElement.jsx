@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {Typography} from '@material-ui/core';
+import {Button} from '@material-ui/core';
 
 class BrowseElement extends React.Component {
   constructor(props) {
@@ -72,8 +73,16 @@ class BrowseElement extends React.Component {
         <div>
                     <Typography
             color="secondary"
+            gutterBottom
           >
-          {infoString} <button onClick={this.removePokemon}>Chosen. Click to undo</button>
+          {infoString}
+          <Button
+          variant="contained"
+          color="primary"
+          onClick={this.removePokemon}
+          >
+            Chosen. Click to undo
+          </Button>
           </Typography>
         </div>
       )
@@ -82,9 +91,16 @@ class BrowseElement extends React.Component {
         <div>
           <Typography
             color="secondary"
+            gutterBottom
           >
             {infoString}
-          <button onClick={this.choosePokemon}>Add Pokemon</button>
+            <Button
+            variant="contained"
+            color="secondary"
+            onClick={this.choosePokemon}
+            >
+              Add Pokemon
+            </Button>
           </Typography>
         </div>
       )
