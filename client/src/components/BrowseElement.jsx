@@ -71,18 +71,18 @@ class BrowseElement extends React.Component {
     if (chosen) {
       return (
         <div>
-                    <Typography
-            color="secondary"
+          <Typography
+            color="primary"
             gutterBottom
           >
-          {infoString}
-          <Button
-          variant="contained"
-          color="primary"
-          onClick={this.removePokemon}
-          >
-            Chosen. Click to undo
-          </Button>
+            {infoString}
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.removePokemon}
+            >
+              Chosen. Click to undo
+            </Button>
           </Typography>
         </div>
       )
@@ -95,9 +95,9 @@ class BrowseElement extends React.Component {
           >
             {infoString}
             <Button
-            variant="contained"
-            color="secondary"
-            onClick={this.choosePokemon}
+              variant="contained"
+              color="secondary"
+              onClick={this.choosePokemon}
             >
               Add Pokemon
             </Button>

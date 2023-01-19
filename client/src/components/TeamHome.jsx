@@ -10,6 +10,7 @@ class TeamHome extends React.Component {
   this.editView = this.editView.bind(this);
 }
 
+// allows the client to change between different pages thanks to the function handed down through props
 editView(e) {
   e.preventDefault();
   this.props.changeView(e.target.name);

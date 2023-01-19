@@ -33,6 +33,7 @@ class App extends React.Component {
     this.getPokemon = this.getPokemon.bind(this);
   }
 
+  // allows the client to create a new team in the database
   postTeam(name, id, defense) {
     axios.post('/api/team', {
       name: name,
@@ -51,6 +52,7 @@ class App extends React.Component {
       })
   }
 
+  // allows client to set the current team to one already in the database
   selectTeam(name, id, defense) {
     this.setState({
       teamName: name,
@@ -60,12 +62,14 @@ class App extends React.Component {
     this.changeView('home');
   }
 
+  // allows the client to edit a text field and make the new text actionable
   handleInput(e) {
     this.setState({
       [e.target.name]: e.target.value
     })
   }
 
+  // allows the client to move between different pages
   changeView(newView) {
     this.setState({
       view: newView
@@ -73,6 +77,7 @@ class App extends React.Component {
     this.getPokemon();
   }
 
+  // allows the client to get access to all pokemon in the metagame
   getPokemon() {
     axios.get('/api/pokemon')
       .then((results) => {
@@ -81,6 +86,7 @@ class App extends React.Component {
           var name = results.data[i].name;
           locksObject[name] = [results.data[i].locked, results.data[i].teamId];
         }
+        // allows the client to have an array of the lock status of all pokemon
         this.setState({
           lockStatuses: locksObject
         })
@@ -90,6 +96,7 @@ class App extends React.Component {
       })
   }
 
+  // allows the client to get all relevant data for the selected team
   getRoster(teamId) {
     axios.get(`/api/team/${teamId}`)
       .then((results) => {

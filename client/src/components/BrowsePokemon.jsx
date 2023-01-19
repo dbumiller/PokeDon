@@ -21,6 +21,7 @@ class BrowsePokemon extends React.Component {
     this.removeFromChosen = this.removeFromChosen.bind(this);
   }
 
+  // the version of this function in App is setting lock statuses and those are passed down, so this version can instead be used for other purposes
   getPokemon() {
     axios.get('/api/pokemon')
       .then((results) => {
@@ -42,6 +43,7 @@ class BrowsePokemon extends React.Component {
     e.preventDefault();
     this.props.changeView('home');
   }
+
 
   addToChosen(name) {
     var newChosen = [];
@@ -69,11 +71,13 @@ class BrowsePokemon extends React.Component {
   }
 
   handleInput(e) {
+    // if there is no search string, show all available pokemon
     if (e.target.value === '') {
       this.setState({
         search: '',
         currentPokemon: this.state.pokemon
       })
+      // if there is a search string, show all pokemon which match it
     } else {
       var search = e.target.value[0].toUpperCase() + e.target.value.substring(1);
       this.setState({
@@ -96,9 +100,9 @@ class BrowsePokemon extends React.Component {
     return (
       <div>
         <Typography
-        variant="h3"
-        color="primary"
-        align="center"
+          variant="h3"
+          color="primary"
+          align="center"
         >
         browse
         </Typography>
@@ -118,6 +122,7 @@ class BrowsePokemon extends React.Component {
         </label>
         <ul className="pokemon">
           {this.state.currentPokemon.map((pokemon, index) => {
+            // the if statement makes sure that only pokemon that are not drafted can be seen and picked
             if (!this.props.lockStatuses[pokemon.name][0]) {
               return (
                 <BrowseElement pokemon={pokemon} key={index} teamId={this.props.teamId} addToChosen={this.addToChosen} chosen={this.state.chosen} removeFromChosen={this.removeFromChosen} getRoster={this.props.getRoster}/>

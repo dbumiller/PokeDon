@@ -4,6 +4,7 @@
   "description": "pokemon draft helper",
   "dependencies": {
     "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
     "axios": "^0.21.1",
     "babel-core": "^6.26.3",
     "babel-loader": "^6.3.2",
