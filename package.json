@@ -11,21 +11,29 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "debug": "^4.3.1",
-    "express": "^4.17.1",
+    "express": "^4.22.2",
     "morgan": "^1.10.0",
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.7",
+    "pg": "^8.22.0",
+    "pg-hstore": "^2.3.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "sequelize": "^6.6.2",
+    "sequelize": "^6.37.8",
     "webpack": "^2.2.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.1.0",
+    "@types/validator": "^13.15.10",
+    "typescript": "^6.0.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack -d --watch",
-    "start": "nodemon server/index.js",
-    "seed": "mysql -u root <./db/schema.sql & node ./db/seed.js"
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc",
+    "start": "NODE_ENV=production node dist/server/index.js",
+    "seed": "ts-node ./db/seed.js"
   },
   "author": "Donald Bumiller",
   "license": "ISC"

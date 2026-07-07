@@ -9,13 +9,16 @@ import OffensiveCompliment from './OffensiveCompliment.jsx';
 import AllTeams from './AllTeams.jsx';
 import MyTeam from './MyTeam.jsx';
 import Speed from './Speed.jsx';
+// Promise-based HTTP client, allows me to create very simple api requests in javascript
 import axios from 'axios';
 
 
 class App extends React.Component {
+  // Sets the initial state and binds event handlers
   constructor() {
     super();
 
+    // Stores data that can change over time
     this.state = {
       pokemon: [],
       teamName: '',
@@ -109,6 +112,7 @@ class App extends React.Component {
       })
   }
 
+  // Changes what page the client is on
   render() {
     if (this.state.view === 'landing') {
       return (

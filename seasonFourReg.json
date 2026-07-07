@@ -1322,24 +1322,6 @@
     "speed": 90,
     "attackingStat": "physical"
   },
-  "Roaring Moon": {
-    "no": 199,
-    "typing": ["dark", "dragon"],
-    "defensiveUtility": true,
-    "wallbreaker": true,
-    "sweeper": true,
-    "hazardControl": false,
-    "rocker": false,
-    "spiker": false,
-    "tSpiker": false,
-    "webber": false,
-    "screener": false,
-    "priority": false,
-    "momentum": true,
-    "speedControl": true,
-    "speed": 119,
-    "attackingStat": "physical"
-  },
   "Rabsca": {
     "no": 199,
     "typing": ["bug", "psychic"],
@@ -1469,7 +1451,7 @@
   "Ceruledge": {
     "no": 199,
     "typing": ["fire", "ghost"],
-    "defensiveUtility": false,
+    "defensiveUtility": true,
     "wallbreaker": true,
     "sweeper": true,
     "hazardControl": false,
@@ -1593,24 +1575,6 @@
     "speed": 49,
     "attackingStat": "N/A"
   },
-  "Dragapult": {
-    "no": 199,
-    "typing": ["ghost", "dragon"],
-    "defensiveUtility": false,
-    "wallbreaker": true,
-    "sweeper": true,
-    "hazardControl": false,
-    "rocker": false,
-    "spiker": false,
-    "tSpiker": false,
-    "webber": false,
-    "screener": false,
-    "priority": false,
-    "momentum": true,
-    "speedControl": true,
-    "speed": 142,
-    "attackingStat": "mixed"
-  },
   "Arcanine": {
     "no": 199,
     "typing": ["fire"],
@@ -1627,24 +1591,6 @@
     "momentum": false,
     "speedControl": false,
     "speed": 95,
-    "attackingStat": "physical"
-  },
-  "Garchomp": {
-    "no": 199,
-    "typing": ["dragon", "ground"],
-    "defensiveUtility": true,
-    "wallbreaker": true,
-    "sweeper": false,
-    "hazardControl": false,
-    "rocker": true,
-    "spiker": true,
-    "tSpiker": false,
-    "webber": false,
-    "screener": false,
-    "priority": false,
-    "momentum": false,
-    "speedControl": false,
-    "speed": 102,
     "attackingStat": "physical"
   },
   "Garganacl": {
@@ -1684,24 +1630,6 @@
     "speed": 86,
     "attackingStat": "special"
   },
-  "Great Tusk": {
-    "no": 199,
-    "typing": ["ground", "fighting"],
-    "defensiveUtility": true,
-    "wallbreaker": true,
-    "sweeper": true,
-    "hazardControl": true,
-    "rocker": true,
-    "spiker": false,
-    "tSpiker": false,
-    "webber": false,
-    "screener": false,
-    "priority": false,
-    "momentum": false,
-    "speedControl": false,
-    "speed": 87,
-    "attackingStat": "physical"
-  },
   "Grimmsnarl": {
     "no": 199,
     "typing": ["dark", "fairy"],
@@ -1738,24 +1666,6 @@
     "speed": 29,
     "attackingStat": "special"
   },
-  "Iron Treads": {
-    "no": 199,
-    "typing": ["steel", "ground"],
-    "defensiveUtility": true,
-    "wallbreaker": false,
-    "sweeper": true,
-    "hazardControl": true,
-    "rocker": true,
-    "spiker": false,
-    "tSpiker": false,
-    "webber": false,
-    "screener": false,
-    "priority": false,
-    "momentum": false,
-    "speedControl": true,
-    "speed": 106,
-    "attackingStat": "physical"
-  },
   "Iron Hands": {
     "no": 199,
     "typing": ["electric", "fighting"],
@@ -1791,24 +1701,6 @@
     "speedControl": true,
     "speed": 110,
     "attackingStat": "special"
-  },
-  "Iron Valiant": {
-    "no": 199,
-    "typing": ["fairy", "fighting"],
-    "defensiveUtility": false,
-    "wallbreaker": true,
-    "sweeper": true,
-    "hazardControl": false,
-    "rocker": false,
-    "spiker": false,
-    "tSpiker": false,
-    "webber": false,
-    "screener": false,
-    "priority": true,
-    "momentum": false,
-    "speedControl": true,
-    "speed": 116,
-    "attackingStat": "mixed"
   },
   "Kingambit": {
     "no": 199,
@@ -1885,7 +1777,7 @@
   "Quaquaval": {
     "no": 199,
     "typing": ["water", "fighting"],
-    "defensiveUtility": false,
+    "defensiveUtility": true,
     "wallbreaker": true,
     "sweeper": true,
     "hazardControl": false,
@@ -1973,24 +1865,6 @@
     "speed": 35,
     "attackingStat": "N/A"
   },
-  "Volcarona": {
-    "no": 199,
-    "typing": ["bug", "fire"],
-    "defensiveUtility": true,
-    "wallbreaker": false,
-    "sweeper": true,
-    "hazardControl": false,
-    "rocker": false,
-    "spiker": false,
-    "tSpiker": false,
-    "webber": false,
-    "screener": false,
-    "priority": false,
-    "momentum": false,
-    "speedControl": false,
-    "speed": 100,
-    "attackingStat": "special"
-  },
   "Alomomola": {
     "no": 199,
     "typing": ["water"],
@@ -2011,8 +1885,8 @@
   },
   "Armarouge": {
     "no": 199,
-    "typing": ["ghost", "psychic"],
-    "defensiveUtility": false,
+    "typing": ["fire", "psychic"],
+    "defensiveUtility": true,
     "wallbreaker": true,
     "sweeper": false,
     "hazardControl": false,
@@ -2065,7 +1939,7 @@
   },
   "Brambleghast": {
     "no": 199,
-    "typing": ["grass", "dark"],
+    "typing": ["grass", "ghost"],
     "defensiveUtility": true,
     "wallbreaker": false,
     "sweeper": false,
@@ -2115,7 +1989,7 @@
     "momentum": false,
     "speedControl": true,
     "speed": 110,
-    "attackingStat": "true"
+    "attackingStat": "special"
   },
   "Grafaiai": {
     "no": 199,
@@ -2228,7 +2102,7 @@
   "Iron Jugulis": {
     "no": 199,
     "typing": ["dark", "flying"],
-    "defensiveUtility": false,
+    "defensiveUtility": true,
     "wallbreaker": true,
     "sweeper": true,
     "hazardControl": false,
@@ -2242,24 +2116,6 @@
     "speedControl": false,
     "speed": 108,
     "attackingStat": "special"
-  },
-  "Baxcalibur": {
-    "no": 199,
-    "typing": ["dragon", "ice"],
-    "defensiveUtility": true,
-    "wallbreaker": true,
-    "sweeper": true,
-    "hazardControl": false,
-    "rocker": false,
-    "spiker": false,
-    "tSpiker": false,
-    "webber": false,
-    "screener": false,
-    "priority": true,
-    "momentum": false,
-    "speedControl": false,
-    "speed": 87,
-    "attackingStat": "physical"
   },
   "Drednaw": {
     "no": 199,
@@ -2681,7 +2537,7 @@
   "Tsareena": {
     "no": 199,
     "typing": ["grass"],
-    "defensiveUtility": false,
+    "defensiveUtility": true,
     "wallbreaker": true,
     "sweeper": false,
     "hazardControl": true,
@@ -2749,24 +2605,6 @@
     "speedControl": false,
     "speed": 97,
     "attackingStat": "physical"
-  },
-  "Slowbro": {
-    "no": 199,
-    "typing": ["water", "psychic"],
-    "defensiveUtility": true,
-    "wallbreaker": false,
-    "sweeper": false,
-    "hazardControl": false,
-    "rocker": false,
-    "spiker": false,
-    "tSpiker": false,
-    "webber": false,
-    "screener": false,
-    "priority": false,
-    "momentum": false,
-    "speedControl": false,
-    "speed": 30,
-    "attackingStat": "N/A"
   },
   "Tauros-Paldea-Fire": {
     "no": 199,
@@ -2843,7 +2681,7 @@
   "Oricorio-Pom-Pom": {
     "no": 199,
     "typing": ["flying", "electric"],
-    "defensiveUtility": false,
+    "defensiveUtility": true,
     "wallbreaker": false,
     "sweeper": true,
     "hazardControl": true,
@@ -2861,7 +2699,7 @@
   "Oricorio-Sensu": {
     "no": 199,
     "typing": ["flying", "ghost"],
-    "defensiveUtility": false,
+    "defensiveUtility": true,
     "wallbreaker": false,
     "sweeper": true,
     "hazardControl": true,
@@ -2892,6 +2730,24 @@
     "momentum": false,
     "speedControl": true,
     "speed": 110,
+    "attackingStat": "physical"
+  },
+  "Lycanroc-Midday": {
+    "no": 199,
+    "typing": ["rock"],
+    "defensiveUtility": false,
+    "wallbreaker": false,
+    "sweeper": true,
+    "hazardControl": false,
+    "rocker": true,
+    "spiker": false,
+    "tSpiker": false,
+    "webber": false,
+    "screener": false,
+    "priority": true,
+    "momentum": false,
+    "speedControl": true,
+    "speed": 112,
     "attackingStat": "physical"
   },
   "Toxtricity": {
@@ -3146,7 +3002,7 @@
     "momentum": true,
     "speedControl": false,
     "speed": 80,
-    "attackingStat": "true"
+    "attackingStat": "special"
   },
   "Slowbro": {
     "no": 199,
@@ -3205,7 +3061,7 @@
   "Heracross": {
     "no": 199,
     "typing": ["bug", "fighting"],
-    "defensiveUtility": false,
+    "defensiveUtility": true,
     "wallbreaker": true,
     "sweeper": true,
     "hazardControl": false,
@@ -3290,6 +3146,61 @@
     "momentum": false,
     "speedControl": false,
     "speed": 90,
+    "attackingStat": "special"
+  },
+  "Farigraf": {
+    "no": 199,
+    "typing": ["normal", "psychic"],
+    "defensiveUtility": true,
+    "wallbreaker": false,
+    "sweeper": true,
+    "hazardControl": false,
+    "rocker": false,
+    "spiker": false,
+    "tSpiker": false,
+    "webber": false,
+    "screener": false,
+    "priority": false,
+    "momentum": false,
+    "speedControl": false,
+    "speed": 60,
+    "attackingStat": "special",
+    "additionalResistances": [["grass", 0]]
+  },
+  "Copperajah": {
+    "no": 199,
+    "typing": ["steel"],
+    "defensiveUtility": true,
+    "wallbreaker": true,
+    "sweeper": false,
+    "hazardControl": false,
+    "rocker": true,
+    "spiker": false,
+    "tSpiker": false,
+    "webber": false,
+    "screener": false,
+    "priority": false,
+    "momentum": false,
+    "speedControl": false,
+    "speed": 30,
+    "attackingStat": "physical"
+  },
+  "Scovillain": {
+    "no": 199,
+    "typing": ["grass", "fire"],
+    "defensiveUtility": false,
+    "wallbreaker": false,
+    "sweeper": true,
+    "hazardControl": false,
+    "rocker": true,
+    "spiker": false,
+    "tSpiker": false,
+    "webber": false,
+    "screener": false,
+    "priority": false,
+    "momentum": false,
+    "speedControl": true,
+    "speed": 75,
     "attackingStat": "special"
   }
 }

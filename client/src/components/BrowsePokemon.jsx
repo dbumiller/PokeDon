@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import BrowseElement from './BrowseElement.jsx';
+// React library that implements Google's Material Design for styling
 import {Typography} from '@material-ui/core'
 
 class BrowsePokemon extends React.Component {
@@ -99,6 +100,7 @@ class BrowsePokemon extends React.Component {
   render() {
     return (
       <div>
+        {// Sets the text for browse to a certain size and color as well as centers it}
         <Typography
           variant="h3"
           color="primary"

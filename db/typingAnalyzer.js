@@ -1,4 +1,4 @@
-var sampleLeague = require('../seasonFour.json');
+var sampleLeague = require('../seasonFourReg.json');
 
 var typeChart = {
   top: ['bug', 'dark', 'dragon', 'electric', 'fairy', 'fighting', 'fire', 'flying', 'ghost', 'grass', 'ground', 'ice', 'normal', 'poison', 'psychic', 'rock', 'steel', 'water'],
@@ -30,8 +30,11 @@ var typeChart = {
 
 var calculator = function(pokemon) {
   var current;
+  // Sets the pokemon's offensive and defensive type chart values to 1
   for (var i = 0; i < typeChart['top'].length; i++) {
+    // Sets current to be a given type
     current = typeChart['top'][i];
+    // Adds the type to the pokemon's effectiveness object and sets it to 1
     pokemon.offensiveEffectiveness[current] = 1;
     pokemon.defensiveEffectiveness[current] = 1;
   }
@@ -43,6 +46,7 @@ var calculator = function(pokemon) {
     for (k = 0; k <= typeChart.top.length; k++) {
       currentTarget = typeChart.top[k];
 
+      // Loops through until it is at the correct typing
       if (currentTarget === currentTyping) {
         for (key in typeChart) {
           if (key !== 'top') {
@@ -50,6 +54,7 @@ var calculator = function(pokemon) {
 
             if (j === pokemon.typing.length - 1) {
               if (!pokemon.additionalResistances) {
+                // Sets the pokemon's defensive effectiveness to the appropriate number
                 if (pokemon.defensiveEffectiveness[key] > 1) {
                   pokemon.defensiveWeak.push(key);
                 } else if (pokemon.defensiveEffectiveness[key] <= .5) {
@@ -61,6 +66,7 @@ var calculator = function(pokemon) {
                   pokemon.defensiveResist.push(pokemon.additionalResistances[h][0]);
                 }
 
+                // Assigns resistances and weaknesses to the appropriate arrays
                 if (pokemon.defensiveEffectiveness[key] > 1) {
                   var found = false;
                   for (var g = 0; g < pokemon.additionalResistances.length; g++) {
@@ -82,7 +88,7 @@ var calculator = function(pokemon) {
         }
       }
 
-      // console.log(pokemon.name, currentTyping);
+      
       if (typeChart[currentTyping][k] === 2) {
         pokemon.offensiveEffectiveness[currentTarget] += 1;
       } else if (typeChart[currentTyping][k] <= .5) {
@@ -150,11 +156,15 @@ for (key in sampleLeague) {
 
 var analyzer = function(metagame) {
 
+  // For every pokemon
   for (var m = 0; m < metagame.length; m++) {
+    // Loop through every pokemon
     for (var n = 0; n < metagame.length; n++) {
       if (m !== n) {
         var sameType = false;
+        // For each typing of the first pokemon
         for (var q = 0; q < metagame[m].typing.length; q++) {
+          // Compare it to each typing of the second pokemon
           for (var r = 0; r < metagame[n].typing.length; r++) {
             if (metagame[m].typing[q] === metagame[n].typing[r]) {
               sameType = true;
@@ -162,12 +172,15 @@ var analyzer = function(metagame) {
           }
         }
         if (!sameType) {
+          // If the two make up a sweeper and wallbreaker pair
           if ((metagame[m].sweeper && metagame[n].wallbreaker) || (metagame[m].wallbreaker && metagame[n].sweeper)) {
             var countNVE = 0;
+            // Count how many typings they are both NVE against
             for (var o = 0; o < metagame[m].offensiveNVE.length; o++) {
               for (var p = 0; p < metagame[n].offensiveNVE.length; p++) {
                 if (metagame[m].offensiveNVE[o] === metagame[n].offensiveNVE[p]) {
                   countNVE++;
+                  // Gives more weight to immunities
                 } else if (metagame[m].offensiveNVE[o].toLowerCase() === metagame[n].offensiveNVE[p].toLowerCase()) {
                   countNVE += 1.3;
                 }

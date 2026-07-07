@@ -1,8 +1,10 @@
+// Creates a router that can handle requests in a modular and organized way
 const router = require('express').Router();
+// Lets file use the controller file
 const controller = require('./controller.js');
 
 
-
+// Any request routed to /api/team gets sent here and subsequently to the appropriate HTTP requests in the controller file
   router
   .route('/team')
   .get(controller.teamGet)
@@ -28,4 +30,5 @@ const controller = require('./controller.js');
   .route('/pokemon/unlock/:name')
   .put(controller.unlock)
 
+// Lets this file be used in other files
 module.exports = router;

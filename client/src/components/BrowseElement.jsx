@@ -17,6 +17,7 @@ class BrowseElement extends React.Component {
 
   choosePokemon(e) {
     e.preventDefault();
+    // This function was passed down because it pertains to an array in BrowsePokemon
     this.props.addToChosen(this.props.pokemon.name);
     axios.put(`/api/pokemon/${this.props.pokemon.id}`, {
       "id": this.props.teamId

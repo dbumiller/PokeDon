@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 class Landing extends React.Component {
+  // Props is used here to pass the props to the parent constructor
   constructor(props) {
     super(props);
 
@@ -68,11 +69,13 @@ class Landing extends React.Component {
     }
   }
 
+  // A method that invokes immediately after the component is mounted
   componentDidMount() {
     this.getTeams();
   }
 
   render() {
+    // Conditionally renders some text if someone tried to input a blank name
     if (this.state.triedBlank) {
       return (
         <div>

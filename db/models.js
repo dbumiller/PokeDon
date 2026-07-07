@@ -1,5 +1,6 @@
 const db = require('./index.js');
 
+// Creates a variable 'teams' that contains API calls for teams
 const teams = {
   get: () => {
     return db.Team.findAll();
@@ -30,6 +31,7 @@ const teams = {
 }
 
 const pokemon = {
+  // Assigns a pokemon to a team
   choosePokemon: (pokeId, id) => {
     if (isNaN(pokeId)) {
       return db.Pokemon.update({teamId: id}, {
@@ -57,6 +59,7 @@ const pokemon = {
   getAll: () => {
     return db.Pokemon.findAll();
   },
+  // Causes a pokemon to no longer show up in the choose pokemon page
   lock: (name) => {
     return db.Pokemon.update({locked: true}, {
       where: {
@@ -64,6 +67,7 @@ const pokemon = {
       }
     });
   },
+  // Causes a previously unavailable pokemon to show up in the choose pokemon page
   unlock: (name) => {
     return db.Pokemon.update({locked: false}, {
       where: {
