@@ -33,19 +33,30 @@
 #EXPOSE 3000
 #CMD ["npm", "start"]
 
-# Stage 1: Build and compile
-FROM node:22-alpine as builder
+# Stage 1: Build & Compile
+FROM node:22-alpine AS builder
 WORKDIR /app
+
+# Install jq to allow command-line manipulation of JSON configurations
+RUN apk add --no-cache jq
+
 COPY package*.json ./
+
+# Force inject "type": "module" directly into the manifest to unlock native ESM compilation
+RUN jq '. + {type: "module"}' package.json > tmp.json && mv tmp.json package.json
+
 RUN npm ci
 
-# Copy your specific project directories
-COPY tsconfig.json ./
+# Force-create a perfectly formatted tsconfig.json file directly inside the container
+RUN echo '{"compilerOptions":{"target":"ES2022","module":"NodeNext","moduleResolution":"NodeNext","outDir":"./dist","rootDir":"./","strict":true,"esModuleInterop":true,"skipLibCheck":true,"forceConsistentCasingInFileNames":true},"include":["server/**/*.ts"]}' > tsconfig.json
+
 COPY server/ ./server
 COPY db/ ./db
 COPY seasonFourReg.json ./
 
-RUN npm run build
+RUN ./node_modules/.bin/tsc
+
+
 RUN npm prune  -- production
 
 # Stage 2: Runtime
@@ -62,4 +73,4 @@ USER node
 EXPOSE 3000
 
 # Execute the compiled server entry point
-CMD ["node", "dist/server/index/js"]
+CMD ["node", "dist/server/index.js"]

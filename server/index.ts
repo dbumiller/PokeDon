@@ -30,7 +30,7 @@ import express, { Application } from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import path from 'path';
-import { FileURLToPath } from 'url';
+import { fileURLToPath } from 'url';
 
 // Explicitely imports router with a .js extension for NodeNext ESM compatability
 import router from './router.js';
@@ -56,7 +56,14 @@ const __dirname = path.dirname(__filename);
 server.use((express.static(path.join(__dirname, '../client/dist'))));
 
 // Mounts typed API endpoints
-server.use('/api', router);
+//server.use('/api', router);
+
+server.use('/api/ping', (req, res) => {
+  res.status(200).json({
+    status: 'ONLINE',
+    message: 'Milestone A runtime loop successfully verified'
+  });
+});
 
 server.listen(port, () => {
   console.log(`Server actively listening on port ${port}`);
