@@ -1,3 +1,4 @@
+/*
 // Creates a router that can handle requests in a modular and organized way
 const router = require('express').Router();
 // Lets file use the controller file
@@ -32,3 +33,19 @@ const controller = require('./controller.js');
 
 // Lets this file be used in other files
 module.exports = router;
+*/
+
+import { Router, Request, Response } from 'express';
+
+const router: Router = Router();
+
+// A simple health check or ping endpoint to verify network routing
+router.get('/ping', (req: Request, res: Response) => {
+  res.status(200).json({
+    status: 'ONLINE',
+    Message: 'Milestone A verification successful',
+    timestamp: new Date().toISOString()
+  });
+});
+
+export default router;

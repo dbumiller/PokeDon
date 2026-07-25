@@ -38,3 +38,6 @@ bower_components/
 
 #huge jsons
 pokemon.json
+
+# environment variables
+.env

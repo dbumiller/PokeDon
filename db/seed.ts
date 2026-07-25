@@ -111,7 +111,7 @@ const seed = async () => {
     const teamPromises = teams.map(teamName => {
       return db.Team.create({
         name: teamName,
-        defense: typing // Ensure your Team model defines 'defense' as DataTypes.JSON or JSONB
+        defense: typing
       });
     });
 
