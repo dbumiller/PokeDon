@@ -137,8 +137,8 @@ import path from 'node:path';
 import dns from 'node:dns';
 import { fileURLToPath } from 'node:url';
 // Internal module imports - import the sequelize instance, pokemon model, teams model, and draft array
-import { sequelize, Pokemon, Team } from './index.js';
-import metagame from './typingAnalyzer.js';
+import { sequelize, Pokemon, Team } from '../../db/index.js';
+import * as metagame from '../../db/typingAnalyzer.js';
 
 // Turns current file name and directory name into variables
 const __filename = fileURLToPath(import.meta.url);
