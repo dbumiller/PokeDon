@@ -1,4 +1,5 @@
-var sampleLeague = require('../seasonFourReg.json');
+// var sampleLeague = require('../seasonFourReg.json');
+import sampleLeague from '../seasonFourReg.json' with { type: 'json' };
 
 var typeChart = {
   top: ['bug', 'dark', 'dragon', 'electric', 'fairy', 'fighting', 'fire', 'flying', 'ghost', 'grass', 'ground', 'ice', 'normal', 'poison', 'psychic', 'rock', 'steel', 'water'],
@@ -31,7 +32,7 @@ var typeChart = {
 var calculator = function(pokemon) {
   var current;
   // Sets the pokemon's offensive and defensive type chart values to 1
-  for (var i = 0; i < typeChart['top'].length; i++) {
+  for (let i = 0; i < typeChart['top'].length; i++) {
     // Sets current to be a given type
     current = typeChart['top'][i];
     // Adds the type to the pokemon's effectiveness object and sets it to 1
@@ -39,16 +40,16 @@ var calculator = function(pokemon) {
     pokemon.defensiveEffectiveness[current] = 1;
   }
 
-  for (var j = 0; j < pokemon.typing.length; j++) {
+  for (let j = 0; j < pokemon.typing.length; j++) {
     var currentTyping = pokemon.typing[j];
     var currentTarget;
 
-    for (k = 0; k <= typeChart.top.length; k++) {
+    for (let k = 0; k <= typeChart.top.length; k++) {
       currentTarget = typeChart.top[k];
 
       // Loops through until it is at the correct typing
       if (currentTarget === currentTyping) {
-        for (key in typeChart) {
+        for (const key in typeChart) {
           if (key !== 'top') {
             pokemon.defensiveEffectiveness[key] *= typeChart[key][k];
 
@@ -61,7 +62,7 @@ var calculator = function(pokemon) {
                   pokemon.defensiveResist.push(key);
                 }
               } else {
-                for (var h = 0; h < pokemon.additionalResistances.length; h++) {
+                for (let h = 0; h < pokemon.additionalResistances.length; h++) {
                   if (pokemon.additionalResistances[h][1] === 0 && pokemon.additionalResistances[h][0] === key)
                   pokemon.defensiveResist.push(pokemon.additionalResistances[h][0]);
                 }
@@ -69,7 +70,7 @@ var calculator = function(pokemon) {
                 // Assigns resistances and weaknesses to the appropriate arrays
                 if (pokemon.defensiveEffectiveness[key] > 1) {
                   var found = false;
-                  for (var g = 0; g < pokemon.additionalResistances.length; g++) {
+                  for (let g = 0; g < pokemon.additionalResistances.length; g++) {
                     if (key === pokemon.additionalResistances[g][0]) {
                       found = true;
                     }
@@ -88,7 +89,7 @@ var calculator = function(pokemon) {
         }
       }
 
-      
+
       if (typeChart[currentTyping][k] === 2) {
         pokemon.offensiveEffectiveness[currentTarget] += 1;
       } else if (typeChart[currentTyping][k] <= .5) {
@@ -117,7 +118,7 @@ var metagame = [];
 
 
 
-for (key in sampleLeague) {
+for (const key in sampleLeague) {
   var currentObj = {};
   currentObj.name = key;
   currentObj.typing = sampleLeague[key].typing;
@@ -157,15 +158,15 @@ for (key in sampleLeague) {
 var analyzer = function(metagame) {
 
   // For every pokemon
-  for (var m = 0; m < metagame.length; m++) {
+  for (let m = 0; m < metagame.length; m++) {
     // Loop through every pokemon
-    for (var n = 0; n < metagame.length; n++) {
+    for (let n = 0; n < metagame.length; n++) {
       if (m !== n) {
         var sameType = false;
         // For each typing of the first pokemon
-        for (var q = 0; q < metagame[m].typing.length; q++) {
+        for (let q = 0; q < metagame[m].typing.length; q++) {
           // Compare it to each typing of the second pokemon
-          for (var r = 0; r < metagame[n].typing.length; r++) {
+          for (let r = 0; r < metagame[n].typing.length; r++) {
             if (metagame[m].typing[q] === metagame[n].typing[r]) {
               sameType = true;
             }
@@ -176,8 +177,8 @@ var analyzer = function(metagame) {
           if ((metagame[m].sweeper && metagame[n].wallbreaker) || (metagame[m].wallbreaker && metagame[n].sweeper)) {
             var countNVE = 0;
             // Count how many typings they are both NVE against
-            for (var o = 0; o < metagame[m].offensiveNVE.length; o++) {
-              for (var p = 0; p < metagame[n].offensiveNVE.length; p++) {
+            for (let o = 0; o < metagame[m].offensiveNVE.length; o++) {
+              for (let p = 0; p < metagame[n].offensiveNVE.length; p++) {
                 if (metagame[m].offensiveNVE[o] === metagame[n].offensiveNVE[p]) {
                   countNVE++;
                   // Gives more weight to immunities
@@ -196,16 +197,16 @@ var analyzer = function(metagame) {
 
 
           var countDefenseM = 0;
-          for (var u = 0; u < metagame[m].defensiveWeak.length; u++) {
-            for (var w = 0; w < metagame[n].defensiveResist.length; w++) {
+          for (let u = 0; u < metagame[m].defensiveWeak.length; u++) {
+            for (let w = 0; w < metagame[n].defensiveResist.length; w++) {
               if (metagame[m].defensiveWeak[u] === metagame[n].defensiveResist[w]) {
                 countDefenseM++;
               }
             }
           }
           var countDefenseN = 0;
-          for (var x = 0; x < metagame[n].defensiveWeak.length; x++) {
-            for (var y = 0; y < metagame[m].defensiveResist.length; y++) {
+          for (let x = 0; x < metagame[n].defensiveWeak.length; x++) {
+            for (let y = 0; y < metagame[m].defensiveResist.length; y++) {
               if (metagame[n].defensiveWeak[x] === metagame[m].defensiveResist[y]) {
                 countDefenseN++;
               }
@@ -221,8 +222,8 @@ var analyzer = function(metagame) {
 
 
                       var countComplimentM = 0;
-                      for (var z = 0; z < metagame[m].offensiveNVE.length; z++) {
-                        for (var a = 0; a < metagame[n].offensiveSE.length; a++) {
+                      for (let z = 0; z < metagame[m].offensiveNVE.length; z++) {
+                        for (let a = 0; a < metagame[n].offensiveSE.length; a++) {
                           if (metagame[m].offensiveNVE[z] === metagame[n].offensiveSE[a]) {
                             countComplimentM++;
                           } else if (metagame[m].offensiveNVE[z].toLowerCase() === metagame[n].offensiveSE[a]) {
@@ -232,8 +233,8 @@ var analyzer = function(metagame) {
                       }
 
                       var countComplimentN = 0;
-                      for (var b = 0; b < metagame[n].offensiveNVE.length; b++) {
-                        for (var c = 0; c < metagame[m].offensiveSE.length; c++) {
+                      for (let b = 0; b < metagame[n].offensiveNVE.length; b++) {
+                        for (let c = 0; c < metagame[m].offensiveSE.length; c++) {
                           if (metagame[n].offensiveNVE[b] === metagame[m].offensiveSE[c]) {
                             countComplimentN++;
                           } else if (metagame[n].offensiveNVE[b].toLowerCase() === metagame[m].offensiveSE[c]) {
@@ -253,13 +254,13 @@ var analyzer = function(metagame) {
             var countMomentumFollowup = 0;
 
             var combinedNVEDefensiveWeak = [];
-            for (var b = 0; b < metagame[m].offensiveNVE.length; b++) {
+            for (let b = 0; b < metagame[m].offensiveNVE.length; b++) {
               combinedNVEDefensiveWeak.push(metagame[m].offensiveNVE[b]);
             }
 
-            for (var c = 0; c < metagame[m].defensiveWeak.length; c++) {
+            for (let c = 0; c < metagame[m].defensiveWeak.length; c++) {
               var found = false;
-              for (var d = 0; d < combinedNVEDefensiveWeak.length; d++) {
+              for (let d = 0; d < combinedNVEDefensiveWeak.length; d++) {
                 if (metagame[m].defensiveWeak[c] === combinedNVEDefensiveWeak[d].toLowerCase()) {
                   found = true;
                 }
@@ -269,8 +270,8 @@ var analyzer = function(metagame) {
               }
             }
 
-            for (var z = 0; z < combinedNVEDefensiveWeak.length; z++) {
-              for (var a = 0; a < metagame[n].offensiveSE.length; a++) {
+            for (let z = 0; z < combinedNVEDefensiveWeak.length; z++) {
+              for (let a = 0; a < metagame[n].offensiveSE.length; a++) {
                 if (combinedNVEDefensiveWeak[z] === metagame[n].offensiveSE[a]) {
                   countMomentumFollowup++;
                 } else if (combinedNVEDefensiveWeak[z].toLowerCase() === metagame[n].offensiveSE[a]) {
@@ -331,7 +332,7 @@ var analyzer = function(metagame) {
 
 
   }
-  for (var m = 0; m < metagame.length; m++) {
+  for (let m = 0; m < metagame.length; m++) {
     metagame[m].momentousLeadIn.sort(function(a, b) {
       if (a > b) {
         return -1;
@@ -347,4 +348,5 @@ var analyzer = function(metagame) {
 analyzer(metagame);
 
 
-module.exports = metagame;
+// module.exports = metagame;
+export default metagame;
