@@ -1,5 +1,6 @@
 // ORM technology that provides javascript-like syntax for interacting with an SQL database, DataTypes lets me access built-in data types
-const {Sequelize, DataTypes} = require('sequelize');
+// const {Sequelize, DataTypes} = require('sequelize');
+import { Sequelize, DataTypes } from 'sequelize';
 
 // Provides default variables for when used on my own computer
 const dbName = process.env.DB_NAME || 'pokedon';
@@ -189,8 +190,10 @@ const Team = sequelize.define('team', {
 // Team.hasMany(Pokemon);
 
 
-module.exports = {
+/* module.exports = {
   sequelize,
   Pokemon,
   Team
-};
+}; */
+
+export { sequelize, Pokemon, Team }

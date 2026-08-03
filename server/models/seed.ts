@@ -146,3 +146,40 @@ const __dirname = path.dirname(__filename);
 
 // Turns path to schema into a variable
 const sqlFilePath = path.join(__dirname, 'schema.sql');
+
+// Ensures the database is running before the backend uses it
+const seed = async (): Promise<void> => {
+  // Checks if the database name is defined by the container
+  if (process.env.DB_HOST === 'postgres-db') {
+    // Create a promise that will later return a string
+    const ip = await new Promise<string>((resolve, reject) => {
+      // Locates the database address
+      dns.lookup('postgres-db', (err, address) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(address);
+        }
+      });
+
+      // Sets the sequelize endpoints
+      (sequelize as any).options.host = ip;
+      (sequelize.config as any).host = ip;
+      (sequelize.connectionManager as any).config.host = ip;
+    });
+    /* const lookup = async (): Promise<string> ((resolve, reject) => {
+      const add: string = await dns.lookup('postgres-db', (err, address) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(address);
+          console.log(`Running at ${address}`);
+        }
+          // Updates sequelize endpoints
+          sequelize.host.options = add;
+          (sequelize.config as any).host = add;
+          (sequelize.connectionManager as any).config.host = add;
+        }
+      }) */
+    }
+}
