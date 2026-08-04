@@ -176,8 +176,16 @@ const seed = async (): Promise<void> => {
       // Sets the sequelize endpoints
       (sequelize as any).options.host = ip;
       (sequelize.config as any).host = ip;
-      (sequelize.connectionManager as any).config.host = ip;
     });
+
+    // Assigns the contents of the schema to a string
+    console.log('Reading schema.sql');
+    const schemaSql = fs.readFileSync(sqlFilePath, 'utf8');
+
+    // Executes the schema in Postgres
+    await sequelize.query(sqlFilePath);
+    console.log('Ran the schema')
+
     /* const lookup = async (): Promise<string> ((resolve, reject) => {
       const add: string = await dns.lookup('postgres-db', (err, address) => {
         if (err) {
