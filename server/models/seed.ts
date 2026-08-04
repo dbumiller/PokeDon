@@ -147,6 +147,17 @@ const __dirname = path.dirname(__filename);
 // Turns path to schema into a variable
 const sqlFilePath = path.join(__dirname, 'schema.sql');
 
+// Maps Environment if using Docker
+if (process.env.DB_HOST) {
+  console.log('Configuring connection for Docker environment');
+  (sequelize as any).options.host = process.env.DB_HOST;
+  (sequelize.config as any).host = process.env.DB_HOST;
+
+  if (process.env.DB_USER) (sequelize.config as any).username = process.env.DB_USER;
+  if (process.env.DB_USER) (sequelize.config as any).password = process.env.PASSWORD;
+  if (process.env.NAME) (sequelize.config as any).name = process.env.NAME;
+}
+
 // Ensures the database is running before the backend uses it
 const seed = async (): Promise<void> => {
   // Checks if the database name is defined by the container
