@@ -145,7 +145,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Turns path to schema into a variable
-const sqlFilePath = path.join(__dirname, 'schema.sql');
+const sqlFilePath = path.join(__dirname, '..', '..', '//db', 'schema.sql');
 
 // Maps Environment if using Docker
 if (process.env.DB_HOST) {
@@ -154,12 +154,13 @@ if (process.env.DB_HOST) {
   (sequelize.config as any).host = process.env.DB_HOST;
 
   if (process.env.DB_USER) (sequelize.config as any).username = process.env.DB_USER;
-  if (process.env.DB_USER) (sequelize.config as any).password = process.env.PASSWORD;
+  if (process.env.PASSWORD) (sequelize.config as any).password = process.env.PASSWORD;
   if (process.env.NAME) (sequelize.config as any).name = process.env.NAME;
 }
 
 // Ensures the database is running before the backend uses it
 const seed = async (): Promise<void> => {
+  try {
   // Checks if the database name is defined by the container
   if (process.env.DB_HOST === 'postgres-db') {
     // Create a promise that will later return a string
@@ -172,33 +173,69 @@ const seed = async (): Promise<void> => {
           resolve(address);
         }
       });
+    });
 
       // Sets the sequelize endpoints
       (sequelize as any).options.host = ip;
       (sequelize.config as any).host = ip;
-    });
+    };
 
     // Assigns the contents of the schema to a string
     console.log('Reading schema.sql');
     const schemaSql = fs.readFileSync(sqlFilePath, 'utf8');
 
     // Executes the schema in Postgres
-    await sequelize.query(sqlFilePath);
+    await sequelize.query(schemaSql);
     console.log('Ran the schema')
 
-    /* const lookup = async (): Promise<string> ((resolve, reject) => {
-      const add: string = await dns.lookup('postgres-db', (err, address) => {
-        if (err) {
-          reject(err)
-        } else {
-          resolve(address);
-          console.log(`Running at ${address}`);
-        }
-          // Updates sequelize endpoints
-          sequelize.host.options = add;
-          (sequelize.config as any).host = add;
-          (sequelize.connectionManager as any).config.host = add;
-        }
-      }) */
+    // Seed Pokemon
+    const pokemonPromises = metagame.default.map(pokemon => Pokemon.create(pokemon));
+    // Waits for seeding to complete before proceeding
+    await Promise.all(pokemonPromises);
+
+    const typing = {
+      bug: 0,
+      dark: 0,
+      dragon: 0,
+      electric: 0,
+      fairy: 0,
+      fighting: 0,
+      fire: 0,
+      flying: 0,
+      ghost: 0,
+      grass: 0,
+      ground: 0,
+      ice: 0,
+      normal: 0,
+      poison: 0,
+      psychic: 0,
+      rock: 0,
+      steel: 0,
+      water: 0
+    };
+
+    const teams = [
+      "New Bark Town Knights",
+      "Vermillion City Veterans",
+      "Viridian Forest Caterpie Carnage"
+    ];
+
+    // Seeds teams
+    const teamPromises = teams.map(teamName => {
+      return Team.create({
+        name: teamName,
+        defense: typing
+      });
+    });
+    await Promise.all(teamPromises);
+
+  } catch (error) {
+    console.error('Error seeding the database', error);
+  } finally {
+    if (sequelize) {
+      await sequelize.close();
     }
-}
+  }
+};
+
+seed();
